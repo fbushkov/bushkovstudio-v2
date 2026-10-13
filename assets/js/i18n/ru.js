@@ -16,7 +16,6 @@ UI: {
   mainNav:'Основная навигация', sectionsNav:'Разделы страницы', toHome:'На главную',
   back:'Назад', filterLbl:'Фильтр категорий:', filterAria:'Фильтр категорий', sitemap:'Карта сайта',
   langGroup:'Язык', themeGroup:'Тема оформления',
-  themeLight:'С<span class="sr-only">ветлая</span>', themeDark:'Т<span class="sr-only">ёмная</span>',
   themeLightTitle:'Светлая тема', themeDarkTitle:'Тёмная тема',
   home:'Главная', crumbs:'Хлебные крошки',
   photoAlt:'Филипп Бушков',

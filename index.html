@@ -88,8 +88,8 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
         </div>
         <div class="seg seg--sm" role="group" aria-label="Тема оформления" data-i18n-attr="aria-label:themeGroup" id="themeSeg">
           <span class="seg__thumb" aria-hidden="true"></span>
-          <button type="button" data-theme-set="light" aria-pressed="true" title="Светлая тема" data-i18n="themeLight" data-i18n-attr="title:themeLightTitle">С<span class="sr-only">ветлая</span></button>
-          <button type="button" data-theme-set="dark" aria-pressed="false" title="Тёмная тема" data-i18n="themeDark" data-i18n-attr="title:themeDarkTitle">Т<span class="sr-only">ёмная</span></button>
+          <button type="button" data-theme-set="light" aria-pressed="true" title="Светлая тема" aria-label="Светлая тема" data-i18n-attr="title:themeLightTitle,aria-label:themeLightTitle"><svg data-lucide="sun"></svg></button>
+          <button type="button" data-theme-set="dark" aria-pressed="false" title="Тёмная тема" aria-label="Тёмная тема" data-i18n-attr="title:themeDarkTitle,aria-label:themeDarkTitle"><svg data-lucide="moon"></svg></button>
         </div>
       </div>
     </header>

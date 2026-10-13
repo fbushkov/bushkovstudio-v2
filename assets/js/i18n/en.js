@@ -14,7 +14,6 @@ UI: {
   mainNav:'Main navigation', sectionsNav:'Page sections', toHome:'Home page',
   back:'Back', filterLbl:'Filter by category:', filterAria:'Category filter', sitemap:'Site map',
   langGroup:'Language', themeGroup:'Color theme',
-  themeLight:'L<span class="sr-only">ight</span>', themeDark:'D<span class="sr-only">ark</span>',
   themeLightTitle:'Light theme', themeDarkTitle:'Dark theme',
   home:'Home', crumbs:'Breadcrumbs',
   photoAlt:'Philipp Bushkov',

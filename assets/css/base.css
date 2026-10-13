@@ -60,6 +60,8 @@ svg.lucide{stroke-width:1.5}
 .seg--sm{gap:0;border-radius:32px;background:var(--track-sm)}
 .seg--sm .seg__thumb{border-radius:32px}
 .seg--sm button{min-height:28px;padding:0 12px;border-radius:32px;font-size:12px;font-weight:600}
+#themeSeg button{display:inline-flex;align-items:center;padding:0 8px}
+#themeSeg svg{width:16px;height:16px}
 
 /* Управляющие подписи остаются Medium, текст — Regular */
 .back,.mapbtn,.crumbs,.filter__list button,.subchips a,.tag{font-weight:500}
