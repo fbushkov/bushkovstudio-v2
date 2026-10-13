@@ -54,6 +54,14 @@
   .seg--sm button{flex:none}
   .tcard{padding:24px}
   .aspects{grid-template-columns:1fr}
+  .ph-principles{grid-template-columns:1fr!important}
+  .rules>li{grid-template-columns:1fr;padding:24px}
+  .rules>li::before{grid-row:auto;font-size:16px;margin-bottom:8px}
+  .ph-img{aspect-ratio:4/3}
+  .ph-aside{margin-left:0!important}
+  .ph-sec+.ph-sec{margin-top:96px}
+  .ph-sec{scroll-margin-top:110px}
+  .ph-channels{margin-top:120px}
   .page-h1{font-size:32px;line-height:40px;padding-top:16px}
   .cases{margin-top:24px}
   .case{min-height:180px;padding:28px}

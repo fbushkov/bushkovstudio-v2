@@ -347,11 +347,11 @@ let spyIO;
 function startSpy(){
   spyIO && spyIO.disconnect();
   spyIO = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting) markSpy(en.target.id) }), {rootMargin:'-40% 0px -55% 0px'});
-  $$('.xsec').forEach(s => spyIO.observe(s));
+  $$('.xsec, [data-spysec]').forEach(s => spyIO.observe(s));
 }
 function markSpy(id){
   $$('[data-spy]').forEach(a => a.dataset.spy===id ? a.setAttribute('aria-current','true') : a.removeAttribute('aria-current'));
-  const chip = $(`#subchips [data-spy="${id}"]`);
+  const chip = $(`.page.is-active .subchips [data-spy="${id}"]`);
   if(chip && chip.offsetParent){ const bar = chip.parentNode; bar.scrollTo({left: chip.offsetLeft - (bar.clientWidth - chip.offsetWidth)/2, behavior:'smooth'}); }
 }
 
@@ -359,8 +359,8 @@ function markSpy(id){
    МАРШРУТЫ
    ========================================================= */
 renderExpertise();
-const TITLES = {philosophy:'Философия',blog:'Блог'};
-const PAGES = {expertise:'Экспертиза',projects:'Портфолио',contacts:'Контакты'};
+const TITLES = {blog:'Блог'};
+const PAGES = {expertise:'Экспертиза',projects:'Портфолио',philosophy:'Философия',contacts:'Контакты'};
 let currentPage = null, clickNav = false, lastHash = location.hash;
 const scrollMemo = {};
 if('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -408,7 +408,7 @@ function apply({p, sub, page}, restoreY){
   $$('.page').forEach(x => x.classList.toggle('is-active', x.id==='page-'+page));
   currentPage = page;
   $$('.seg').forEach(placeThumb);
-  if(page==='expertise') startSpy();
+  if(page==='expertise' || page==='philosophy') startSpy();
 
   const target = sub && document.getElementById(sub);
   const y = restoreY != null ? restoreY : (target ? target.getBoundingClientRect().top + scrollY : 0);
@@ -438,6 +438,15 @@ function swapPage(update){
     requestAnimationFrame(() => { b.classList.remove('no-anim'); b.classList.remove('page-leave'); });
   }, 200);
 }
+
+/* Раскрывающиеся блоки «Развернуть / Свернуть» */
+document.addEventListener('click', e => {
+  const b = e.target.closest('.ph-more__btn'); if(!b) return;
+  const open = b.getAttribute('aria-expanded') !== 'true';
+  b.setAttribute('aria-expanded', String(open));
+  b.querySelector('span').textContent = open ? 'Свернуть' : 'Развернуть';
+  b.closest('.ph-more').classList.toggle('open', open);
+});
 
 /* Тот же экран: плавная прокрутка к разделу или наверх */
 function scrollWithin(next){

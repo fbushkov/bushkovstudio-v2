@@ -21,7 +21,7 @@ const MAP = [
     ['Сервис-дизайн','#/expertise/service-design'],['Продуктовый консалтинг','#/expertise/product'],
     ['Дизайн-системы','#/expertise/design-systems'],['UX/UI-консультации','#/expertise/ux-ui']
     ]},
-  {title:'Философия',href:'#/philosophy',items:[['«ЭКРО»','#/philosophy'],['Свод правил','#/philosophy']]},
+  {title:'Философия',href:'#/philosophy',items:[['«ЭКРО»','#/philosophy/ph-ekro'],['Свод правил','#/philosophy/ph-rules']]},
   {title:'Контакты',href:'#/contacts',items:[
     ['bushkovf@mail.ru','mailto:bushkovf@mail.ru'],['bushkovf','https://t.me/bushkovf'],['Квазар','https://t.me/']]},
 ];

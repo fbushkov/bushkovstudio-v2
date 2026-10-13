@@ -125,7 +125,7 @@
 .filter__list button[aria-pressed="true"]{background:var(--bg)}
 .filter__list .cnt{font-size:13px;color:var(--ink-muted);font-variant-numeric:tabular-nums}
 .side--sub [data-sub]{display:none}
-.side--sub[data-page="expertise"] [data-sub="expertise"],.side--sub[data-page="projects"] [data-sub="projects"]{display:block}
+.side--sub[data-page="expertise"] [data-sub="expertise"],.side--sub[data-page="projects"] [data-sub="projects"],.side--sub[data-page="philosophy"] [data-sub="philosophy"]{display:block}
 
 /* карточки кейсов */
 .cases{display:grid;gap:12px;margin-top:64px}
@@ -155,3 +155,67 @@
 .stub h1{font-size:40px;font-weight:700}
 .stub p{margin-top:16px;color:var(--ink-muted);max-width:520px;font-weight:400}
 .stub .btn{margin-top:32px}
+
+/* =========================================================
+   ФИЛОСОФИЯ
+   Колонка текста 880 px, разделы через 160 px; внутри:
+   заголовок → текст 32, абзацы 24, изображения и выноски 48.
+   ========================================================= */
+.philo{margin-top:64px}
+.ph-sec{max-width:880px;scroll-margin-top:24px}
+.ph-sec+.ph-sec{margin-top:160px}
+.ph-sec--wide{max-width:none}
+.ph-sec h2{font-size:32px;line-height:40px;font-weight:700}
+.ph-sec h3{margin-top:96px;font-size:22px;line-height:26px;font-weight:700}
+.ph-sec h4{font-size:16px;line-height:24px;font-weight:700;margin-bottom:8px}
+.ph-sec>p{font-size:16px;line-height:26px;font-weight:400;letter-spacing:.08px}
+.ph-sec>h2+*{margin-top:32px}
+.ph-sec>p+p{margin-top:24px}
+.ph-sec>*+.ph-img,.ph-sec>.ph-img+*,.ph-sec>*+.note,.ph-sec>*+.ph-more,.ph-sec>*+.ph-aside,.ph-sec>.ph-aside+*,.ph-sec>*+.ph-goals,.ph-sec>*+.ph-cards,.ph-sec>*+.contacts{margin-top:48px}
+.ph-sec>h3+*{margin-top:32px}
+
+.ph-img{margin:0;border-radius:8px;overflow:hidden;aspect-ratio:720/313;background:var(--surface)}
+.ph-img--dark{background:#141416}
+.ph-img img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.4s var(--ease-out)}
+.ph-img.in img{transform:none}
+
+.ph-aside{max-width:430px;margin-left:auto!important;font-size:15px!important;line-height:24px!important;color:var(--ink-muted)}
+.ph-lead{font-size:20px!important;line-height:32px!important;font-weight:500!important}
+.ph-sec .note p{font-size:16px;line-height:26px;font-weight:400}
+.ph-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.ph-cards .note{margin:0}
+.ph-principles{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))!important}
+.ph-principles a{color:var(--accent-ink)}
+
+.ph-goals{counter-reset:g;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.ph-goals li{counter-increment:g;padding:24px;border-radius:8px;background:var(--surface)}
+.ph-goals b{display:block;font-size:13px;line-height:16px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-ink)}
+.ph-goals p{margin-top:12px;font-size:15px;line-height:22px}
+
+/* «Развернуть / Свернуть» */
+.ph-more{padding:24px 32px;border-radius:8px;background:var(--surface)}
+.ph-more__btn{display:inline-flex;align-items:center;gap:8px;min-height:32px;font-size:16px;font-weight:600;color:var(--ink);transition:color var(--t-fast) var(--ease)}
+.ph-more__btn:hover{color:var(--accent-ink)}
+.ph-more__btn svg{width:24px;height:24px;transition:transform var(--t) var(--ease-out)}
+.ph-more.open .ph-more__btn svg{transform:rotate(180deg)}
+.ph-more__body{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--t-slow) var(--ease-out)}
+.ph-more__body>div{overflow:hidden;min-height:0}
+.ph-more.open .ph-more__body{grid-template-rows:1fr}
+.ph-more__body p{font-size:16px;line-height:26px;font-weight:400;opacity:0;transition:opacity var(--t) var(--ease)}
+.ph-more__body p:first-child{margin-top:20px}
+.ph-more__body p+p{margin-top:16px}
+.ph-more.open .ph-more__body p{opacity:1}
+
+/* Свод правил: номер слева, правило справа */
+.rules{counter-reset:r;display:grid;gap:12px;max-width:1000px}
+.rules>li{counter-increment:r;display:grid;grid-template-columns:120px minmax(0,1fr);gap:0 40px;padding:32px 40px;border-radius:8px;background:var(--surface)}
+.rules>li::before{content:counter(r) "/" "12";grid-row:span 2;font-size:22px;line-height:28px;font-weight:700;color:var(--ink-muted);font-variant-numeric:tabular-nums}
+.rules>li>p{font-size:16px;line-height:26px;font-weight:400}
+.rules__note{margin-top:16px;padding:20px 24px;border-radius:6px;background:var(--bg)}
+.rules__note b{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted)}
+.rules__note p{margin-top:8px;font-size:15px;line-height:24px;font-weight:400}
+
+.contacts--compact{justify-content:flex-start;gap:24px 96px;margin-top:48px}
+.ph-channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:48px 96px;margin-top:200px;max-width:1224px}
+.ph-channels .kvazar{max-width:540px}
+.credits{margin-top:-20px;padding-bottom:48px;font-size:13px;color:var(--ink-muted)}
