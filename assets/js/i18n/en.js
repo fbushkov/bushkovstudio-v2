@@ -320,13 +320,14 @@ SECTIONS: [
   }
 ],
 CATEGORIES: [
-  {id:'all',t:'All products'},{id:'saas',t:'SaaS platforms'},{id:'crm',t:'CRM systems'},
+  {id:'all',t:'All products'},{id:'saas',t:'SaaS platforms'},{id:'crm',t:'CRM & ERP systems'},
   {id:'startup',t:'Startups'},{id:'app',t:'Apps'},{id:'other',t:'Other services'},
 ],
 CASES: [
   {t:'MyHotLunchbox',d:'School meal delivery service',c:['startup','app']},
   {t:'Ak Bars Bank acquiring',d:'Payment acquiring',c:['other']},
   {t:'Megaplan',d:'SaaS platform',c:['saas','crm']},
+  {t:'Zhelezno',d:'Internal ERP system for a property developer',c:['crm']},
   {t:'Volna Sale',d:'Telecom operator’s startup',c:['startup']},
   {t:'SpaceAI',d:'AI marketplace',c:['startup','saas']},
   {t:'Tizbi',d:'Custom software development company',c:['other']},
