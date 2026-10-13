@@ -1,0 +1,14 @@
+/* =========================================================
+   ШРИФТ GILROY
+   Сначала берётся установленный в системе, затем файлы из
+   папки assets/fonts/ (положите туда лицензионные
+   Gilroy-Regular/Medium/Semibold/Bold в .woff2).
+   ========================================================= */
+@font-face{font-family:"Gilroy";font-weight:400;font-style:normal;font-display:swap;
+  src:local("Gilroy-Regular"),local("Gilroy Regular"),url("../fonts/Gilroy-Regular.woff2") format("woff2")}
+@font-face{font-family:"Gilroy";font-weight:500;font-style:normal;font-display:swap;
+  src:local("Gilroy-Medium"),local("Gilroy Medium"),url("../fonts/Gilroy-Medium.woff2") format("woff2")}
+@font-face{font-family:"Gilroy";font-weight:600;font-style:normal;font-display:swap;
+  src:local("Gilroy-Semibold"),local("Gilroy SemiBold"),local("Gilroy Semibold"),url("../fonts/Gilroy-Semibold.woff2") format("woff2")}
+@font-face{font-family:"Gilroy";font-weight:700;font-style:normal;font-display:swap;
+  src:local("Gilroy-Bold"),local("Gilroy Bold"),url("../fonts/Gilroy-Bold.woff2") format("woff2")}

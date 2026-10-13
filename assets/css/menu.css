@@ -1,0 +1,62 @@
+/* =========================================================
+   БОЛЬШОЕ МЕНЮ
+   ========================================================= */
+/* Большое меню — смена сцены, а не выезжающая панель.
+   Открытие:  1) контент страницы гаснет и чуть уходит вверх (0–280 мс)
+              2) фон перетекает в фон меню (120–520 мс)
+              3) полоса «Закрыть» проявляется (280–600 мс)
+              4) пункты меню всплывают по очереди (с 340 мс, шаг 35 мс)
+   Закрытие — та же цепочка в обратном порядке: пункты гаснут снизу вверх,
+   затем полоса и фон, последним возвращается контент.
+   Анимируются только opacity и transform. */
+:root{--m-in:cubic-bezier(.22,1,.36,1);--m-out:cubic-bezier(.55,0,1,.45)}
+
+/* 1. контент страницы */
+body.menu-closing .main{transition:opacity .34s var(--ease) .42s,transform .5s var(--m-in) .42s}
+body.menu-closing .side,body.menu-closing .rail,body.menu-closing .mainpanel{transition:opacity .34s var(--ease) .42s}
+body.menu-nav .main{transition:opacity .4s var(--ease) .18s,transform .55s var(--m-in) .18s}
+body.menu-nav .side,body.menu-nav .rail{transition:opacity .4s var(--ease) .18s}
+body.menu-open .main{opacity:0;transform:translate3d(0,-16px,0);transition:opacity .26s var(--m-out),transform .28s var(--m-out)}
+body.menu-open .side,body.menu-open .rail{opacity:0;transition:opacity .26s var(--m-out),transform var(--t-slow) var(--ease-out)}
+body.menu-open .mainpanel{opacity:0;transition:opacity .26s var(--m-out)}
+
+/* 2. фон */
+.fmenu{
+  position:fixed;inset:0;z-index:100;display:grid;grid-template-columns:104px 1fr;
+  visibility:hidden;pointer-events:none;transition:visibility 0s linear .72s;
+}
+.fmenu::before{content:"";position:absolute;inset:0;background:var(--bg-rail);opacity:0;transition:opacity .34s var(--ease) .26s}
+.fmenu.open{visibility:visible;pointer-events:auto;transition:visibility 0s}
+.fmenu:focus{outline:none}
+.fmenu.open::before{opacity:1;transition:opacity .4s var(--ease) .12s}
+
+/* 3. полоса «Закрыть» */
+.fmenu__close{
+  position:relative;display:flex;align-items:center;justify-content:center;background:var(--strip);color:var(--strip-ink);font-size:14px;
+  opacity:0;transform:translate3d(-12px,0,0);
+  transition:opacity .22s var(--m-out) .16s,transform .22s var(--m-out) .16s,background-color var(--t-fast) var(--ease);
+}
+.fmenu.open .fmenu__close{opacity:1;transform:none;transition:opacity .34s var(--ease) .28s,transform .5s var(--m-in) .28s,background-color var(--t-fast) var(--ease)}
+.fmenu__close:hover{background:var(--accent)}
+.fmenu__close:active{background:var(--accent-press)}
+
+.fmenu__body{position:relative;overflow:auto;display:flex;align-items:center;justify-content:center;padding:80px 60px}
+.fmenu__cols{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 64px;width:min(1240px,100%)}
+.fcol h2{font-size:clamp(24px,2.1vw,34px);font-weight:500}
+.fcol h2 a{display:inline-flex}
+.fcol ul{margin-top:32px;display:grid;gap:6px}
+.fcol li a{display:inline-flex;align-items:center;min-height:42px;font-size:20px;color:var(--ink-muted)}
+
+/* 4. пункты: --i — порядковый номер, --n — всего пунктов */
+.fitem{
+  opacity:0;transform:translate3d(0,14px,0);
+  transition:opacity .16s var(--m-out) calc((var(--n) - var(--i)) * 12ms),transform .16s var(--m-out) calc((var(--n) - var(--i)) * 12ms);
+}
+.fmenu.open .fitem{
+  opacity:1;transform:none;
+  transition:opacity .42s var(--ease) calc(340ms + var(--i) * 35ms),transform .6s var(--m-in) calc(340ms + var(--i) * 35ms);
+}
+body.locked{overflow:hidden}
+
+.toast{position:fixed;z-index:200;left:50%;bottom:28px;transform:translate(-50%,20px);opacity:0;padding:12px 18px;border-radius:8px;background:var(--dark);color:var(--on-dark);font-size:14px;box-shadow:var(--shadow);transition:opacity var(--t) var(--ease),transform var(--t) var(--ease-out);pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}

@@ -1,0 +1,61 @@
+/* =========================================================
+   ГЛАВНАЯ
+   ========================================================= */
+.hero{max-width:895px;margin-top:97px;container-type:inline-size}
+.intro{display:flex;align-items:flex-start;gap:32px}
+.avatar{width:80px;height:80px;flex:none;object-fit:cover;filter:grayscale(1)}
+.intro p{font-size:16px;line-height:20px;letter-spacing:.08px}
+.hero h1{margin-top:88px;font-size:min(96px,10.2cqi);line-height:1.04;font-weight:500;letter-spacing:0}
+.hero h1 span{display:block;white-space:nowrap}
+.hero__cta{display:flex;justify-content:flex-end}
+
+.projects-block{margin-top:382px}
+.projects{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.proj{
+  --parent:var(--dark);
+  display:flex;flex-direction:column;justify-content:flex-end;gap:8px;
+  min-height:350px;padding:40px;border-radius:8px;color:#F8F8F8;
+}
+.proj h3{font-size:24px;line-height:26px;font-weight:700;letter-spacing:.12px}
+.proj p{font-size:14px;line-height:26px;letter-spacing:.07px}
+.more-projects{margin-top:40px}
+.btn .arr{transition:transform var(--t) var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+
+.exp-block{margin-top:292px}
+.exp-intro{max-width:430px;font-size:16px;line-height:24px;letter-spacing:.08px}
+.exp-seg{margin-top:64px}
+.svc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;margin-top:48px}
+.svc{
+  --parent:var(--dark);
+  display:flex;flex-direction:column;min-height:500px;padding:80px 32px 32px;border-radius:8px;color:var(--on-dark);grid-column:span 3;
+}
+.svc h3{font-size:24px;line-height:1.2;font-weight:700}
+.svc p{margin-top:16px;font-size:16px;line-height:24px;font-weight:400;letter-spacing:.08px;max-width:520px}
+.svc__head{flex:1;padding-bottom:24px}
+.svc .tags{display:flex;flex-wrap:wrap;gap:8px}
+.svc .tag{background:var(--chip-on-dark);color:var(--on-dark-muted);font-size:12px;letter-spacing:.06px}
+.svc .price{margin-top:24px;font-size:24px;line-height:26px;font-weight:700;letter-spacing:.12px}
+.svc .go{margin-top:36px;transition:transform var(--t) var(--ease-out)}
+.svc:hover .go{transform:translateX(6px)}
+.swap{transition:opacity var(--t) var(--ease),transform var(--t) var(--ease-out)}
+.swap.out{opacity:0;transform:translateY(6px)}
+
+/* ---------- подвал ---------- */
+.foot{margin-top:300px;padding-bottom:64px}
+.foot__grid{display:flex;justify-content:space-between;gap:48px}
+.foot__left{width:264px;flex:none}
+.foot__right{width:744px;max-width:100%}
+.foot__lead{font-size:14px;line-height:20px;letter-spacing:.07px;color:var(--ink-muted)}
+.foot dl{margin:32px 0 0;display:grid;gap:24px}
+.foot dl div{display:grid;gap:8px}
+.foot dt{font-size:14px;letter-spacing:.07px;color:var(--ink-muted)}
+.foot dd{margin:0;font-size:16px;letter-spacing:.08px}
+.foot__also{margin-top:80px}
+.foot__also ul{margin-top:32px;display:grid;gap:24px;font-size:16px}
+.kvazar{max-width:600px}
+.kvazar h3{font-size:24px;font-weight:700}
+.kvazar p{margin-top:16px;font-size:16px;line-height:24px;font-weight:400;letter-spacing:.08px}
+.kvazar .btn{margin-top:32px}
+.foot__bottom{display:flex;justify-content:space-between;align-items:center;margin-top:146px;font-size:14px;color:var(--ink-muted)}
+.foot__logo{margin-top:64px;width:33px;height:30px}

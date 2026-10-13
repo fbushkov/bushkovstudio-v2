@@ -1,0 +1,87 @@
+/* =========================================================
+   ТОКЕНЫ (значения из макета KitStudio2)
+   Акцент #A945AA — только у ключевых действий и навигации.
+   Остальные интерактивные элементы берут цвет родителя
+   (--parent) и смещают его к --shade: в светлой теме темнее,
+   в тёмной — светлее.
+   ========================================================= */
+:root{
+  --font:"Gilroy",system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  --rail-w:70px;     /* полоса меню */
+  --side-w:372px;    /* сайдбар */
+  --gap-side:100px;  /* от меню до контента */
+  --gutter-w:0px;    /* правая полоса — пока не нужна */
+  --gap-right:84px;  /* от контента до правой полосы */
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --t-fast:.18s;
+  --t:.32s;
+  --t-slow:.6s;
+
+  --accent:#A945AA;
+  --on-accent:#FFFFFF;
+}
+:root,[data-theme="light"]{
+  --bg:#ECE7E9;
+  --bg-rail:#F6F2F3;
+  --rail-hover:#E2DDDF;
+  --rail-press:#D8D3D5;
+  --surface:#F6F2F3;
+  --ink:#373945;
+  --ink-muted:#6E6E73;      /* #848484 из макета затемнён до 4,5 : 1 */
+  --ink-faint:#ADAEB2;
+  --line:#D6D1D3;
+  --dark:#313238;
+  --on-dark:#FFFFFF;
+  --on-dark-muted:#C6C6CB;
+  --chip:#E4E4E4;
+  --chip-ink:#68686C;
+  --chip-on-dark:#404145;
+  --track:#D4D4D4;
+  --thumb:#ECE7E9;
+  --track-sm:#DDDDDD;
+  --btn:#313238;
+  --btn-ink:#FFFFFF;
+  --accent-ink:#A945AA;
+  --accent-press:#8E3790;
+  --shade:#000;
+  --strip:#313238;
+  --strip-ink:#FFFFFF;
+  --logo:#CDCDCD;
+  --shadow:0 24px 60px -24px rgba(30,25,35,.28);
+  --f1:#F2EFEF;--f2:#E5E0E0;--f3:#D9D2D2;--f4:#CEC6C5;--f5:#C3BAB9;--f6:#4CAF50;
+  color-scheme:light;
+}
+[data-theme="dark"]{
+  --bg:#1B1B1F;
+  --bg-rail:#222227;
+  --rail-hover:#2E2E34;
+  --rail-press:#36363D;
+  --surface:#26262B;
+  --ink:#ECEAEC;
+  --ink-muted:#A9A5AC;
+  --ink-faint:#6E6A72;
+  --line:#3A3A41;
+  --dark:#2C2C32;
+  --on-dark:#FFFFFF;
+  --on-dark-muted:#B4B1B8;
+  --chip:#34343A;
+  --chip-ink:#C2BFC5;
+  --chip-on-dark:#404047;
+  --track:#2A2A30;
+  --thumb:#3A3A42;
+  --track-sm:#2A2A30;
+  --btn:#ECEAEC;
+  --btn-ink:#1B1B1F;
+  --accent-ink:#D08DD1;
+  --accent-press:#BD6ABE;
+  --shade:#fff;
+  --strip:#2C2C32;
+  --strip-ink:#FFFFFF;
+  --logo:#55555C;
+  --shadow:0 24px 60px -20px rgba(0,0,0,.7);
+  --f1:#2A2A2F;--f2:#333238;--f3:#3D3B42;--f4:#47444C;--f5:#524E56;--f6:#4CAF50;
+  color-scheme:dark;
+}

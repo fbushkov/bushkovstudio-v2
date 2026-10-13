@@ -1,0 +1,468 @@
+/* Логика сайта: отрисовка, меню, переходы, тема, маршруты.
+   Данные берутся из data.js (подключается раньше). */
+'use strict';
+(() => {
+/* =========================================================
+   УТИЛИТЫ
+   ========================================================= */
+const $ = (s, r=document) => r.querySelector(s);
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const store = {
+  get(k){ try{ return localStorage.getItem(k) }catch(e){ return null } },
+  set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
+};
+const ARROW = '<svg class="arr go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>';
+const CHEV = '<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg>';
+/* Логотип: исходный Logo.svg, обрезан по контуру, цвет — currentColor */
+const LOGO = '<svg viewBox="22 31 196 178" fill="currentColor" aria-hidden="true"><rect x="178.796" y="31" width="39.2008" height="85.1303"/><rect x="131.761" y="31" width="39.2008" height="85.1303"/><rect x="84.7178" y="31" width="39.2008" height="85.1303"/><rect x="37.6744" y="31" width="39.2008" height="85.1303"/><rect x="123.922" y="123.87" width="46.4347" height="101.922" transform="rotate(90 123.922 123.87)"/><rect x="123.922" y="178.043" width="30.9565" height="86.2417" transform="rotate(90 123.922 178.043)"/><rect x="218" y="123.87" width="85.1303" height="86.2417" transform="rotate(90 218 123.87)"/></svg>';
+
+let toastT;
+function toast(msg){
+  const el = $('#toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(()=>el.classList.remove('show'), 2600);
+}
+function placeThumb(seg){
+  const on = seg.querySelector('button[aria-pressed="true"]'), th = seg.querySelector('.seg__thumb');
+  if(!on || !th) return;
+  th.style.width = on.offsetWidth + 'px';
+  th.style.transform = `translateX(${on.offsetLeft}px)`;
+}
+function bindSeg(seg, onChange){
+  seg.addEventListener('click', e => {
+    const b = e.target.closest('button'); if(!b || b.getAttribute('aria-pressed')==='true') return;
+    $$('button', seg).forEach(x => x.setAttribute('aria-pressed', String(x===b)));
+    placeThumb(seg); onChange && onChange(b.dataset.val || b.dataset.themeSet);
+  });
+  seg.addEventListener('keydown', e => {
+    if(!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+    const bs = $$('button', seg), i = bs.indexOf(document.activeElement); if(i<0) return;
+    const n = bs[(i + (e.key==='ArrowRight'?1:-1) + bs.length) % bs.length]; n.focus(); n.click();
+  });
+  requestAnimationFrame(()=>placeThumb(seg));
+}
+function swapContent(el, render){
+  el.classList.add('out');
+  setTimeout(()=>{ render(); el.classList.remove('out') }, 180);
+}
+function plural(n){ const m10=n%10, m100=n%100; return m10===1&&m100!==11?'пункт':(m10>=2&&m10<=4&&(m100<10||m100>=20)?'пункта':'пунктов'); }
+
+/* =========================================================
+   ОТРИСОВКА
+   ========================================================= */
+$$('[data-logo-slot]').forEach(a => a.innerHTML = LOGO);
+
+function renderMainNav(current){
+  $$('[data-mainnav]').forEach(ul => {
+    ul.innerHTML = MAIN_NAV.map(i => `<li><a class="nav-a link" href="${i.href}"${i.id===current?' aria-current="page"':''}>${i.label}</a></li>`).join('');
+  });
+}
+
+function renderServices(aud){
+  $('#svcGrid').innerHTML = SERVICES[aud].map(s => `
+    <a class="svc shift" href="#/expertise/${s.id}">
+      <div class="svc__head"><h3>${s.t}</h3><p>${s.d}</p></div>
+      <div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="price">${s.p}</div>
+      ${ARROW}
+    </a>`).join('');
+}
+
+const FOOTER = `
+  <div class="foot__grid">
+    <div class="foot__left">
+      <p class="foot__lead">По любым вопросам сотрудничества — будь то действующий продукт или развивающийся стартап</p>
+      <dl>
+        <div><dt>Телеграм:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
+        <div><dt>Почта:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
+        <div><dt>Телефон:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
+      </dl>
+      <div class="foot__also">
+        <p class="foot__lead">Также вы можете найти меня<br>на других сервисах</p>
+        <ul><li><a class="link" href="https://vc.ru" target="_blank" rel="noopener">vc</a></li><li><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></li></ul>
+      </div>
+    </div>
+    <div class="foot__right">
+      <div class="kvazar">
+        <h3>«Квазар»</h3>
+        <p>Если вы разделяете мои взгляды и идеи, выраженные в разделе «Философия», то можете подписаться на телеграм-канал нашего движения. В нём мы делимся опытом, обсуждаем идеи и формируем команды для их реализации. Всё по делу, без спама и флуда.</p>
+        <a class="btn btn--outline" href="#" data-stub="Ссылка на телеграм-канал «Квазар»">Ознакомиться</a>
+      </div>
+    </div>
+  </div>
+  <div class="foot__bottom"><span>все права принадлежат идейным</span><span aria-hidden="true">®</span></div>
+  <a class="logo foot__logo" href="#/" aria-label="На главную">${LOGO}</a>`;
+$$('[data-footer]').forEach(f => f.innerHTML = FOOTER);
+const KVAZAR = FOOTER.match(/<div class="kvazar">([\s\S]*?)<\/div>\s*<\/div>/)[1];
+$$('[data-kvazar]').forEach(k => k.innerHTML = KVAZAR);
+$$('[data-footer-mini]').forEach(f => f.innerHTML = `<div class="foot__bottom"><span>все права принадлежат идейным</span><span aria-hidden="true">®</span></div>
+  <a class="logo foot__logo" href="#/" aria-label="На главную">${LOGO}</a>`);
+
+/* Список длиннее 8 пунктов показывает первые 6 и кнопку «Ещё N» */
+/* Портфолио: фильтр в доп. меню (на телефоне — лента чипсов над списком) */
+let caseFilter = 'all', filterT;
+function renderFilter(){
+  const count = id => id==='all' ? CASES.length : CASES.filter(x=>x.c.includes(id)).length;
+  $('#filterList').innerHTML = CATEGORIES.map(c => `<li><button type="button" data-filter="${c.id}" aria-pressed="${c.id===caseFilter}">${c.t}<span class="cnt">${count(c.id)}</span></button></li>`).join('');
+  $('#filterChips').innerHTML = CATEGORIES.map(c => `<a class="shift" href="#" role="button" data-filter="${c.id}"${c.id===caseFilter?' aria-current="true"':''}>${c.t}</a>`).join('');
+}
+function renderCases(){
+  const list = CASES.filter(x => caseFilter==='all' || x.c.includes(caseFilter));
+  $('#cases').innerHTML = list.map(x => `<a class="case shift is-out" href="#" data-stub="Страница кейса появится позже"><h2>${x.t}</h2><p>${x.d}</p></a>`).join('');
+  $('#casesEmpty').hidden = list.length>0;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>$$('#cases .case').forEach((el,i)=>{ el.style.transitionDelay = `${i*40}ms`; el.classList.remove('is-out'); })));
+}
+function setFilter(id){
+  if(id===caseFilter) return;
+  caseFilter = id; renderFilter();
+  $$('#cases .case').forEach(el => { el.style.transitionDelay='0ms'; el.classList.add('is-out'); });
+  clearTimeout(filterT); filterT = setTimeout(renderCases, 220);
+}
+document.addEventListener('click', e => {
+  const f = e.target.closest('[data-filter]'); if(!f) return;
+  e.preventDefault(); setFilter(f.dataset.filter);
+});
+renderFilter(); renderCases();
+
+const LIMIT = 6, MAX_OPEN = 8;
+function tariffCard(t, sec, i, list){
+  if(t.kind==='note'){
+    return `<article class="tcard tcard--note">
+      <h3>${t.name}</h3>
+      <dl class="choose">${t.rows.map(r=>`<div><dt>${r[0]}</dt><dd>${r[1]}</dd></div>`).join('')}</dl>
+    </article>`;
+  }
+  const uid = `${sec.id}-${i}`;
+  const base = t.base!=null ? list[t.base] : null;
+  const cut = t.items.length > MAX_OPEN ? LIMIT : t.items.length;
+  const vis = t.items.slice(0, cut), rest = t.items.slice(cut);
+  const li = a => a.map(x=>`<li>${x}</li>`).join('');
+  return `<article class="tcard">
+    <div><h3>${t.name}</h3><p class="tcard__for">${t.for}</p></div>
+    <div class="tcard__price">${t.old?`<s><span class="sr-only">Было: </span>${t.old}</s>`:''}<strong>${t.price}</strong>${t.note?`<small>${t.note}</small>`:''}</div>
+    <p class="tcard__meta">${t.tags.join('<i aria-hidden="true">·</i>')}</p>
+    <div><button class="btn" type="button" data-stub="Форма заявки появится позже">Оставить заявку</button></div>
+    <div class="tcard__body">
+      <p class="tcard__label">${base ? `Всё из <b>${base.gen||base.name}</b>, а также:` : 'Что входит:'}</p>
+      <ul class="clist">${li(vis)}</ul>
+      ${rest.length ? `
+        <div class="collapse" id="more-${uid}"><div><ul class="clist">${li(rest)}</ul></div></div>
+        <button class="morebtn" type="button" aria-expanded="false" aria-controls="more-${uid}" data-more="${rest.length}"><span>Ещё ${rest.length} ${plural(rest.length)}</span>${CHEV.replace('class="chev"','')}</button>` : ''}
+      <p class="tcard__result"><b>Результат:</b> ${t.result}</p>
+    </div>
+  </article>`;
+}
+
+function renderTariffs(sec, aud){
+  const list = sec.tariffs[aud] || sec.tariffs.smb;
+  return list.map((t,i)=>tariffCard(t,sec,i,list)).join('');
+}
+
+function renderExpertise(){
+  $('#xsections').innerHTML = SECTIONS.map(s => `
+    <section class="xsec" id="${s.id}" aria-labelledby="h-${s.id}">
+      <h2 id="h-${s.id}">${s.n}. ${s.title}</h2>
+      ${s.tariffs.ent ? `
+      <div class="seg" role="group" aria-label="Размер бизнеса" data-seg="tariff" data-sec="${s.id}">
+        <span class="seg__thumb" aria-hidden="true"></span>
+        <button type="button" aria-pressed="true" data-val="smb">Малый и средний бизнес</button>
+        <button type="button" aria-pressed="false" data-val="ent">Крупный бизнес</button>
+      </div>` : `<p class="lead-note">Условия одинаковы для малого, среднего и крупного бизнеса.</p>`}
+      <div class="tariffs swap" data-tariffs="${s.id}">${renderTariffs(s,'smb')}</div>
+      <div class="prose">
+        <div class="info reveal">${INFO_ICON}<div>${s.info.map(p=>`<p>${p}</p>`).join('')}</div></div>
+        ${s.prose || ''}
+      </div>
+    </section>`).join('');
+
+  $('#subnav').innerHTML = SECTIONS.map(s => `<li><a class="nav-a link" href="#/expertise/${s.id}" data-spy="${s.id}">${s.short}</a></li>`).join('');
+  $('#subchips').innerHTML = SECTIONS.map(s => `<a class="shift" href="#/expertise/${s.id}" data-spy="${s.id}">${s.n}. ${s.short}</a>`).join('');
+
+  $$('[data-seg="tariff"]').forEach(seg => bindSeg(seg, val => {
+    const sec = SECTIONS.find(x=>x.id===seg.dataset.sec), box = $(`[data-tariffs="${sec.id}"]`);
+    swapContent(box, ()=>{ box.innerHTML = renderTariffs(sec,val) });
+  }));
+  $$('[data-funnel]').forEach(renderFunnel);
+}
+
+/* Воронка: концентрические секторы с вершиной внизу */
+function renderFunnel(host){
+  const ax=230, ay=690, s=Math.sin(19.4*Math.PI/180), c=Math.cos(19.4*Math.PI/180);
+  const R=[578,464,348,233,117];
+  const pt = r => [[ax - r*s, ay - r*c],[ax + r*s, ay - r*c]];
+  const band = (r2,r1) => { const [a,b]=pt(r2),[d,e]=pt(r1);
+    return `M${a[0]} ${a[1]} A${r2} ${r2} 0 0 1 ${b[0]} ${b[1]} L${e[0]} ${e[1]} A${r1} ${r1} 0 0 0 ${d[0]} ${d[1]}Z`; };
+  const [ga,gb]=pt(117), [oa,ob]=pt(660);
+  const paths = [
+    `<path data-i="0" d="M${oa[0]} ${oa[1]} A660 660 0 0 1 ${ob[0]} ${ob[1]}" fill="none" stroke="var(--ink-faint)" stroke-dasharray="3 6"/>`,
+    ...R.slice(0,4).map((r,i)=>`<path data-i="${i+1}" d="${band(r,R[i+1])}" fill="var(--f${i+1})"/>`),
+    `<path data-i="5" d="M${ax} ${ay} L${ga[0]} ${ga[1]} A117 117 0 0 1 ${gb[0]} ${gb[1]}Z" fill="var(--f6)"/>`
+  ].join('');
+  host.outerHTML = `<figure class="funnel reveal" aria-label="Слои клиентского опыта: от рекламы до продукта">
+    <svg viewBox="0 0 730 700" aria-hidden="true">${paths}</svg>
+    ${FUNNEL.map((f,i)=>`<div class="frow" data-i="${i}" style="top:${f.y/7}%"><div class="frow__line"></div><div class="frow__txt"><b>${f.t}</b><span>${f.d}</span></div></div>`).join('')}
+  </figure>`;
+}
+document.addEventListener('pointerover', e => {
+  const f = e.target.closest('.funnel');
+  if(f){
+    const el = e.target.closest('[data-i]'); const i = el ? el.dataset.i : null;
+    f.classList.toggle('is-hl', i!=null);
+    $$('[data-i]', f).forEach(x => x.classList.toggle('hl', x.dataset.i===i));
+  }
+});
+document.addEventListener('pointerout', e => {
+  const f = e.target.closest('.funnel'); if(f && !f.contains(e.relatedTarget)) f.classList.remove('is-hl');
+});
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('.morebtn');
+  if(t){
+    const box = document.getElementById(t.getAttribute('aria-controls'));
+    const open = t.getAttribute('aria-expanded')!=='true';
+    t.setAttribute('aria-expanded', String(open)); box.classList.toggle('open', open);
+    if(t.classList.contains('morebtn')) t.querySelector('span').textContent = open ? 'Свернуть' : `Ещё ${t.dataset.more} ${plural(+t.dataset.more)}`;
+    return;
+  }
+  const st = e.target.closest('[data-stub]'); if(st){ e.preventDefault(); toast(st.dataset.stub); return; }
+  if(e.target.closest('[data-open-map]')) openMap(e.detail===0);
+});
+
+/* =========================================================
+   БОЛЬШОЕ МЕНЮ
+   ========================================================= */
+const fmenu = $('#fmenu'); let lastFocus = null, closeT;
+/* Пункты нумеруются по колонкам сверху вниз — так они всплывают волной слева направо */
+function renderMap(){
+  let i = 0;
+  const n = MAP.reduce((k,c)=>k + 1 + c.items.length, 0);
+  $('#fcols').innerHTML = MAP.map(col => `<div class="fcol">
+    <h2 class="fitem" style="--i:${i++};--n:${n}"><a class="link" href="${col.href}">${col.title}</a></h2>
+    <ul>${col.items.map(([l,h])=>`<li class="fitem" style="--i:${i++};--n:${n}"><a class="link" href="${h}"${h.startsWith('http')?' target="_blank" rel="noopener"':''}>${l}</a></li>`).join('')}</ul>
+  </div>`).join('');
+}
+renderMap();
+/* byKeyboard — открыто клавишей: тогда переводим фокус на «Закрыть»; мышью — без видимого контура */
+function openMap(byKeyboard){
+  lastFocus = document.activeElement;
+  fmenu.classList.add('open'); document.body.classList.add('locked','menu-open');
+  $('#main').inert = true; $('#rail').inert = true;
+  setTimeout(()=>{ if(byKeyboard) $('#fclose').focus({preventScroll:true}); else { fmenu.tabIndex=-1; fmenu.focus({preventScroll:true}); } }, 300);
+}
+function closeMap(){
+  if(!fmenu.classList.contains('open')) return;
+  fmenu.classList.remove('open'); document.body.classList.remove('locked','menu-open');
+  document.body.classList.add('menu-closing');
+  clearTimeout(closeT); closeT = setTimeout(()=>document.body.classList.remove('menu-closing'), 900);
+  $('#main').inert = false; $('#rail').inert = false;
+  lastFocus && lastFocus.focus && lastFocus.focus();
+}
+$('#fclose').addEventListener('click', closeMap);
+/* Переход из большого меню: пункты гаснут → под скрытым контентом меняется
+   страница → фон меню уходит → проявляется новая страница */
+fmenu.addEventListener('click', e => {
+  const a = e.target.closest('a'); if(!a) return;
+  const href = a.getAttribute('href');
+  if(!href.startsWith('#/') || reduceMotion.matches){ closeMap(); return; }
+  e.preventDefault();
+  fmenu.classList.remove('open');
+  setTimeout(() => {
+    const b = document.body;
+    if(href === location.hash) scrollWithin(parse()); else { clickNav = true; location.hash = href; }
+    requestAnimationFrame(() => {
+      b.classList.remove('locked','menu-open'); b.classList.add('menu-closing','menu-nav');
+      $('#main').inert = false; $('#rail').inert = false;
+      clearTimeout(closeT); closeT = setTimeout(() => b.classList.remove('menu-closing','menu-nav'), 900);
+    });
+  }, 260);
+});
+fmenu.addEventListener('keydown', e => {
+  if(e.key!=='Tab') return;
+  const f = $$('button, a', fmenu); const first=f[0], last=f[f.length-1];
+  if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus() }
+  else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus() }
+});
+
+/* =========================================================
+   ПОЛОСА И ЗАКРЕПЛЕНИЕ ГЛАВНОГО МЕНЮ
+   Главная: полоса открывает большое меню.
+   Внутренняя: наведение — серый фон и цвет иконки; клик —
+   главное меню закрепляется поверх доп. меню; снять — только
+   стрелкой ‹ (или Esc с клавиатуры).
+   ========================================================= */
+const rail = $('#rail'), mobile = matchMedia('(max-width:960px)');
+function setPinned(on){
+  document.body.classList.toggle('pinned', on);
+  rail.setAttribute('aria-expanded', String(on));
+  rail.setAttribute('aria-label', on ? 'Свернуть главное меню' : (document.body.dataset.kind==='home' ? 'Открыть меню' : 'Открыть главное меню'));
+  $('#mainpanel').inert = !on; $('#sideSub').inert = on;
+}
+rail.addEventListener('click', e => {
+  if(document.body.dataset.kind==='home' || mobile.matches){ openMap(e.detail===0); return; }
+  setPinned(!document.body.classList.contains('pinned'));
+});
+document.addEventListener('keydown', e => {
+  if(e.key!=='Escape') return;
+  if(fmenu.classList.contains('open')) closeMap();
+  else if(document.body.classList.contains('pinned')){ setPinned(false); rail.focus() }
+});
+
+/* =========================================================
+   ТЕМА И ЯЗЫК
+   ========================================================= */
+function setTheme(t){
+  document.documentElement.dataset.theme = t; store.set('fb-theme', t);
+  $$('#themeSeg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeSet===t)));
+  placeThumb($('#themeSeg'));
+}
+setTheme(store.get('fb-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+bindSeg($('#themeSeg'), t => {
+  if(document.startViewTransition && !reduceMotion.matches){
+    document.documentElement.dataset.vt = 'theme';
+    document.startViewTransition(() => setTheme(t)).finished.finally(() => delete document.documentElement.dataset.vt);
+  } else setTheme(t);
+});
+$$('.lang button').forEach(b => b.addEventListener('click', () => {
+  if(b.dataset.lang==='en') toast('English version is coming soon');
+}));
+
+/* =========================================================
+   ГЛАВНАЯ: табы, прогресс прокрутки
+   ========================================================= */
+renderServices('smb');
+bindSeg($('[data-seg="audience"]'), val => swapContent($('#svcGrid'), ()=>renderServices(val)));
+
+function onScroll(){
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = max>0 ? Math.min(1, Math.max(0, scrollY/max)) : 0;
+  const txt = (p*100).toFixed(3).padStart(6,'0') + '%';
+  $$('.progress').forEach(el => el.textContent = txt);
+}
+addEventListener('scroll', onScroll, {passive:true});
+
+const io = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target) } }), {rootMargin:'0px 0px -8% 0px'});
+function observeReveals(root=document){ $$('.reveal:not(.in)', root).forEach(el => io.observe(el)); }
+
+let spyIO;
+function startSpy(){
+  spyIO && spyIO.disconnect();
+  spyIO = new IntersectionObserver(es => es.forEach(en => { if(en.isIntersecting) markSpy(en.target.id) }), {rootMargin:'-40% 0px -55% 0px'});
+  $$('.xsec').forEach(s => spyIO.observe(s));
+}
+function markSpy(id){
+  $$('[data-spy]').forEach(a => a.dataset.spy===id ? a.setAttribute('aria-current','true') : a.removeAttribute('aria-current'));
+  const chip = $(`#subchips [data-spy="${id}"]`);
+  if(chip && chip.offsetParent){ const bar = chip.parentNode; bar.scrollTo({left: chip.offsetLeft - (bar.clientWidth - chip.offsetWidth)/2, behavior:'smooth'}); }
+}
+
+/* =========================================================
+   МАРШРУТЫ
+   ========================================================= */
+renderExpertise();
+const TITLES = {philosophy:'Философия',blog:'Блог'};
+const PAGES = {expertise:'Экспертиза',projects:'Портфолио',contacts:'Контакты'};
+let currentPage = null, clickNav = false, lastHash = location.hash;
+const scrollMemo = {};
+if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+/* Переход инициирован кликом по ссылке (а не кнопками «назад/вперёд» браузера) */
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#/"]'); if(!a || e.defaultPrevented) return;
+  const href = a.getAttribute('href');
+  const [p='home'] = href.replace(/^#\/?/,'').split('/').filter(Boolean);
+  const page = PAGES[p] ? p : (TITLES[p] ? 'stub' : 'home');
+  // якорь внутри текущей страницы не создаёт шаг истории: «Назад» уводит со страницы, а не по разделам
+  if(page === currentPage && !fmenu.classList.contains('open')){
+    e.preventDefault();
+    if(href !== location.hash){ history.replaceState(null, '', href); lastHash = href; }
+    scrollWithin(parse());
+    return;
+  }
+  clickNav = true;
+}, true);
+
+/* «Назад» в доп. меню возвращает туда, откуда пришли (с той же позиции прокрутки) */
+let depth = 0;
+$('.back').addEventListener('click', e => { if(depth > 0){ e.preventDefault(); clickNav = false; history.back(); } });
+
+function parse(){
+  const [p='home', sub] = location.hash.replace(/^#\/?/,'').split('/').filter(Boolean);
+  const page = PAGES[p] ? p : (TITLES[p] ? 'stub' : 'home');
+  return {p, sub, page};
+}
+
+/* Применить состояние страницы — без анимаций, мгновенно */
+function apply({p, sub, page}, restoreY){
+  closeMap();
+  document.body.dataset.kind = page==='home' ? 'home' : 'inner';
+  setPinned(false);
+  $('#sideHome').hidden = page!=='home';
+  $('#sideSub').hidden = !PAGES[page];
+  if(PAGES[page]){ $('#sideSub').dataset.page = page; $('#subTitle').textContent = PAGES[page]; }
+  renderMainNav(page==='home' ? 'home' : p);
+  $('#topLeft').innerHTML = page==='home'
+    ? '<span class="year">2016–2027</span>'
+    : `<nav class="crumbs" aria-label="Хлебные крошки"><a class="link" href="#/">Главная</a><i aria-hidden="true"></i><span aria-current="page">${PAGES[page]||TITLES[p]}</span></nav>`;
+  if(page==='stub') $('#stubTitle').textContent = TITLES[p];
+
+  $$('.page').forEach(x => x.classList.toggle('is-active', x.id==='page-'+page));
+  currentPage = page;
+  $$('.seg').forEach(placeThumb);
+  if(page==='expertise') startSpy();
+
+  const target = sub && document.getElementById(sub);
+  const y = restoreY != null ? restoreY : (target ? target.getBoundingClientRect().top + scrollY : 0);
+  window.scrollTo({top:y, behavior:'instant'});
+  if(sub) markSpy(sub);
+  // элементы на экране показываем сразу, ниже — по прокрутке
+  $$('#page-'+page+' .reveal:not(.in)').forEach(el => { if(el.getBoundingClientRect().top < innerHeight) el.classList.add('in'); });
+  observeReveals($('#page-'+page));
+  onScroll();
+}
+
+/* Смена страницы: View Transitions API (Chrome, Edge, Safari 18+),
+   иначе — ручное затухание и проявление */
+function swapPage(update){
+  const b = document.body;
+  if(reduceMotion.matches){ update(); return; }
+  if(document.startViewTransition){
+    document.documentElement.dataset.vt = 'page';
+    b.classList.add('no-anim');
+    const t = document.startViewTransition(update);
+    t.finished.finally(() => { b.classList.remove('no-anim'); delete document.documentElement.dataset.vt; });
+    return;
+  }
+  b.classList.add('page-leave');
+  setTimeout(() => {
+    b.classList.add('no-anim'); update();
+    requestAnimationFrame(() => { b.classList.remove('no-anim'); b.classList.remove('page-leave'); });
+  }, 200);
+}
+
+/* Тот же экран: плавная прокрутка к разделу или наверх */
+function scrollWithin(next){
+  closeMap(); setPinned(false);
+  const behavior = reduceMotion.matches ? 'instant' : 'smooth';
+  const target = next.sub && document.getElementById(next.sub);
+  if(target){ target.scrollIntoView({behavior, block:'start'}); markSpy(next.sub); }
+  else window.scrollTo({top:0, behavior});
+}
+
+function route(){
+  const next = parse(), byClick = clickNav; clickNav = false;
+  scrollMemo[lastHash] = scrollY; lastHash = location.hash;
+  if(byClick) depth++; else depth = Math.max(0, depth-1);
+
+  if(next.page === currentPage){ scrollWithin(next); return; }
+  const restoreY = byClick ? null : scrollMemo[location.hash];
+  // уход из большого меню: меню само гасит сцену, страницу меняем под ним
+  if(document.body.classList.contains('menu-open') || document.body.classList.contains('menu-closing')){
+    apply(next, restoreY); return;
+  }
+  swapPage(() => apply(next, restoreY));
+}
+addEventListener('hashchange', route);
+addEventListener('resize', () => { $$('.seg').forEach(placeThumb); if(mobile.matches) setPinned(false); });
+document.fonts && document.fonts.ready.then(()=>$$('.seg').forEach(placeThumb));
+apply(parse());
+})();

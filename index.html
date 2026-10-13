@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Филипп Бушков — сервис-дизайн и консалтинг</title>
+<meta name="description" content="Сервис-дизайн, продуктовый консалтинг, дизайн-системы и UX/UI-консультации. Филипп Бушков — продуктовый консультант и сервис-дизайнер с экспертизой в ИИ.">
+<meta name="theme-color" content="#ECE7E9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1B1B1F" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Филипп Бушков — сервис-дизайн и консалтинг">
+<meta property="og:description" content="Сервис-дизайн, продуктовый консалтинг, дизайн-системы и UX/UI-консультации.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<!-- тема до отрисовки, чтобы не мигала светлая -->
+<script>try{var t=localStorage.getItem('fb-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/layout.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<link rel="stylesheet" href="assets/css/menu.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/app.js" defer></script>
+</head>
+<body data-kind="home">
+
+<!-- ===== Полоса меню 70 px ===== -->
+<button class="rail" id="rail" type="button" aria-controls="mainpanel" aria-expanded="false" aria-label="Открыть меню">
+  <span class="rail__icon" aria-hidden="true">
+    <svg class="i-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6 8.5 12l6 6"/></svg>
+  </span>
+  <span class="rail__mlogo logo" aria-hidden="true" data-logo-slot></span>
+</button>
+
+<!-- ===== Сайдбар главной ===== -->
+<aside class="side side--home" id="sideHome" aria-label="Основная навигация">
+  <a class="logo" href="#/" aria-label="На главную" data-logo-slot></a>
+  <nav><ul class="side__nav" data-mainnav></ul></nav>
+  <div class="progress" id="progress" aria-hidden="true">00.000%</div>
+</aside>
+
+<!-- ===== Доп. меню внутренней страницы ===== -->
+<aside class="side side--sub" id="sideSub" aria-label="Разделы страницы" hidden>
+  <a class="back link" href="#/">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10H4M9 5l-5 5 5 5"/></svg>
+    Назад
+  </a>
+  <p class="sub-title" id="subTitle">Экспертиза</p>
+  <nav data-sub="expertise"><ul class="side__nav" id="subnav"></ul></nav>
+  <div class="filter" data-sub="projects" role="group" aria-labelledby="filterLbl">
+    <p class="filter__lbl" id="filterLbl"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h14l-5.5 6.5V16l-3 1.5v-7z"/></svg>Фильтр категорий:</p>
+    <ul class="filter__list" id="filterList"></ul>
+  </div>
+  <div class="progress" aria-hidden="true">00.000%</div>
+</aside>
+
+<!-- ===== Главное меню поверх доп. меню ===== -->
+<aside class="mainpanel" id="mainpanel" aria-label="Основная навигация">
+  <a class="logo" href="#/" aria-label="На главную" data-logo-slot></a>
+  <nav><ul class="side__nav" data-mainnav></ul></nav>
+  <button class="mapbtn link" type="button" data-open-map>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+    Карта сайта
+  </button>
+</aside>
+
+
+<!-- ===== Контент ===== -->
+<main class="main" id="main">
+  <div class="wrap">
+    <header class="top">
+      <div id="topLeft"><span class="year">2016–2027</span></div>
+      <div class="top__tools">
+        <div class="lang" role="group" aria-label="Язык">
+          <button type="button" aria-pressed="true" data-lang="ru">РУС</button>
+          <button type="button" aria-pressed="false" data-lang="en">ENG</button>
+        </div>
+        <div class="seg seg--sm" role="group" aria-label="Тема оформления" id="themeSeg">
+          <span class="seg__thumb" aria-hidden="true"></span>
+          <button type="button" data-theme-set="light" aria-pressed="true" title="Светлая тема">С<span class="sr-only">ветлая</span></button>
+          <button type="button" data-theme-set="dark" aria-pressed="false" title="Тёмная тема">Т<span class="sr-only">ёмная</span></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= ГЛАВНАЯ ================= -->
+    <section class="page" id="page-home" aria-label="Главная">
+      <div class="hero">
+        <div class="intro reveal">
+          <img class="avatar" src="assets/img/photo.png" alt="Филипп Бушков" width="80" height="80">
+          <p>Меня зовут Филипп Бушков.<br>Я продуктовый консультант и сервис-дизайнер<br>с&nbsp;экспертизой в&nbsp;ИИ.</p>
+        </div>
+        <h1 class="reveal"><span>Сервис-дизайн</span><span>Дизайн-консалтинг</span><span>UX/UI/CX</span></h1>
+        <div class="hero__cta reveal"><a class="btn btn--hero" href="#" data-stub="Ссылка на чат в MAX">Написать в MAX</a></div>
+      </div>
+
+      <div class="projects-block" id="h-projects">
+        <h2 class="sr-only">Проекты</h2>
+        <div class="projects">
+          <a class="proj shift reveal" href="#/projects"><h3>Tizbi</h3><p>IT-компания заказной разработки ПО</p></a>
+          <a class="proj shift reveal" href="#/projects"><h3>Ак Барс Банк</h3><p>Банк Республики Татарстан</p></a>
+          <a class="proj shift reveal" href="#/projects"><h3>Мегаплан</h3><p>SaaS-система</p></a>
+          <a class="proj shift reveal" href="#/projects"><h3>Волна Sale</h3><p>Стартап телеоператора</p></a>
+        </div>
+        <a class="btn btn--outline btn--lg more-projects reveal" href="#/projects">Смотреть все проекты <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+      </div>
+
+      <div class="exp-block" id="h-expertise">
+        <h2 class="sr-only">Экспертиза</h2>
+        <p class="exp-intro reveal">Моя экспертиза — это стратегический дизайн и развитие сложных систем для социально значимых продуктов, основанный на глубокой аналитике, системном мышлении и&nbsp;инструментах ИИ.</p>
+        <div class="seg exp-seg reveal" role="group" aria-label="Размер бизнеса" data-seg="audience">
+          <span class="seg__thumb" aria-hidden="true"></span>
+          <button type="button" aria-pressed="true" data-val="smb">Малый и средний бизнес</button>
+          <button type="button" aria-pressed="false" data-val="ent">Крупный бизнес</button>
+        </div>
+        <div class="svc-grid swap" id="svcGrid"></div>
+      </div>
+
+      <footer class="foot" data-footer></footer>
+    </section>
+
+    <!-- ================= ЭКСПЕРТИЗА ================= -->
+    <section class="page" id="page-expertise" aria-label="Экспертиза">
+      <nav class="subchips" id="subchips" aria-label="Разделы страницы"></nav>
+      <div id="xsections"></div>
+      <footer class="foot" data-footer></footer>
+    </section>
+
+    <!-- ================= ПОРТФОЛИО ================= -->
+    <section class="page" id="page-projects" aria-labelledby="h-projects-page">
+      <h1 class="page-h1" id="h-projects-page">Портфолио</h1>
+      <nav class="subchips" id="filterChips" aria-label="Фильтр категорий"></nav>
+      <div class="cases" id="cases" aria-live="polite"></div>
+      <p class="cases-empty" id="casesEmpty" hidden>В этой категории пока нет проектов. <button type="button" class="link" data-filter="all">Показать все</button></p>
+      <footer class="foot" data-footer></footer>
+    </section>
+
+    <!-- ================= КОНТАКТЫ ================= -->
+    <section class="page" id="page-contacts" aria-labelledby="h-contacts-page">
+      <h1 class="page-h1" id="h-contacts-page">Контакты</h1>
+      <dl class="contacts reveal">
+        <div><dt>Телеграм:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
+        <div><dt>Почта:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
+        <div><dt>Телефон:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
+        <div><dt>Другие сервисы:</dt><dd class="contacts__row"><a class="link" href="https://vc.ru" target="_blank" rel="noopener">vc</a><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></dd></div>
+      </dl>
+      <div class="kvazar contacts__kvazar reveal" data-kvazar></div>
+      <footer class="foot foot--mini" data-footer-mini></footer>
+    </section>
+
+    <!-- ================= ЗАГЛУШКА ================= -->
+    <section class="page" id="page-stub" aria-label="Раздел">
+      <div class="stub">
+        <h1 id="stubTitle">Раздел</h1>
+        <p>Раздел готовится. Пока его нет, посмотрите экспертизу — там подробно о форматах работы и ценах.</p>
+        <a class="btn" href="#/expertise">Перейти к экспертизе</a>
+      </div>
+      <footer class="foot" data-footer></footer>
+    </section>
+  </div>
+</main>
+
+<!-- ===== Большое меню ===== -->
+<div class="fmenu" id="fmenu" role="dialog" aria-modal="true" aria-label="Карта сайта">
+  <button class="fmenu__close" type="button" id="fclose">Закрыть</button>
+  <div class="fmenu__body"><div class="fmenu__cols" id="fcols"></div></div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
