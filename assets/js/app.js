@@ -268,10 +268,10 @@ function renderFunnel(host){
   const pt = r => [[ax - r*s, ay - r*c],[ax + r*s, ay - r*c]];
   const band = (r2,r1) => { const [a,b]=pt(r2),[d,e]=pt(r1);
     return `M${a[0]} ${a[1]} A${r2} ${r2} 0 0 1 ${b[0]} ${b[1]} L${e[0]} ${e[1]} A${r1} ${r1} 0 0 0 ${d[0]} ${d[1]}Z`; };
-  const [ga,gb]=pt(117), [oa,ob]=pt(660);
+  const [ga,gb]=pt(117), RR=[660, ...R];
+  /* Шесть слоёв от внешнего к продукту; цвета --f1…--f6 свои у светлой и тёмной темы */
   const paths = [
-    `<path data-i="0" d="M${oa[0]} ${oa[1]} A660 660 0 0 1 ${ob[0]} ${ob[1]}" fill="none" stroke="var(--ink-faint)" stroke-dasharray="3 6"/>`,
-    ...R.slice(0,4).map((r,i)=>`<path data-i="${i+1}" d="${band(r,R[i+1])}" fill="var(--f${i+1})"/>`),
+    ...RR.slice(0,5).map((r,i)=>`<path data-i="${i}" d="${band(r,RR[i+1])}" fill="var(--f${i+1})"/>`),
     `<path data-i="5" d="M${ax} ${ay} L${ga[0]} ${ga[1]} A117 117 0 0 1 ${gb[0]} ${gb[1]}Z" fill="var(--f6)"/>`
   ].join('');
   host.outerHTML = `<figure class="funnel reveal" aria-label="${T('funnelAria')}">
