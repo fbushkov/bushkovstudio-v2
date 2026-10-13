@@ -8,8 +8,8 @@ PAGES: {expertise:'Expertise',projects:'Portfolio',philosophy:'Philosophy',conta
 TITLES: {blog:'Blog'},
 
 UI: {
-  title:'Philipp Bushkov — service design and consulting',
-  description:'Service design, product consulting, design systems and UX/UI consulting. Philipp Bushkov is a product consultant and service designer with AI expertise.',
+  title:'Philipp Bushkov — strategic service designer',
+  description:'Strategic design, service design, design systems and business diagnostics. Philipp Bushkov designs how a company creates experiences for customers and teams.',
   menuOpen:'Open menu', menuOpenMain:'Open main menu', menuClose:'Collapse main menu',
   mainNav:'Main navigation', sectionsNav:'Page sections', toHome:'Home page',
   back:'Back', filterLbl:'Filter by category:', filterAria:'Category filter', sitemap:'Site map',
@@ -18,16 +18,16 @@ UI: {
   themeLightTitle:'Light theme', themeDarkTitle:'Dark theme',
   home:'Home', crumbs:'Breadcrumbs',
   photoAlt:'Philipp Bushkov',
-  intro:'My name is Philipp Bushkov.<br>I am a product consultant and service designer<br>with expertise in&nbsp;AI.',
-  h1:'<span>Service design</span><span>Design consulting</span><span>UX/UI/CX</span>',
-  ctaMax:'Message me on MAX', ctaMaxStub:'MAX chat link',
+  intro:'My name is Philipp Bushkov.<br>I design how a company creates experiences.<br>I connect the customer journey, internal<br>processes and the company’s tools.',
+  h1:'<span>Strategic</span><span>service designer</span><span>CX/EX/UX</span>',
+  ctaMax:'Discuss your task', ctaMaxStub:'MAX chat link',
   projectsH:'Projects', expertiseH:'Expertise',
   proj1:'<h3>Tizbi</h3><p>Custom software development company</p>',
   proj2:'<h3>Ak Bars Bank</h3><p>Bank of the Republic of Tatarstan</p>',
   proj3:'<h3>Megaplan</h3><p>SaaS platform</p>',
   proj4:'<h3>Volna Sale</h3><p>Telecom operator’s startup</p>',
   allProjects:'View all projects',
-  expIntro:'My expertise is strategic design and the development of complex systems for socially significant products, grounded in in-depth analytics, systems thinking and AI&nbsp;tools.',
+  expIntro:'My expertise is strategic design. I rethink methodologies and management dogmas that are adopted without adapting them to local realities, and I design the service and the team’s way of working around the product.',
   bizSize:'Business size', smb:'Small and medium business', ent:'Large business',
   sameTerms:'The terms are the same for small, medium and large businesses.',
   portfolioH:'Portfolio', casesEmpty:'No projects in this category yet.', showAll:'Show all', caseStub:'The case study page is coming soon',
@@ -62,57 +62,129 @@ MAP: [
   {title:'Portfolio',href:'#/projects',items:[
     ['Ak Bars Bank','#/projects'],['Volna (telecom operator)','#/projects'],['Megaplan','#/projects'],
     ['Tizbi','#/projects'],['Space AI','#/projects'],['Zhelezno','#/projects']]},
-  {title:'Expertise',href:'#/expertise',items:[
-    ['Service design','#/expertise/service-design'],['Product consulting','#/expertise/product'],
-    ['Design systems','#/expertise/design-systems'],['UX/UI consulting','#/expertise/ux-ui']
+  {title:'Expertise',href:'#/expertise',items:[['Diagnostics','#/expertise/diagnostics'],['Strategic design','#/expertise/strategy'],
+    ['Service design','#/expertise/service-design'],['Team operating system','#/expertise/team-os']
     ]},
   {title:'Philosophy',href:'#/philosophy',items:[['ECMR','#/philosophy/ph-ekro'],['Code of rules','#/philosophy/ph-rules']]},
   {title:'Contacts',href:'#/contacts',items:[
     ['bushkovf@mail.ru','mailto:bushkovf@mail.ru'],['bushkovf','https://t.me/bushkovf'],['Kvazar','https://t.me/kvazardesign']]},
 ],
 
-/* Service cards on the home page */
+  /* Карточки услуг на главной */
 SERVICES: {
   smb:[
-    {id:'service-design',t:'Service design',d:'Designing the customer experience by planning and organizing business resources. A comprehensive overhaul of the company’s entire product.',tags:['one-off service','one month'],p:'from $1,300'},
-    {id:'product',t:'Product consulting',d:'Product strategy based on market data and analysis of every factor of the product and the business. Optimization of the development process.',tags:['one-off service','one month'],p:'from $1,800'},
-    {id:'design-systems',t:'Design systems',d:'A set of activities to create unified rules and standards.',tags:['one-off service','timeline on request'],p:'Price on request'},
-    {id:'ux-ui',t:'UX/UI consulting',d:'Expert help and recommendations to improve the user experience (UX) and the user interface (UI).',tags:['one-off service'],p:'from $60/hour'},
+    {"id": "diagnostics", "t": "Diagnostics", "d": "An outside look at your product, processes and metrics. Shows where the business loses customers and money and where to start.", "tags": ["strategy session", "express diagnostics"], "p": "from $180"},
+    {"id": "strategy", "t": "Strategic design", "d": "Rethinking methodologies and metrics that were introduced without adapting them to your business. Product strategy and a clear management rhythm.", "tags": ["one-off service", "3–4 weeks"], "p": "from $1,800"},
+    {"id": "service-design", "t": "Service design", "d": "Designing the customer experience by planning and organizing business resources. A comprehensive overhaul of the company’s entire product.", "tags": ["one-off service", "one month"], "p": "from $1,800"},
+    {"id": "team-os", "t": "Team operating system", "d": "Design systems, standards and processes that help the team build the product faster and with fewer arguments.", "tags": ["one-off service", "4–6 weeks"], "p": "from $1,800"}
   ],
   ent:[
-    {id:'service-design',t:'Service design',d:'Designing the customer experience by planning and organizing business resources. A comprehensive overhaul of the company’s entire product.',tags:['one-off service','2–3 months'],p:'from $3,500'},
-    {id:'product',t:'Product consulting',d:'Product strategy based on market data and analysis of every factor of the product and the business. Optimization of the development process.',tags:['one-off service','2 months'],p:'from $3,500'},
-    {id:'design-systems',t:'Design systems',d:'A set of activities to create unified rules and standards.',tags:['one-off service','timeline on request'],p:'Price on request'},
-    {id:'ux-ui',t:'UX/UI consulting',d:'Expert help and recommendations to improve the user experience (UX) and the user interface (UI).',tags:['one-off service'],p:'from $80/hour'},
+    {"id": "diagnostics", "t": "Diagnostics", "d": "How the company really creates its product and where the system works against results. A map of problems and a roadmap for leadership.", "tags": ["strategy session", "3–4 weeks"], "p": "from $350"},
+    {"id": "strategy", "t": "Strategic design", "d": "Rebuilding KPIs, regulations and management methodologies that no longer serve results. A pilot and scaling.", "tags": ["one-off service", "2–4 months"], "p": "from $7,100"},
+    {"id": "service-design", "t": "Service design", "d": "Designing the whole service together with department processes. A target blueprint, a pilot and metrics.", "tags": ["one-off service", "2–3 months"], "p": "from $10,600"},
+    {"id": "team-os", "t": "Team operating system", "d": "A design system as a shared standard for several teams, plus the rules and tools the company develops on its own.", "tags": ["one-off service", "2–4 months"], "p": "from $7,100"}
   ]
 },
 
+/* ---------------------------------------------------------
+   Тарифы. Единый формат карточки:
+   название → для чего → что входит → на выходе →
+   формат и срок → цена → действие.
+   Старший тариф не повторяет младший: «Всё из „…“» + только
+   разница (+). Длинный список сворачивается после 5 пунктов.
+   --------------------------------------------------------- */
+
 SECTIONS: [
   {
-    id:'service-design', n:1, title:'Service design', short:'Service design',
+    id:"diagnostics", n:1, title:"Diagnostics", short:"Diagnostics",
     tariffs:{
       smb:[
-        {name:'Optimization',for:'Find and remove bottlenecks in a running service',
-          items:['Data analysis and study of the business’s capabilities and constraints','Defining problems and goals, setting service design objectives','Generating and selecting solutions','Prototyping and testing','Designing and detailing the service','In-depth consultation on implementation'],
-          result:'Customer journey map, service blueprint and implementation plan',
-          tags:['One-off service','One month'],old:'$1,800–3,500',price:'$1,300–2,800'},
-        {name:'Transformation',for:'Rebuild the service and see the changes through to results',base:0,
-          items:['Rolling out and supporting the changes','Measuring effectiveness and developing the service'],
-          result:'A working, renewed service and metrics that show the effect',
-          tags:['Embedded in your team','Open-ended contract'],old:'from $3,500/mo',price:'from $2,900/mo'}
+        {"name": "Strategy session", "gen": "Strategy session", "for": "Work through one problem and see where to go next", "items": ["A two-hour meeting with the owner or a manager", "Reviewing your product and materials beforehand", "Looking at the problem through the eyes of customers, the team and the money", "A prioritized list of steps and a recording of the meeting"], "result": "A clear next step and an answer to whether you need a bigger project", "tags": ["One-off meeting", "2 hours"], "price": "$180"},
+        {"name": "Express diagnostics", "for": "Find the main bottlenecks in your business in two weeks", "items": ["Interviews with the owner and key employees", "Walking the customer journey from first contact to repeat purchase", "Audit of the interface and touchpoints", "Review of the metrics you base decisions on", "Review of the team’s processes and tools", "A report with ten priorities and a wrap-up meeting"], "result": "A map of problems and a plan for the next three months", "tags": ["One-off service", "1–2 weeks"], "price": "$1,100", "note": "Credited toward a project"}
       ],
       ent:[
-        {name:'Optimization',for:'Find and remove bottlenecks in a running service',
-          items:['Data analysis and study of the business’s capabilities and constraints','Interviews with departments and partners','Defining problems and goals, setting service design objectives','Generating and selecting solutions','Prototyping and testing','Designing and detailing the service','In-depth consultation on implementation'],
-          result:'Customer journey map, service blueprint and an implementation plan by department',
-          tags:['One-off service','2–3 months'],price:'from $3,500'},
-        {name:'Transformation',for:'Rebuild the service and see the changes through to results',base:0,
-          items:['Rolling out and supporting the changes','Measuring effectiveness and developing the service','Training teams and handing over the methodology'],
-          result:'A working, renewed service and metrics that show the effect',
-          tags:['Embedded in your team','Open-ended contract'],price:'from $5,300/mo'}
+        {"name": "Strategy session", "gen": "Strategy session", "for": "Work through one problem and decide how to approach it", "items": ["A meeting of up to three hours with the heads of a business unit", "Reviewing your product, structure and materials beforehand", "Looking at the problem through the eyes of customers, teams and management", "A prioritized list of steps and a recording of the meeting"], "result": "A shared view of the problem and a decision on where to start", "tags": ["One-off meeting", "Up to 3 hours"], "price": "$350"},
+        {"name": "Strategic diagnostics", "for": "See how the company really creates its product and where the system works against results", "items": ["Interviews with leadership, teams and partners", "Current-state customer journey map and service blueprint", "Audit of processes, regulations and tools", "Audit of metrics, KPIs and management methodologies", "Maturity assessment of the product and design function", "Target picture and a 6–12 month roadmap", "A pilot proposal and a presentation of findings to leadership"], "result": "A map of problems, a target picture and a roadmap that leadership understands", "tags": ["One-off service", "3–4 weeks"], "price": "from $5,300", "note": "50% credited toward a project"}
       ]
     },
-    info:['Service design is an interdisciplinary, iterative approach to building a product. It draws on many methodologies, tools and action scenarios to meet the needs of every stakeholder — from the user to the business.'],
+    info:["Diagnostics is an outside look at how the work around your product is organized. It shows where the company loses customers, money and time, and where to start changing things.", "Every direction starts with diagnostics. If it turns out you don’t need a bigger project, you get a plan and can follow it on your own."],
+    prose:`
+      <div class="grp">
+        <h3>When do you need diagnostics?</h3>
+        <ul class="ilist">
+          <li>The company works hard, but results aren’t growing</li>
+          <li>You introduced a methodology or a metrics system and never saw the benefit</li>
+          <li>Departments argue about priorities, and each one is right by its own numbers</li>
+          <li>Before a big project, you need to understand what really needs fixing</li>
+        </ul>
+      </div>
+      <div class="grp">
+        <h3>Why it’s fast</h3>
+        <p>I do the routine part of the work (transcribing interviews, consolidating data, a first pass over the interface) with AI. My time goes into conversations with people and conclusions. That is why diagnostics takes weeks rather than months and costs less than the project it may grow into.</p>
+        <div class="note note--accent"><p>A strategy session is the simplest way to get to know each other. In two hours it becomes clear whether the problem has a solution and whether you need me for it.</p></div>
+      </div>
+      `
+  },
+  {
+    id:"strategy", n:2, title:"Strategic design", short:"Strategic design",
+    tariffs:{
+      smb:[
+        {"name": "Rebuild", "gen": "Rebuild", "for": "Rebuild metrics and methodologies to fit your business", "items": ["Review of the methodologies and metrics already in place", "Interviews with the owner and key employees", "Finding metrics that have become goals and hurt the work", "A metrics tree from customer outcome down to team tasks", "Rules for the weekly review of numbers and decision-making", "Product strategy and quarterly priorities"], "result": "A handful of metrics instead of dozens of reports, and a clear management rhythm", "tags": ["One-off service", "3–4 weeks"], "price": "$1,800–2,900"},
+        {"name": "Support", "for": "Put the new system in place and make it a habit", "base": 0, "items": ["Taking part in metric reviews during the first months", "Adjusting metrics and rules along the way", "Training managers to work with the new system", "Product decisions together with the team"], "result": "A management system that works without outside help", "tags": ["Embedded in your team", "Monthly"], "price": "from $2,400/mo"}
+      ],
+      ent:[
+        {"name": "Rebuild", "gen": "Rebuild", "for": "Rebuild the metrics and management methodologies of a unit or the whole company", "items": ["Audit of methodologies, regulations, KPIs and reporting", "Interviews with leadership and teams", "Finding metric conflicts between departments", "A metrics tree from customer outcome down to team metrics", "Metric owners and rules for changing metrics", "Decision-making process and management rhythm", "Product strategy and roadmap", "A pilot in one department"], "result": "A new management model proven in a pilot, and a plan to scale it", "tags": ["One-off service", "2–4 months"], "price": "from $7,100"},
+        {"name": "Support", "for": "Scale the model and see the changes through to results", "base": 0, "items": ["Rolling the model out to other departments", "Handling resistance to change and internal communication", "Adjusting metrics and regulations", "Training managers and handing over the methodology"], "result": "A management model the company develops on its own", "tags": ["Embedded in your team", "Monthly"], "price": "from $4,100/mo"}
+      ]
+    },
+    info:["Strategic design is designing how a company makes decisions. Not an interface or a single service, but the rules people work by, the metrics they use to judge success, and the methodologies that manage them.", "Many methodologies arrive ready-made from books, courses and other companies and are introduced without being rethought for local realities. I help you figure out what actually works for you and what has turned into ritual."],
+    prose:`
+      <div class="grp">
+        <h3>Where the problem comes from</h3>
+        <p>Every methodology was created under specific conditions. In another country, industry and culture, for a company of a different size and people of a different maturity. When it is copied as is, only the form remains, without the meaning. Meetings are held because that’s the rule. Metrics are collected because the report requires them. Goals are set because the book says so.</p>
+        <p>Six months later the team spends a noticeable share of its time maintaining a system that was supposed to help it. Leadership sees numbers but doesn’t see what is really going on.</p>
+      </div>
+      <div class="grp">
+        <h3>Dogmas I work with</h3>
+        <ul class="ilist">
+          <li>KPIs are met while things get worse for the customer</li>
+          <li>Statistics and “valuable final product” reports are filled in for the report, not for decisions</li>
+          <li>Scrum and Agile have become a set of meetings, while decisions are made the old way</li>
+          <li>OKRs have become a work plan with a new name</li>
+          <li>Research and customer journey maps were done once and filed away</li>
+        </ul>
+        <div class="note"><p>I’m not against methodologies. I’m against applying them without understanding why they were created and how they work in your conditions. Sometimes it’s enough to keep half of the rituals and drop the rest.</p></div>
+      </div>
+      <div class="grp">
+        <h3>How the work goes</h3>
+        <ol class="aspects">
+          <li><b>Review</b><span>I look at how methodologies and metrics really live in the company, not on paper. I talk to the people who fill them in and to those who make decisions based on them.</span></li>
+          <li><b>Meaning</b><span>For every rule and metric we answer one question. Which decision does it help make? If there’s no answer, the rule is unnecessary.</span></li>
+          <li><b>Rebuild</b><span>I rebuild the system starting from the outcome for the customer and the business. I keep what works and change what gets in the way.</span></li>
+          <li><b>Pilot</b><span>We test the new system on one team or department before changing everything.</span></li>
+          <li><b>Handover</b><span>I train managers and document the rules so the system works without me.</span></li>
+        </ol>
+      </div>
+      <div class="grp">
+        <h3>Metrics and product strategy</h3>
+        <p>A good metrics system is not a dashboard but an agreement on what counts as success. I connect product, service and team metrics into one tree so everyone can see how their work affects the overall result. Product strategy grows out of this tree rather than living as a separate document.</p>
+        <div class="note note--accent"><p>When a measure becomes a target, it ceases to be a good measure. The point is not to find the perfect metric, but to make numbers help people make decisions.</p></div>
+      </div>
+      `
+  },
+  {
+    id:"service-design", n:3, title:"Service design", short:"Service design",
+    tariffs:{
+      smb:[
+        {"name": "Optimization", "gen": "Optimization", "for": "Find and remove bottlenecks in a running service", "items": ["Data analysis and study of the business’s capabilities and constraints", "Defining problems and goals, setting service design objectives", "Generating and selecting solutions", "Prototyping and testing", "Designing and detailing the service", "Service metrics and how to collect them", "Detailed consultation on implementation"], "result": "A customer journey map, a service blueprint and an implementation plan", "tags": ["One-off service", "One month"], "price": "$1,800–2,900"},
+        {"name": "Transformation", "for": "Rebuild the service and see the changes through to results", "base": 0, "items": ["Rolling out and supporting the changes", "Measuring effectiveness and developing the service"], "result": "A working, renewed service and metrics that show the effect", "tags": ["Embedded in your team", "Monthly"], "price": "from $2,400/mo"}
+      ],
+      ent:[
+        {"name": "Design", "gen": "Design", "for": "Design the whole service together with department processes", "items": ["Data analysis and study of the business’s capabilities and constraints", "Interviews with departments and partners", "Current-state customer journey map and service blueprint", "Defining problems and goals, setting service design objectives", "Generating and selecting solutions, prototyping and testing", "Target-state service blueprint with department processes", "Service metrics and how to collect them", "A pilot in one area"], "result": "A target service blueprint proven in a pilot, and a rollout plan by department", "tags": ["One-off service", "2–3 months"], "price": "$10,600–17,600"},
+        {"name": "Transformation", "for": "Rebuild the service and see the changes through to results", "base": 0, "items": ["Rolling out and supporting the changes", "Measuring effectiveness and developing the service", "Training teams and handing over the methodology"], "result": "A working, renewed service and metrics that show the effect", "tags": ["Embedded in your team", "Monthly"], "price": "from $4,100/mo"}
+      ]
+    },
+    info:["Service design is an interdisciplinary, iterative approach to building a product. It draws on many methodologies, tools and action scenarios to meet the needs of every stakeholder — from the user to the business."],
     prose:`
       <div class="note"><p>For a shared understanding of terms, a product is anything a company offers on the market (a service or a physical/digital product).</p></div>
       <div class="grp">
@@ -145,70 +217,18 @@ SECTIONS: [
       </div>`
   },
   {
-    id:'product', n:2, title:'Product consulting', short:'Product consulting',
+    id:"team-os", n:4, title:"Team operating system", short:"Team operating system",
     tariffs:{
       smb:[
-        {name:'Development',for:'Shape the product concept and validate it before development',
-          items:['Study of the business context and product requirements','Market and competitor analysis','Shaping the product concept','Working out and prioritizing functionality','Building a prototype and testing hypotheses','Detailed report with recommendations for further product development'],
-          result:'A validated concept, feature priorities and a development plan',
-          tags:['One-off service','One month'],price:'$1,800–2,900'},
-        {name:'Transformation',for:'Take the product from concept to launch and keep developing it',base:0,
-          items:['Writing the specification and supporting development','Testing and product acceptance','Product launch and support','Further product development'],
-          result:'A launched product and a team that develops it according to the strategy',
-          tags:['Embedded in your team','Open-ended contract'],price:'from $2,900/mo'}
+        {"name": "Core", "gen": "Core", "for": "A minimal foundation so you don’t have to rewrite everything as the product grows", "items": ["Audit of current solutions", "Three-level token architecture", "Responsive typography", "25–35 base components", "Contrast and target size check against WCAG", "Agreements with development on the handoff format", "Short documentation"], "result": "A Figma library and tokens ready to hand off to development", "tags": ["One-off service", "4–6 weeks"], "price": "$1,800–4,100"},
+        {"name": "System", "for": "A complete system that evolves with the product without you", "base": 0, "items": ["Complete component library for the product", "Light and dark themes", "Interaction standards and patterns", "Working rules for design and development", "Complete component documentation", "Team training"], "result": "A system that designers and developers use to build interfaces the same way", "tags": ["One-off service", "2–3 months"], "price": "$4,700–8,200"}
       ],
       ent:[
-        {name:'Development',for:'Shape the product concept and validate it before development',
-          items:['Study of the business context and product requirements','Interviews with leadership and teams','Market and competitor analysis','Shaping the product concept','Working out and prioritizing functionality','Building a prototype and testing hypotheses','Detailed report with recommendations for further product development'],
-          result:'A validated concept, feature priorities and a development plan agreed with leadership',
-          tags:['One-off service','2 months'],price:'from $3,500'},
-        {name:'Transformation',for:'Take the product from concept to launch and keep developing it',base:0,
-          items:['Writing the specification and supporting development','Testing and product acceptance','Product launch and support','Further product development'],
-          result:'A launched product and teams that develop it according to a shared strategy',
-          tags:['Embedded in your team','Open-ended contract'],price:'from $4,700/mo'}
+        {"name": "Standard", "gen": "Standard", "for": "A design system as a shared standard for several teams and products", "items": ["Audit of solutions across all products and teams", "Token and theme architecture for several brands or platforms", "Complete component and pattern library", "WCAG 2.2 accessibility requirements and contrast checks", "Documentation and the handoff process to development", "Working rules for design, development and product"], "result": "A single standard that teams use to build interfaces the same way", "tags": ["One-off service", "2–4 months"], "price": "$7,100–14,100"},
+        {"name": "Adoption", "for": "Make the system part of how the company works", "base": 0, "items": ["A system owner and a process for accepting changes", "Choosing and setting up the team’s tools", "Onboarding designers and developers", "Metrics of system usage", "Team training and mentoring"], "result": "A system the company develops internally without outside help", "tags": ["Embedded in your team", "Monthly"], "price": "from $4,100/mo"}
       ]
     },
-    info:['Product consulting helps companies develop, optimize and successfully bring products to market.','Its goal is to make product decisions more effective and the product more competitive, so the client reaches their business goals.'],
-    prose:`
-      <div class="grp">
-        <p>As a product consultant, I help companies build products that meet the needs of users and the market. I work as a cross-functional specialist and, beyond interface and user experience design, I cover product management, business analysis and systems analysis, so product problems get solved systemically.</p>
-      </div>
-      <div class="grp">
-        <h3>Key areas of product consulting</h3>
-        <ol class="aspects">
-          <li><b>Market and audience needs analysis</b><ul class="ilist"><li>Research into the target audience, competitors and market trends</li><li>Finding unique value propositions and niches for the product</li></ul></li>
-          <li><b>Product strategy</b><ul class="ilist"><li>Shaping the concept and positioning</li><li>Defining the product’s key features and characteristics</li><li>Planning development (roadmap)</li></ul></li>
-          <li><b>Product design</b><ul class="ilist"><li>Building prototypes and user scenarios</li><li>Optimizing the user experience and interface</li></ul></li>
-          <li><b>Technical delivery and project management</b><ul class="ilist"><li>Choosing technologies and development teams</li><li>Keeping timelines and budget under control</li></ul></li>
-          <li><b>Testing and launch</b><ul class="ilist"><li>Running tests and collecting feedback</li><li>Launch preparation and marketing support</li></ul></li>
-          <li><b>Post-launch support and growth</b><ul class="ilist"><li>Analysis of metrics and user behavior</li><li>Improvements and new features</li></ul></li>
-        </ol>
-      </div>
-      <div class="grp">
-        <h3>Benefits of product consulting</h3>
-        <ul class="ilist">
-          <li>An expert outside view, fresh ideas and best practices</li>
-          <li>Lower risk when launching new products</li>
-          <li>More effective development and marketing</li>
-          <li>Faster time to market with a competitive product</li>
-        </ul>
-      </div>`
-  },
-  {
-    id:'design-systems', n:3, title:'Design systems and interaction standards', short:'Design systems',
-    tariffs:{
-      smb:[
-        {name:'Core',for:'A minimal foundation, so you don’t have to rewrite everything as the product grows',
-          items:['Audit of current solutions','Token architecture (3 levels)','Responsive typography','25–35 basic components','Agreements with developers on the handoff format','Concise documentation'],
-          result:'A Figma library and tokens ready to hand over to development',
-          tags:['One-off service','4–6 weeks'],price:'$1,800–4,100'},
-        {name:'System',for:'A complete system that keeps evolving with the product without you',base:0,
-          items:['Full component library for the product','Theme support (light and dark)','Interaction standards and patterns','Complete component documentation','Design review of the implementation with the front-end team','Team training'],
-          result:'A system designers and developers use to build interfaces the same way',
-          tags:['One-off service','2–4 months'],price:'$4,700–8,200'}
-      ]
-    },
-    info:['A design system is a fixed language in which the product speaks to the user, and design speaks to development. Interaction standards are the rules of that language.'],
+    info:["A team operating system is the rules, standards and tools a team uses to build the product. The design system is its main part, but not the only one.", "A design system is the documented language the product uses to speak to users and that design uses to speak to development. Interaction standards are the rules of that language."],
     prose:`
       <div class="grp">
         <p>A design system automates routine work by standardizing components and patterns. It frees the team from arguing over pixels and shifts the focus to logic, scenarios and the product’s value for the user.</p>
@@ -237,78 +257,19 @@ SECTIONS: [
           <li><b>Responsive typography</b><span>A hierarchy of styles across breakpoints and levels. A single scale works from phone to wide monitor without hand-tuning each screen.</span></li>
           <li><b>Component library</b><span>Components with all their states, variants and usage rules. First comes what covers most of the product’s real screens — not what design systems usually include.</span></li>
           <li><b>Interaction standards</b><span>Not just elements but patterns for forms and validation, loading and errors, navigation, empty states and confirming irreversible actions, plus rules for interface copy.</span></li>
+          <li><b>Accessibility</b><span>Contrast, target sizes and keyboard use under WCAG 2.2 are built into tokens and components from the start rather than checked at the end.</span></li>
           <li><b>Documentation</b><span>The purpose of each component, its limits, when to use it and when not to. The documentation is written to be used without me.</span></li>
           <li><b>Alignment with development</b><span>Token handoff format, naming principles, versioning. Design review of implemented components before they reach the shared codebase.</span></li>
           <li><b>Processes and ownership handover</b><span>Change procedures, review process, team training, mentoring designers. The goal is for the system to keep evolving without outside help.</span></li>
         </ol>
+      </div>
+      <div class="grp">
+        <h3>More than components</h3>
+        <p>A design system only works when the people around it have agreed on how to work. That is why the team operating system also covers how design, development and product work together, a clear owner for every decision, and tools the team actually uses rather than keeps for show.</p>
+        <div class="note"><p>For employees, it means fewer arguments and less rework, and a fast start for newcomers. For users, it means a consistent interface and predictable product behavior.</p></div>
       </div>`
-  },
-  {
-    id:'ux-ui', n:4, title:'UX/UI consulting', short:'UX/UI consulting',
-    tariffs:{
-      smb:[
-        {name:'Consultation',for:'An answer to a specific interface question',
-          items:['A 60–90 minute session on your question','Review of mockups, a prototype or the live product','Recommendations with examples and priorities','Session recording and a short summary of decisions'],
-          result:'An answer to your question and a prioritized list of fixes',
-          tags:['One-off service','Hourly rate'],price:'$60/hour',note:'Minimum 1 hour'},
-        {name:'Express audit',for:'Find the main interface problems in a week',base:0,
-          items:['Expert review against usability heuristics','Analysis of key scenarios and where users drop off','Accessibility check for contrast, target sizes and keyboard use','Report with screenshots, priorities and solutions','A session with your team to walk through the results'],
-          result:'A report on what to fix first and how',
-          tags:['One-off service','5–7 business days'],price:'from $700'},
-        {name:'Subscription',for:'Ongoing support when questions come up every week',base:0,
-          items:['8 hours of consultations a month','Mockup reviews within 2 business days','Chat for quick questions on business days','Unused hours roll over to the next month'],
-          result:'Interface decisions are made faster and without mistakes',
-          tags:['Open-ended contract','Monthly billing'],price:'$470/mo'}
-      ],
-      ent:[
-        {name:'Consultation',for:'An answer to a specific interface question',
-          items:['A 60–90 minute session on your question','Review of mockups, a prototype or the live product','Recommendations with examples and priorities','Session recording and a short summary of decisions'],
-          result:'An answer to your question and a prioritized list of fixes',
-          tags:['One-off service','Hourly rate'],price:'$80/hour',note:'Minimum 2 hours'},
-        {name:'Express audit',for:'Find the main interface problems in two weeks',base:0,
-          items:['Expert review against usability heuristics','Analysis of key scenarios and where users drop off','Accessibility check for contrast, target sizes and keyboard use','Check against your design system','Report with screenshots, priorities and solutions','A session with your team to walk through the results'],
-          result:'A report on what to fix first and how',
-          tags:['One-off service','10–14 business days'],price:'from $1,400'},
-        {name:'Subscription',for:'Ongoing support when questions come up every week',base:0,
-          items:['16 hours of consultations a month','Mockup reviews within 2 business days','Chat for quick questions on business days','Taking part in your team’s design reviews','Unused hours roll over to the next month'],
-          result:'Interface decisions are made faster and without mistakes',
-          tags:['Open-ended contract','Monthly billing'],price:'$820/mo'}
-      ]
-    },
-    info:['A UX/UI consultation is an outside look at your interface that shows what gets in users’ way, why, and how to fix it. A one-off session, an express audit or a subscription — pick the format that matches how often you have questions.'],
-    prose:`
-      <div class="grp">
-        <h3>What people come with</h3>
-        <ul class="ilist">
-          <li>Conversion is dropping and the reason is unclear</li>
-          <li>You need an outside view before launch</li>
-          <li>The team is split on a decision and needs an argument</li>
-          <li>The interface has grown and become inconsistent</li>
-          <li>You need to check accessibility for people with visual and motor impairments</li>
-        </ul>
-      </div>
-      <div class="grp">
-        <h3>How the work goes</h3>
-        <ol class="aspects">
-          <li><b>Request</b><span>You describe the task and send a link to the product or mockups</span></li>
-          <li><b>Preparation</b><span>I study the product before we meet, so the intro doesn’t eat your time</span></li>
-          <li><b>Review</b><span>A session or an audit where we go through scenarios and look for causes, not symptoms</span></li>
-          <li><b>Wrap-up</b><span>A summary or a report. I answer follow-up questions for another 2 weeks</span></li>
-        </ol>
-      </div>
-      <div class="grp">
-        <h3>What to prepare</h3>
-        <ul class="ilist">
-          <li>A link to the product, prototype or Figma file</li>
-          <li>What should change after the consultation</li>
-          <li>Metrics, if you have them (conversion, bounce rate, support requests)</li>
-          <li>Constraints on deadlines and technologies, and what can’t be changed</li>
-        </ul>
-      </div>
-      `
   }
 ],
-
 CATEGORIES: [
   {id:'all',t:'All products'},{id:'saas',t:'SaaS platforms'},{id:'crm',t:'CRM systems'},
   {id:'startup',t:'Startups'},{id:'app',t:'Apps'},{id:'other',t:'Other services'},

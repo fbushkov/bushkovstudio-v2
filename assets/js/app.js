@@ -430,8 +430,11 @@ document.addEventListener('click', e => {
 let depth = 0;
 $('.back').addEventListener('click', e => { if(depth > 0){ e.preventDefault(); clickNav = false; history.back(); } });
 
+/* Старые адреса разделов экспертизы ведут в новые */
+const SUB_ALIAS = {product:'strategy', 'ux-ui':'diagnostics', 'design-systems':'team-os'};
 function parse(){
-  const [p='home', sub] = location.hash.replace(/^#\/?/,'').split('/').filter(Boolean);
+  let [p='home', sub] = location.hash.replace(/^#\/?/,'').split('/').filter(Boolean);
+  if(p==='expertise' && SUB_ALIAS[sub]) sub = SUB_ALIAS[sub];
   const page = L.PAGES[p] ? p : (L.TITLES[p] ? 'stub' : 'home');
   return {p, sub, page};
 }
