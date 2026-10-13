@@ -99,8 +99,15 @@
 
 /* Большие экраны: вся вёрстка пропорционально увеличивается,
    чтобы страница выглядела как на мониторе около 2000 px, а не мелкой колонкой посреди пустоты */
-@media (min-width:2400px){ html{zoom:1.25} }   /* 2K, 2560 px → как 2048 */
-@media (min-width:3400px){ html{zoom:1.8} }    /* 4K, 3840 px → как 2133 */
+@media (min-width:2400px){ html{zoom:1.25;--z:1.25} }   /* 2K, 2560 px → как 2048 */
+@media (min-width:3400px){ html{zoom:1.8;--z:1.8} }     /* 4K, 3840 px → как 2133 */
+
+/* Первый экран главной на десктопе: меню и блок с заголовком стоят по центру окна по вертикали.
+   --z — масштаб больших экранов: 100vh внутри увеличенной страницы нужно делить на него */
+@media (min-width:961px){
+  .hero{margin-top:0;min-height:calc(100vh / var(--z, 1) - 124px);padding-bottom:124px;display:flex;flex-direction:column;justify-content:center}
+  .side--home .side__nav{position:absolute;top:50%;left:84px;right:32px;margin:0;transform:translateY(-50%)}
+}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;transition-delay:0s!important}
