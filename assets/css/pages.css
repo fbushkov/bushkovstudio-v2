@@ -72,10 +72,10 @@
 
 .info{display:grid;grid-template-columns:28px 1fr;gap:72px;max-width:1000px}
 .info svg{width:28px;height:28px;color:var(--accent-ink)}
-.prose .info p{font-size:20px;line-height:32px;font-weight:500;letter-spacing:0}
+.prose .info p{font-size:20px;line-height:32px;font-weight:400;letter-spacing:0}
 .info p+p{margin-top:16px}
 .note{padding:24px 32px;border-radius:8px;background:var(--surface)}
-.prose .note p{font-weight:500}
+.prose .note p{font-weight:400}
 .note--accent{box-shadow:inset 3px 0 0 var(--accent)}
 
 /* Аспекты и этапы: сетка карточек с номером, без полос */
@@ -168,7 +168,7 @@
 .ph-sec h2{font-size:32px;line-height:40px;font-weight:700}
 .ph-sec h3{margin-top:96px;font-size:22px;line-height:26px;font-weight:700}
 .ph-sec h4{font-size:16px;line-height:24px;font-weight:700;margin-bottom:8px}
-.ph-sec>p{font-size:16px;line-height:24px;font-weight:500;letter-spacing:.08px;color:var(--ink-text)}
+.ph-sec>p{font-size:16px;line-height:24px;font-weight:400;letter-spacing:.08px;color:var(--ink-text)}
 .ph-sec>h2+*{margin-top:48px}
 .ph-sec>p+p{margin-top:24px}
 .ph-sec>*+.ph-img,.ph-sec>.ph-img+*,.ph-sec>*+.note,.ph-sec>*+.ph-more,.ph-sec>*+.ph-aside,.ph-sec>.ph-aside+*,.ph-sec>*+.ph-goals,.ph-sec>*+.ph-cards,.ph-sec>*+.contacts{margin-top:48px}
@@ -180,7 +180,7 @@
 .ph-img.in img{transform:none}
 
 .ph-aside{max-width:430px;margin-left:auto!important;text-align:right;font-size:16px!important;line-height:24px!important;color:var(--ink-muted)!important}
-.ph-lead{font-size:20px!important;line-height:32px!important;font-weight:500!important}
+.ph-lead{font-size:20px!important;line-height:32px!important;font-weight:400!important}
 .ph-sec .note p{font-size:16px;line-height:26px;font-weight:400}
 .ph-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .ph-cards .note{margin:0}

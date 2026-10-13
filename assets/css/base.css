@@ -5,7 +5,7 @@ html.i18n-wait body{opacity:0}
 html{scroll-behavior:smooth;scrollbar-gutter:stable;-webkit-text-size-adjust:100%}
 body{
   margin:0;background:var(--bg);color:var(--ink);
-  font:500 16px/1.5 var(--font);letter-spacing:.005em;
+  font:400 16px/1.5 var(--font);letter-spacing:.005em;
   -webkit-font-smoothing:antialiased;
   transition:background-color var(--t) var(--ease),color var(--t) var(--ease);
 }
@@ -59,4 +59,6 @@ svg{display:block}
 .seg--sm .seg__thumb{border-radius:32px}
 .seg--sm button{min-height:28px;padding:0 12px;border-radius:32px;font-size:12px;font-weight:600}
 
+/* Управляющие подписи остаются Medium, текст — Regular */
+.back,.mapbtn,.crumbs,.filter__list button,.subchips a,.tag{font-weight:500}
 .tag{display:inline-flex;align-items:center;min-height:26px;padding:0 8px;border-radius:2px;font-size:14px;background:var(--chip);color:var(--chip-ink)}
