@@ -30,8 +30,7 @@
 .tip__txt{position:absolute;z-index:5;left:50%;bottom:calc(100% + 8px);width:max-content;max-width:240px;padding:8px 12px;border-radius:6px;background:var(--ink);color:var(--bg);font-size:13px;line-height:18px;font-weight:500;transform:translate(-50%,4px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--t-fast) var(--ease),transform var(--t-fast) var(--ease),visibility var(--t-fast)}
 .tip:hover .tip__txt,.tip:focus-within .tip__txt,.tip.open .tip__txt{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .tcard__price small{display:block;margin-top:4px;font-size:14px;font-weight:500;color:var(--ink-muted)}
-.tcard__meta{margin-top:8px;font-size:14px;line-height:20px;color:var(--ink-muted)}
-.tcard__meta i{font-style:normal;margin:0 8px}
+.tcard__meta{display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px;margin-top:12px}
 .tcard .btn{margin-top:24px;width:100%;min-height:56px;font-weight:500}
 .tcard__body{margin-top:28px}
 .tcard__label{font-size:15px;line-height:22px;font-weight:600;margin-bottom:14px}
@@ -96,7 +95,7 @@
 }
 .aspects>li{counter-increment:a;padding:24px;border-radius:8px;background:var(--surface)}
 /* Номер — декоративный, полупрозрачный цветом текста */
-.aspects>li::before{content:counter(a,decimal-leading-zero);display:block;font-size:32px;line-height:36px;font-weight:700;letter-spacing:-.5px;color:color-mix(in srgb,var(--ink) 30%,transparent);font-variant-numeric:tabular-nums}
+.aspects>li::before{content:counter(a,decimal-leading-zero);display:block;font-size:21px;line-height:24px;font-weight:700;letter-spacing:-.2px;color:color-mix(in srgb,var(--ink) 30%,transparent);font-variant-numeric:tabular-nums}
 .aspects>li>b{display:block;margin-top:12px;font-size:17px;line-height:24px;font-weight:700}
 .aspects>li>span{display:block;margin-top:8px;font-size:15px;line-height:22px;font-weight:400;color:var(--ink-muted)}
 .aspects>li>.ilist{margin-top:10px;gap:6px}

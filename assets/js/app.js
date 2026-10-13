@@ -158,7 +158,7 @@ function tariffCard(t, sec, i, list){
   return `<article class="tcard">
     <div><h3>${t.name}</h3><p class="tcard__for">${t.for}</p></div>
     <div class="tcard__price">${t.old?`<s><span class="sr-only">${T('was')}</span>${t.old}</s>`:''}<div class="tcard__sum"><strong>${t.price}</strong>${t.note?tip(t.note):''}</div></div>
-    <p class="tcard__meta">${t.tags.join('<i aria-hidden="true">·</i>')}</p>
+    <div class="tcard__meta tags">${t.tags.map(x=>`<span class="tag">${x}</span>`).join('')}</div>
     <div><button class="btn" type="button" data-contact="${t.name}">${T('request')}</button></div>
     <div class="tcard__body">
       <p class="tcard__label">${base ? T('allFrom')(base.gen||base.name) : T('includes')}</p>

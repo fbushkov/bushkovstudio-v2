@@ -46,6 +46,8 @@
   --btn:#313238;
   --btn-g1:#313238;
   --btn-g2:#56575F;
+  --btn-eq:url(../img/fx/eq-on-dark.svg);
+  --btn-eq-hover:url(../img/fx/eq-hover.svg);
   --btn-ink:#FFFFFF;
   --accent-ink:#A945AA;
   --accent-press:#8E3790;
@@ -80,6 +82,7 @@
   --btn:#ECEAEC;
   --btn-g1:#ECEAEC;
   --btn-g2:#BDBBC2;
+  --btn-eq:url(../img/fx/eq-on-light.svg);
   --btn-ink:#1B1B1F;
   --accent-ink:#D08DD1;
   --accent-press:#BD6ABE;
