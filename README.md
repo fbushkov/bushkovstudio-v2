@@ -52,6 +52,12 @@ python3 -m http.server 8080
 # http://localhost:8080
 ```
 
+## Один файл для просмотра
+
+```bash
+python3 tools/bundle.py   # → dist/bushkovstudio.html: стили, скрипты и картинки внутри
+```
+
 ## Публикация
 
 В репозитории настроен GitHub Pages (`.github/workflows/pages.yml`): каждый push в `main` публикует сайт.
