@@ -71,7 +71,10 @@
 /* Текст раздела, ритм по макету: группы через 112, заголовок → текст 24,
    абзац → абзац 24, текст → выноска 48 */
 .prose{margin-top:112px}
-.prose p,.prose .ilist,.prose .note{max-width:880px}
+/* Длина строки: обычный текст — до 62 знаков, около 650 px (норма 45–75 знаков), крупный — до 44; блоки занимают всю ширину колонки */
+.prose p,.prose .ilist li,.ph-sec>p,.rules>li>p,.rules__note p,.ph-more__body p,.tcard__for{max-width:62ch}
+.prose .info p,.ph-sec>p.ph-big,.ph-goal__text{max-width:44ch}
+.prose .note,.ph-sec>.note{max-width:calc(62ch + 64px)}
 .prose>*+*{margin-top:112px}
 .prose h3{font-size:22px;line-height:26px;font-weight:700}
 .prose p{font-size:16px;line-height:24px;font-weight:400;letter-spacing:.08px}
@@ -81,7 +84,7 @@
 .grp>.note,.grp>.aspects{margin-top:48px}
 .grp>h3+.aspects{margin-top:32px}
 
-.info{display:grid;grid-template-columns:28px 1fr;gap:32px;max-width:960px}
+.info{display:grid;grid-template-columns:28px 1fr;gap:32px}
 .info svg{width:28px;height:28px;color:var(--accent-ink)}
 .prose .info p{font-size:20px;line-height:28px;font-weight:600;letter-spacing:.1px;color:var(--ink-text)}
 .info p+p{margin-top:12px}
@@ -155,7 +158,7 @@
 #page-projects .subchips{margin-top:24px}
 
 /* контакты */
-.contacts{display:flex;justify-content:space-between;flex-wrap:wrap;gap:32px 48px;margin:96px 0 0}
+.contacts{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:32px 72px;margin:96px 0 0}
 .contacts dt{font-size:14px;color:var(--ink-muted)}
 .contacts dd{margin:8px 0 0;font-size:16px}
 .contacts__row{display:flex;gap:24px}
@@ -175,7 +178,7 @@
    заголовок → текст 32, абзацы 24, изображения и выноски 48.
    ========================================================= */
 .philo{margin-top:64px}
-.ph-sec{max-width:880px;scroll-margin-top:24px}
+.ph-sec{scroll-margin-top:24px}
 .ph-sec+.ph-sec{margin-top:200px}
 .ph-sec--wide{max-width:none}
 .ph-sec h2{font-size:32px;line-height:40px;font-weight:700}
@@ -238,7 +241,7 @@
 .ph-more.open .ph-more__body p{opacity:1}
 
 /* Свод правил: номер слева, правило справа */
-.rules{counter-reset:r;display:grid;gap:12px;max-width:1000px}
+.rules{counter-reset:r;display:grid;gap:12px}
 .rules>li{counter-increment:r;display:grid;grid-template-columns:120px minmax(0,1fr);gap:0 40px;padding:32px 40px;border-radius:8px;background:var(--surface)}
 .rules>li::before{content:counter(r) "/" "11";grid-row:span 2;font-size:22px;line-height:28px;font-weight:700;color:var(--ink-muted);font-variant-numeric:tabular-nums}
 .rules>li>p{font-size:16px;line-height:26px;font-weight:400}
@@ -246,6 +249,6 @@
 .rules__note b{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-muted)}
 .rules__note p{margin-top:8px;font-size:15px;line-height:24px;font-weight:400}
 
-.contacts--compact{justify-content:flex-start;gap:24px 96px;margin-top:48px}
+.contacts--compact{margin-top:48px}
 .ph-channels{margin-top:200px}
 .ph-channels .kvazar{max-width:540px}
