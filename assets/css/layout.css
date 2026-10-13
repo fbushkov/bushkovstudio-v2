@@ -30,6 +30,8 @@
 }
 .side__nav{margin-top:clamp(40px,22vh,216px)}
 .nav-a{position:relative;display:flex;align-items:center;min-height:52px;padding:0 10px;font-size:18px;line-height:24px;font-weight:500}
+.nav-a.is-soon{color:var(--ink-faint)}
+.nav-a.is-soon:hover{color:var(--ink-muted)}
 .nav-a[aria-current="page"]{color:var(--ink-muted)}
 .nav-a[aria-current]::before{content:"";position:absolute;left:-11px;top:50%;width:7px;height:7px;margin-top:-3.5px;border-radius:50%;background:currentColor}
 .progress{margin-top:auto;font-size:12px;line-height:16px;font-variant-numeric:tabular-nums}

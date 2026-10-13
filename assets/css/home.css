@@ -58,4 +58,6 @@
 .kvazar p{margin-top:16px;font-size:16px;line-height:24px;font-weight:400;letter-spacing:.08px}
 .kvazar .btn{margin-top:32px}
 .foot__bottom{display:flex;justify-content:space-between;align-items:center;margin-top:146px;font-size:14px;color:var(--ink-muted)}
+/* Знак ® нарисован вручную: глиф шрифта надстрочный и мелкий, а нужен высотой с текст слева */
+.foot__bottom .reg{display:inline-grid;place-items:center;width:17px;height:17px;border:1.4px solid currentColor;border-radius:50%;font-size:9px;font-weight:700;line-height:1}
 .foot__logo{margin-top:64px;width:33px;height:30px}

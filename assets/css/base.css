@@ -43,7 +43,7 @@ svg.lucide{stroke-width:1.5}
   content:"";position:absolute;inset:0;border-radius:inherit;background-size:100% 100%,220% 100%;
   animation:btnFlow 7s ease-in-out infinite alternate;transition:opacity var(--t) var(--ease);
 }
-/* Поверх градиента — «эквалайзер» и шум (assets/img/fx, генерирует tools/btnfx.py) */
+/* Поверх градиента — плавающие пятна и шум (assets/img/fx, генерирует tools/btnfx.py) */
 .btn::after{z-index:-2;background-image:var(--btn-eq),linear-gradient(115deg,var(--btn-g1) 0%,var(--btn-g2) 50%,var(--btn-g1) 100%)}
 .btn::before{z-index:-1;opacity:0;animation-duration:5s;background-image:var(--btn-eq-hover),linear-gradient(115deg,#A945AA 0%,#7A45C0 35%,#127E7B 70%,#A945AA 100%)}
 .btn:hover,.btn:focus-visible{color:#fff}

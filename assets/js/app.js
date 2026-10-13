@@ -74,7 +74,9 @@ fillLogos();
 
 function renderMainNav(current){
   $$('[data-mainnav]').forEach(ul => {
-    ul.innerHTML = L.MAIN_NAV.map(i => `<li><a class="nav-a link" href="${i.href}"${i.id===current?' aria-current="page"':''}>${i.label}</a></li>`).join('');
+    ul.innerHTML = L.MAIN_NAV.map(i => i.soon
+      ? `<li><a class="nav-a link is-soon" href="#" aria-disabled="true" data-stub="${T('blogSoon')}">${i.label}</a></li>`
+      : `<li><a class="nav-a link" href="${i.href}"${i.id===current?' aria-current="page"':''}>${i.label}</a></li>`).join('');
   });
 }
 
@@ -93,7 +95,7 @@ function renderServices(aud){
 function renderFooters(){
   const kvazar = `<h3>${T('kvazarH')}</h3><p>${T('kvazarText')}</p>
         <a class="btn btn--outline" href="https://t.me/kvazardesign" target="_blank" rel="noopener">${T('kvazarBtn')}</a>`;
-  const bottom = `<div class="foot__bottom"><span>${T('rights')}</span><span aria-hidden="true">®</span></div>
+  const bottom = `<div class="foot__bottom"><span>${T('rights')}</span><span class="reg" role="img" aria-label="®">R</span></div>
   <a class="logo foot__logo" href="#/" aria-label="${T('toHome')}">${LOGO}</a>`;
   const full = `
   <div class="foot__grid">

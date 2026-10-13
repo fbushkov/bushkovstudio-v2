@@ -41,6 +41,7 @@ UI: {
   kvazarText:'If you share the views and ideas set out in the Philosophy section, you can subscribe to our movement’s Telegram channel. We share experience, discuss ideas and build teams to bring them to life. Straight to the point, no spam or chatter.',
   kvazarBtn:'Learn more', kvazarStub:'Kvazar Telegram channel link',
   rights:'all rights belong to the like-minded',
+  blogSoon:'The blog is coming soon',
   request:'Discuss your task', was:'Was: ',
   contactTitle:'Where would you like to talk?', contactTg:'Telegram', contactMax:'MAX', contactMail:'Email',
   maxStub:'MAX link coming soon', mailSubject:'Discuss a task', priceNote:'Payment terms',
@@ -48,7 +49,6 @@ UI: {
   more: (n, w) => `${n} more ${w}`, collapse:'Collapse', expand:'Expand',
   funnelAria:'Layers of customer experience from advertising to the product',
   philoNav:'Page sections',
-  credits:'Credits: design — Philipp Bushkov, illustrations — Anastasia Kim, front-end — Ruslan Starodumov'
 },
 
 MAIN_NAV: [
@@ -57,7 +57,7 @@ MAIN_NAV: [
   {id:'projects',label:'Projects',href:'#/projects'},
   {id:'philosophy',label:'Philosophy',href:'#/philosophy'},
   {id:'contacts',label:'Contacts',href:'#/contacts'},
-  {id:'blog',label:'Blog',href:'#/blog'},
+  {id:'blog',label:'Blog',href:'#/blog',soon:true},
 ],
 
 MAP: [
