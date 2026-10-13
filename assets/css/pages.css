@@ -36,7 +36,10 @@
 .tcard__body{margin-top:28px}
 .tcard__label{font-size:15px;line-height:22px;font-weight:600;margin-bottom:14px}
 .tcard__label b{font-weight:700}
-.tcard__result{margin-top:20px;font-size:14px;line-height:21px;color:var(--ink-muted)}
+.tcard__body{display:flex;flex-direction:column}
+.tcard__body>:nth-last-child(2){margin-bottom:20px}
+/* Результат — на своей подложке, прижат к низу карточки */
+.tcard__result{margin-top:auto;padding:14px 16px;border-radius:8px;background:var(--bg);font-size:14px;line-height:21px;color:var(--ink-muted)}
 .tcard__result b{color:var(--ink);font-weight:600}
 .tcard--note{display:flex;flex-direction:column;background:transparent;border:1.5px dashed var(--line)}
 .choose{margin:24px 0 0;display:grid;gap:20px}
@@ -92,7 +95,8 @@
   .aspects:has(>li:nth-child(4):last-child),.aspects:has(>li:nth-child(8):last-child){grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 .aspects>li{counter-increment:a;padding:24px;border-radius:8px;background:var(--surface)}
-.aspects>li::before{content:counter(a,decimal-leading-zero);display:block;font-size:13px;line-height:16px;font-weight:700;color:var(--accent-ink)}
+/* Номер — декоративный, полупрозрачный цветом текста */
+.aspects>li::before{content:counter(a,decimal-leading-zero);display:block;font-size:32px;line-height:36px;font-weight:700;letter-spacing:-.5px;color:color-mix(in srgb,var(--ink) 30%,transparent);font-variant-numeric:tabular-nums}
 .aspects>li>b{display:block;margin-top:12px;font-size:17px;line-height:24px;font-weight:700}
 .aspects>li>span{display:block;margin-top:8px;font-size:15px;line-height:22px;font-weight:400;color:var(--ink-muted)}
 .aspects>li>.ilist{margin-top:10px;gap:6px}
@@ -103,6 +107,8 @@
 
 /* воронка клиентского опыта */
 .funnel{position:relative;max-width:880px;aspect-ratio:730/700;margin:0}
+/* Отступ над воронкой визуально равен отступу под ней */
+.prose>.funnel{margin-top:94px}
 .funnel svg{position:absolute;inset:0;width:100%;height:100%}
 .funnel svg path{transition:filter var(--t) var(--ease)}
 .frow{position:absolute;left:31.5%;right:0;transform:translateY(-50%);transition:opacity var(--t) var(--ease)}

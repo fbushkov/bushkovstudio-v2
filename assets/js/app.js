@@ -438,8 +438,20 @@ function renderAll(){
   renderMap();
   $$('.seg').forEach(placeThumb);
 }
+/* Типографика: короткие слова (до трёх букв: предлоги, союзы, частицы)
+   привязываются неразрывным пробелом к следующему слову и не висят в конце строки */
+const SHORT_WORD = /(?<=^|[\s(«„"—–-])([A-Za-zА-Яа-яЁё]{1,3}) (?=\S)/g;
+function glue(root){
+  const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode: n =>
+    n.parentElement && !n.parentElement.closest('script,style,textarea,svg') && / /.test(n.data) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT});
+  for(let n; (n = w.nextNode());){ const t = n.data.replace(SHORT_WORD, '$1 '); if(t !== n.data) n.data = t; }
+}
+new MutationObserver(list => list.forEach(m => m.addedNodes.forEach(n =>
+  n.nodeType === 1 ? glue(n) : n.nodeType === 3 && n.parentElement && glue(n.parentElement)))
+).observe(document.body, {childList:true, subtree:true});
 hydrateIcons();
 renderAll();
+glue(document.body);
 document.documentElement.classList.remove('i18n-wait');
 let currentPage = null, clickNav = false, lastHash = location.hash;
 const scrollMemo = {};

@@ -34,7 +34,7 @@
   .xsec+.xsec{margin-top:120px}
   .xsec{scroll-margin-top:110px}
   .xsec .seg,.lead-note{margin-top:32px}
-  .prose,.prose>*+*{margin-top:64px}
+  .prose,.prose>*+*,.prose>.funnel{margin-top:64px}
   .subchips{display:flex!important}
   .fmenu{grid-template-columns:1fr;grid-template-rows:56px 1fr}
   .fmenu__body{align-items:flex-start;padding:40px 24px}
