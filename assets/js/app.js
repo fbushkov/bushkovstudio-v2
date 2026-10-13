@@ -105,7 +105,6 @@ function renderFooters(){
         <div><dt>${T('tg')}</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
         <div><dt>${T('max')}</dt><dd><a class="link" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">${T('maxOpen')}</a></dd></div>
         <div><dt>${T('mail')}</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
-        <div><dt>${T('phone')}</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
       </dl>
       <div class="foot__also">
         <p class="foot__lead">${T('footAlso')}</p>

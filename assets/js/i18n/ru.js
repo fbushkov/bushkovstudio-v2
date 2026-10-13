@@ -34,7 +34,7 @@ UI: {
   sameTerms:'Условия одинаковы для малого, среднего и крупного бизнеса.',
   portfolioH:'Портфолио', casesEmpty:'В этой категории пока нет проектов.', showAll:'Показать все', caseStub:'Страница кейса появится позже',
   contactsH:'Контакты', philosophyH:'Философия',
-  tg:'Телеграм:', mail:'Почта:', phone:'Телефон:', otherServices:'Другие сервисы:',
+  tg:'Телеграм:', mail:'Почта:', otherServices:'Другие сервисы:',
   stubText:'Раздел готовится. Пока его нет, посмотрите экспертизу — там подробно о форматах работы и ценах.', stubBtn:'Перейти к экспертизе',
   close:'Закрыть',
   footLead:'По любым вопросам сотрудничества — будь то действующий продукт или развивающийся стартап',
@@ -464,7 +464,6 @@ PHILO: `
       <div><dt>Телеграм:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
       <div><dt>MAX:</dt><dd><a class="link" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">Открыть чат</a></dd></div>
       <div><dt>Почта:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
-      <div><dt>Телефон:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
     </dl>
   </section>
 </article>

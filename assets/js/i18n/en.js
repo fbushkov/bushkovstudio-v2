@@ -32,7 +32,7 @@ UI: {
   sameTerms:'The terms are the same for small, medium and large businesses.',
   portfolioH:'Portfolio', casesEmpty:'No projects in this category yet.', showAll:'Show all', caseStub:'The case study page is coming soon',
   contactsH:'Contacts', philosophyH:'Philosophy',
-  tg:'Telegram:', mail:'Email:', phone:'Phone:', otherServices:'Elsewhere:',
+  tg:'Telegram:', mail:'Email:', otherServices:'Elsewhere:',
   stubText:'This section is in the works. Meanwhile, take a look at Expertise — it covers the formats of work and prices in detail.', stubBtn:'Go to Expertise',
   close:'Close',
   footLead:'For any collaboration — whether it’s an established product or a growing startup',
@@ -465,7 +465,6 @@ PHILO: `
       <div><dt>Telegram:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
       <div><dt>MAX:</dt><dd><a class="link" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">Open chat</a></dd></div>
       <div><dt>Email:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
-      <div><dt>Phone:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
     </dl>
   </section>
 </article>
