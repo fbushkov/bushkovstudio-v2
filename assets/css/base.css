@@ -16,6 +16,8 @@ h1,h2,h3,h4,p{margin:0}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 svg{display:block}
+/* Иконки Lucide: тонкая линия в стиле сайта */
+svg.lucide{stroke-width:1.5}
 
 /* ---------- общие интерактивы ---------- */
 .shift{background:var(--parent);transition:background-color var(--t-fast) var(--ease)}

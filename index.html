@@ -26,6 +26,7 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
 <link rel="stylesheet" href="assets/css/pages.css">
 <link rel="stylesheet" href="assets/css/menu.css">
 <link rel="stylesheet" href="assets/css/responsive.css">
+<script src="assets/js/icons.js" defer></script>
 <script src="assets/js/i18n/ru.js" defer></script>
 <script src="assets/js/i18n/en.js" defer></script>
 <script src="assets/js/app.js" defer></script>
@@ -35,8 +36,8 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
 <!-- ===== Полоса меню 70 px ===== -->
 <button class="rail" id="rail" type="button" aria-controls="mainpanel" aria-expanded="false" aria-label="Открыть меню" data-i18n-attr="aria-label:menuOpen">
   <span class="rail__icon" aria-hidden="true">
-    <svg class="i-burger" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    <svg class="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6 8.5 12l6 6"/></svg>
+    <svg class="i-burger" data-lucide="menu"></svg>
+    <svg class="i-chev" data-lucide="chevron-left"></svg>
   </span>
   <span class="rail__mlogo logo" aria-hidden="true" data-logo-slot></span>
 </button>
@@ -51,14 +52,14 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
 <!-- ===== Доп. меню внутренней страницы ===== -->
 <aside class="side side--sub" id="sideSub" aria-label="Разделы страницы" data-i18n-attr="aria-label:sectionsNav" hidden>
   <a class="back link" href="#/">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10H4M9 5l-5 5 5 5"/></svg>
+    <svg data-lucide="arrow-left"></svg>
     <span data-i18n="back">Назад</span>
   </a>
   <p class="sub-title" id="subTitle">Экспертиза</p>
   <nav data-sub="expertise"><ul class="side__nav" id="subnav"></ul></nav>
   <nav data-sub="philosophy"><ul class="side__nav" id="philoNav"></ul></nav>
   <div class="filter" data-sub="projects" role="group" aria-labelledby="filterLbl">
-    <p class="filter__lbl" id="filterLbl"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h14l-5.5 6.5V16l-3 1.5v-7z"/></svg><span data-i18n="filterLbl">Фильтр категорий:</span></p>
+    <p class="filter__lbl" id="filterLbl"><svg data-lucide="funnel"></svg><span data-i18n="filterLbl">Фильтр категорий:</span></p>
     <ul class="filter__list" id="filterList"></ul>
   </div>
   <div class="progress" aria-hidden="true">00.000%</div>
@@ -69,7 +70,7 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
   <a class="logo" href="#/" aria-label="На главную" data-i18n-attr="aria-label:toHome" data-logo-slot></a>
   <nav><ul class="side__nav" data-mainnav></ul></nav>
   <button class="mapbtn link" type="button" data-open-map>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+    <svg data-lucide="layout-grid"></svg>
     <span data-i18n="sitemap">Карта сайта</span>
   </button>
 </aside>
@@ -112,7 +113,7 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
           <a class="proj shift reveal" href="#/projects" data-i18n="proj3"><h3>Мегаплан</h3><p>SaaS-система</p></a>
           <a class="proj shift reveal" href="#/projects" data-i18n="proj4"><h3>Волна Sale</h3><p>Стартап телеоператора</p></a>
         </div>
-        <a class="btn btn--outline btn--lg more-projects reveal" href="#/projects"><span data-i18n="allProjects">Смотреть все проекты</span> <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M14 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--outline btn--lg more-projects reveal" href="#/projects"><span data-i18n="allProjects">Смотреть все проекты</span> <svg class="arr" data-lucide="arrow-right"></svg></a>
       </div>
 
       <div class="exp-block" id="h-expertise">

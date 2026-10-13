@@ -12,13 +12,12 @@ const $$ = (s, r=document) => [...r.querySelectorAll(s)];
 let lang = document.documentElement.lang === 'en' ? 'en' : 'ru';
 let L = CONTENT[lang];
 const T = k => L.UI[k];
-const INFO_ICON = '<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="14" cy="14" r="11.5"/><path d="M14 12.5v7" stroke-linecap="round"/><circle cx="14" cy="8.8" r="1.1" fill="currentColor" stroke="none"/></svg>';
+const INFO_ICON = icon('info');
 const store = {
   get(k){ try{ return localStorage.getItem(k) }catch(e){ return null } },
   set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
 };
-const ARROW = '<svg class="arr go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>';
-const CHEV = '<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m4 6 4 4 4-4"/></svg>';
+const ARROW = icon('arrow-right', 'arr go');
 /* Логотип: исходный Logo.svg, обрезан по контуру, цвет — currentColor */
 const LOGO = '<svg viewBox="22 31 196 178" fill="currentColor" aria-hidden="true"><rect x="178.796" y="31" width="39.2008" height="85.1303"/><rect x="131.761" y="31" width="39.2008" height="85.1303"/><rect x="84.7178" y="31" width="39.2008" height="85.1303"/><rect x="37.6744" y="31" width="39.2008" height="85.1303"/><rect x="123.922" y="123.87" width="46.4347" height="101.922" transform="rotate(90 123.922 123.87)"/><rect x="123.922" y="178.043" width="30.9565" height="86.2417" transform="rotate(90 123.922 178.043)"/><rect x="218" y="123.87" width="85.1303" height="86.2417" transform="rotate(90 218 123.87)"/></svg>';
 
@@ -166,7 +165,7 @@ function tariffCard(t, sec, i, list){
       <ul class="clist">${li(vis)}</ul>
       ${rest.length ? `
         <div class="collapse" id="more-${uid}"><div><ul class="clist">${li(rest)}</ul></div></div>
-        <button class="morebtn" type="button" aria-expanded="false" aria-controls="more-${uid}" data-more="${rest.length}"><span>${moreLabel(rest.length)}</span>${CHEV.replace('class="chev"','')}</button>` : ''}
+        <button class="morebtn" type="button" aria-expanded="false" aria-controls="more-${uid}" data-more="${rest.length}"><span>${moreLabel(rest.length)}</span>${icon('chevron-down')}</button>` : ''}
       <p class="tcard__result"><b>${T('result')}</b> ${t.result}</p>
     </div>
   </article>`;
@@ -404,6 +403,7 @@ function renderAll(){
   renderMap();
   $$('.seg').forEach(placeThumb);
 }
+hydrateIcons();
 renderAll();
 document.documentElement.classList.remove('i18n-wait');
 let currentPage = null, clickNav = false, lastHash = location.hash;
