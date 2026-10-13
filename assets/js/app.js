@@ -477,6 +477,22 @@ function glue(root){
 new MutationObserver(list => list.forEach(m => m.addedNodes.forEach(n =>
   n.nodeType === 1 ? glue(n) : n.nodeType === 3 && n.parentElement && glue(n.parentElement)))
 ).observe(document.body, {childList:true, subtree:true});
+/* Первый экран главной: отступ от шапки как в макете (97 px), а на высоких экранах блок
+   опускается к центру окна, но не выше макетного положения. Меню слева встаёт по центру блока */
+const HERO_GAP = 97, TOP_H = 124;
+function centerHero(){
+  const hero = $('.hero'), nav = $('.side--home .side__nav');
+  if(!hero || !nav) return;
+  if(innerWidth <= 960 || !hero.offsetHeight){ hero.style.marginTop = ''; nav.removeAttribute('style'); return; }
+  const z = parseFloat(getComputedStyle(document.documentElement).zoom) || 1;
+  const vh = innerHeight / z, h = hero.offsetHeight;
+  const gap = Math.max(HERO_GAP, Math.round((vh - h) / 2 - TOP_H));
+  hero.style.marginTop = gap + 'px';
+  nav.style.cssText = `position:absolute;left:84px;right:32px;margin:0;top:${Math.round(TOP_H + gap + h / 2)}px;transform:translateY(-50%)`;
+}
+addEventListener('resize', centerHero);
+if(window.ResizeObserver) new ResizeObserver(centerHero).observe($('.hero'));
+document.fonts && document.fonts.ready.then(centerHero);
 hydrateIcons();
 renderAll();
 glue(document.body);
