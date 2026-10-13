@@ -27,14 +27,14 @@
 .tip__btn{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:var(--ink-muted);transition:color var(--t-fast) var(--ease),background-color var(--t-fast) var(--ease)}
 .tip__btn svg{width:18px;height:18px}
 .tip__btn:hover,.tip.open .tip__btn{color:var(--accent-ink);background:color-mix(in srgb,var(--surface) 92%,var(--shade))}
-.tip__txt{position:absolute;z-index:5;left:50%;bottom:calc(100% + 8px);width:max-content;max-width:240px;padding:8px 12px;border-radius:6px;background:var(--ink);color:var(--bg);font-size:13px;line-height:18px;font-weight:500;transform:translate(-50%,4px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--t-fast) var(--ease),transform var(--t-fast) var(--ease),visibility var(--t-fast)}
+.tip__txt{position:absolute;z-index:5;left:50%;bottom:calc(100% + 8px);width:max-content;max-width:280px;padding:10px 12px;border-radius:6px;background:var(--ink);color:var(--bg);font-size:13px;line-height:18px;font-weight:500;transform:translate(-50%,4px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--t-fast) var(--ease),transform var(--t-fast) var(--ease),visibility var(--t-fast)}
 .tip:hover .tip__txt,.tip:focus-within .tip__txt,.tip.open .tip__txt{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .tcard__price small{display:block;margin-top:4px;font-size:14px;font-weight:500;color:var(--ink-muted)}
 .tcard__meta{display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px;margin-top:12px}
 .tcard .btn{margin-top:24px;width:100%;min-height:56px;font-weight:500}
 .tcard__body{margin-top:28px}
 .tcard__label{font-size:15px;line-height:22px;font-weight:600;margin-bottom:14px}
-.tcard__label b{font-weight:700}
+.tcard__label b{font-weight:inherit}
 .tcard__body{display:flex;flex-direction:column}
 .tcard__body>:nth-last-child(2){margin-bottom:20px}
 /* Результат — на своей подложке, прижат к низу карточки */
@@ -71,10 +71,15 @@
 /* Текст раздела, ритм по макету: группы через 112, заголовок → текст 24,
    абзац → абзац 24, текст → выноска 48 */
 .prose{margin-top:112px}
-/* Длина строки: обычный текст — до 62 знаков, около 650 px (норма 45–75 знаков), крупный — до 44; блоки занимают всю ширину колонки */
-.prose p,.prose .ilist li,.ph-sec>p,.rules>li>p,.rules__note p,.ph-more__body p,.tcard__for{max-width:62ch}
-.prose .info p,.ph-sec>p.ph-big,.ph-goal__text{max-width:44ch}
-.prose .note,.ph-sec>.note{max-width:calc(62ch + 64px)}
+/* Длина строки по ролям текста (норма чтения):
+   основной 15–18 px — 58ch, у Onest это около 69 знаков и 620 px; крупный 20–24 px — 42ch, около 45 знаков;
+   интерфейсный в карточках — до 50ch. Значения сверены замером реального числа знаков в строке.
+   Картинки и сетки занимают всю ширину колонки */
+.prose p,.prose .ilist li,.ph-sec>p,.rules>li>p,.rules__note p,.ph-more__body p{max-width:58ch}
+.tcard__for,.aspects>li>span{max-width:50ch}
+.prose .info p,.ph-sec>p.ph-big,.ph-goal__text{max-width:42ch}
+/* Плашки и заметки — по ширине текста внутри плюс внутренние отступы, а не на всю колонку */
+.prose .note,.ph-sec>.note,.ph-more,.ph-cards{max-width:calc(58ch + 64px)}
 .prose>*+*{margin-top:112px}
 .prose h3{font-size:22px;line-height:26px;font-weight:700}
 .prose p{font-size:16px;line-height:24px;font-weight:400;letter-spacing:.08px}
@@ -198,7 +203,8 @@
 .ph-aside{max-width:430px;margin-left:auto!important;text-align:right;font-size:16px!important;line-height:24px!important;color:var(--ink-muted)!important}
 .ph-lead{font-size:20px!important;line-height:32px!important;font-weight:400!important}
 .ph-sec .note p{font-size:16px;line-height:26px;font-weight:400}
-.ph-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+/* Миссия и ценности — друг под другом */
+.ph-cards{display:grid;grid-template-columns:1fr;gap:16px}
 .ph-cards .note{margin:0}
 .ph-principles{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))!important}
 .ph-principles a{color:var(--accent-ink)}

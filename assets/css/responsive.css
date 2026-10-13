@@ -43,6 +43,11 @@
   .fcol li a{font-size:16px;min-height:36px}
 }
 @media (max-width:640px){
+  /* Плашки и заметки на телефоне — внутренние отступы 16 px */
+  .note{padding:16px}
+  .ph-more__btn{min-height:56px;padding:16px}
+  .ph-more__body>div{padding:0 16px}
+  .ph-more__body p:last-child{margin-bottom:16px}
   .projects,.svc-grid{grid-template-columns:1fr}
   .svc{min-height:0;padding-top:32px}
   .proj{min-height:220px;padding:28px}

@@ -4,7 +4,7 @@ window.CONTENT = window.CONTENT || {};
 CONTENT.en = {
 plural: n => n === 1 ? 'item' : 'items',
 
-PAGES: {expertise:'Expertise',projects:'Portfolio',philosophy:'Philosophy',contacts:'Contacts'},
+PAGES: {expertise:'Expertise',projects:'Projects',philosophy:'Philosophy',contacts:'Contacts'},
 TITLES: {blog:'Blog'},
 
 UI: {
@@ -30,7 +30,7 @@ UI: {
   expIntro:'My expertise is strategic design. I rethink methodologies and management dogmas that are adopted without adapting them to local realities, and I design the service and the team’s way of working around the product.',
   bizSize:'Business size', smb:'Small and medium business', ent:'Large business',
   sameTerms:'The terms are the same for small, medium and large businesses.',
-  portfolioH:'Portfolio', casesEmpty:'No projects in this category yet.', showAll:'Show all', caseStub:'The case study page is coming soon',
+  portfolioH:'Projects', casesEmpty:'No projects in this category yet.', showAll:'Show all', caseStub:'The case study page is coming soon',
   contactsH:'Contacts', philosophyH:'Philosophy',
   tg:'Telegram:', mail:'Email:', otherServices:'Elsewhere:',
   stubText:'This section is in the works. Meanwhile, take a look at Expertise — it covers the formats of work and prices in detail.', stubBtn:'Go to Expertise',
@@ -63,7 +63,7 @@ MAIN_NAV: [
 ],
 
 MAP: [
-  {title:'Portfolio',href:'#/projects',items:[
+  {title:'Projects',href:'#/projects',items:[
     ['Ak Bars Bank','#/projects'],['Volna (telecom operator)','#/projects'],['Megaplan','#/projects'],
     ['Tizbi','#/projects'],['Space AI','#/projects'],['Zhelezno','#/projects']]},
   {title:'Expertise',href:'#/expertise',items:[['Diagnostics','#/expertise/diagnostics'],['Strategic design','#/expertise/strategy'],
@@ -104,11 +104,11 @@ SECTIONS: [
     tariffs:{
       smb:[
         {"name": "Strategy session", "gen": "Strategy session", "for": "Work through one problem and see where to go next", "items": ["A two-hour meeting with the owner or a manager", "Reviewing your product and materials beforehand", "Looking at the problem through the eyes of customers, the team and the money", "A prioritized list of steps and a recording of the meeting"], "result": "A clear next step and an answer to whether you need a bigger project", "tags": ["One-off meeting", "2 hours"], "price": "$180"},
-        {"name": "Express diagnostics", "for": "Find the main bottlenecks in your business in two weeks", "items": ["Interviews with the owner and key employees", "Walking the customer journey from first contact to repeat purchase", "Audit of the interface and touchpoints", "Review of the metrics you base decisions on", "Review of the team’s processes and tools", "A report with ten priorities and a wrap-up meeting"], "result": "A map of problems and a plan for the next three months", "tags": ["One-off service", "1–2 weeks"], "price": "$1,100", "note": "Credited toward a project"}
+        {"name": "Express diagnostics", "for": "Find the main bottlenecks in your business in two weeks", "items": ["Interviews with the owner and key employees", "Walking the customer journey from first contact to repeat purchase", "Audit of the interface and touchpoints", "Review of the metrics you base decisions on", "Review of the team’s processes and tools", "A report with ten priorities and a wrap-up meeting"], "result": "A map of problems and a plan for the next three months", "tags": ["One-off service", "1–2 weeks"], "price": "$1,100", "note": "If you order a project after the diagnostics, its cost is deducted from the project price"}
       ],
       ent:[
         {"name": "Strategy session", "gen": "Strategy session", "for": "Work through one problem and decide how to approach it", "items": ["A meeting of up to three hours with the heads of a business unit", "Reviewing your product, structure and materials beforehand", "Looking at the problem through the eyes of customers, teams and management", "A prioritized list of steps and a recording of the meeting"], "result": "A shared view of the problem and a decision on where to start", "tags": ["One-off meeting", "Up to 3 hours"], "price": "$350"},
-        {"name": "Strategic diagnostics", "for": "See how the company really creates its product and where the system works against results", "items": ["Interviews with leadership, teams and partners", "Current-state customer journey map and service blueprint", "Audit of processes, regulations and tools", "Audit of metrics, KPIs and management methodologies", "Maturity assessment of the product and design function", "Target picture and a 6–12 month roadmap", "A pilot proposal and a presentation of findings to leadership"], "result": "A map of problems, a target picture and a roadmap that leadership understands", "tags": ["One-off service", "3–4 weeks"], "price": "from $5,300", "note": "50% credited toward a project"}
+        {"name": "Strategic diagnostics", "for": "See how the company really creates its product and where the system works against results", "items": ["Interviews with leadership, teams and partners", "Current-state customer journey map and service blueprint", "Audit of processes, regulations and tools", "Audit of metrics, KPIs and management methodologies", "Maturity assessment of the product and design function", "Target picture and a 6–12 month roadmap", "A pilot proposal and a presentation of findings to leadership"], "result": "A map of problems, a target picture and a roadmap that leadership understands", "tags": ["One-off service", "3–4 weeks"], "price": "from $5,300", "note": "If you order a project after the diagnostics, half of its cost is deducted from the project price"}
       ]
     },
     info:["Diagnostics is an outside look at how the work around your product is organized. It shows where the company loses customers, money and time, and where to start changing things.", "Every direction starts with diagnostics. If it turns out you don’t need a bigger project, you get a plan and can follow it on your own."],
