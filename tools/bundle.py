@@ -9,11 +9,14 @@ html = (root / 'index.html').read_text(encoding='utf-8')
 
 def data_uri(rel):
     p = root / rel
-    mime = mimetypes.guess_type(p.name)[0] or ('image/webp' if p.suffix == '.webp' else 'application/octet-stream')
+    mime = {'.webp':'image/webp','.woff2':'font/woff2'}.get(p.suffix) or mimetypes.guess_type(p.name)[0] or 'application/octet-stream'
     return f'data:{mime};base64,' + base64.b64encode(p.read_bytes()).decode()
 
 def inline_css(m):
-    css = (root / m.group(1)).read_text(encoding='utf-8')
+    path = root / m.group(1)
+    css = path.read_text(encoding='utf-8')
+    # шрифты и картинки из CSS — тоже внутрь
+    css = re.sub(r'url\(([^)"\']+)\)', lambda u: 'url(' + data_uri((path.parent / u.group(1)).resolve().relative_to(root)) + ')', css)
     return '<style>\n' + css + '</style>'
 
 def inline_js(m):
@@ -26,7 +29,7 @@ scripts = re.findall(r'<script src="([^"]+)" defer></script>', (root / 'index.ht
 body_js = ''.join(inline_js(re.match(r'(.*)', s)) for s in scripts)
 html = html.replace('</body>', body_js + '\n</body>')
 html = re.sub(r'(src|href)="(assets/img/[^"]+)"', lambda m: f'{m.group(1)}="{data_uri(m.group(2))}"', html)
-# шрифты остаются ссылками: Gilroy берётся из системы или из папки assets/fonts рядом с файлом
+html = re.sub(r'<link rel="preload"[^>]+>\n?', '', html)
 out.parent.mkdir(parents=True, exist_ok=True)
 out.write_text(html, encoding='utf-8')
 print(out, round(out.stat().st_size / 1024), 'КБ')

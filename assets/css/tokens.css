@@ -6,7 +6,7 @@
    в тёмной — светлее.
    ========================================================= */
 :root{
-  --font:"Gilroy",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
 
   --rail-w:70px;     /* полоса меню */
   --side-w:372px;    /* сайдбар */

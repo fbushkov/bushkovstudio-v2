@@ -1,5 +1,5 @@
-/* Логика сайта: отрисовка, меню, переходы, тема, маршруты.
-   Данные берутся из data.js (подключается раньше). */
+/* Логика сайта: отрисовка, меню, переходы, тема, язык, маршруты.
+   Тексты берутся из assets/js/i18n/{ru,en}.js (подключаются раньше). */
 'use strict';
 (() => {
 /* =========================================================
@@ -8,6 +8,11 @@
 const $ = (s, r=document) => r.querySelector(s);
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+/* Язык: выбран в <head> (?lang= → сохранённый → язык браузера) */
+let lang = document.documentElement.lang === 'en' ? 'en' : 'ru';
+let L = CONTENT[lang];
+const T = k => L.UI[k];
+const INFO_ICON = '<svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="14" cy="14" r="11.5"/><path d="M14 12.5v7" stroke-linecap="round"/><circle cx="14" cy="8.8" r="1.1" fill="currentColor" stroke="none"/></svg>';
 const store = {
   get(k){ try{ return localStorage.getItem(k) }catch(e){ return null } },
   set(k,v){ try{ localStorage.setItem(k,v) }catch(e){} }
@@ -45,21 +50,39 @@ function swapContent(el, render){
   el.classList.add('out');
   setTimeout(()=>{ render(); el.classList.remove('out') }, 180);
 }
-function plural(n){ const m10=n%10, m100=n%100; return m10===1&&m100!==11?'пункт':(m10>=2&&m10<=4&&(m100<10||m100>=20)?'пункта':'пунктов'); }
+const plural = n => L.plural(n);
+const moreLabel = n => T('more')(n, plural(n));
+
+/* Статичные тексты разметки: data-i18n — содержимое, data-i18n-attr="атрибут:ключ,…" */
+function applyStatic(){
+  document.documentElement.lang = lang;
+  document.title = T('title');
+  $('meta[name="description"]').setAttribute('content', T('description'));
+  $('meta[property="og:title"]')?.setAttribute('content', T('title'));
+  $('meta[property="og:description"]')?.setAttribute('content', T('description'));
+  $$('[data-i18n]').forEach(el => { const v = T(el.dataset.i18n); if(v != null) el.innerHTML = v; });
+  $$('[data-i18n-attr]').forEach(el => el.dataset.i18nAttr.split(',').forEach(pair => {
+    const [attr, key] = pair.split(':'); const v = T(key); if(v != null) el.setAttribute(attr, v);
+  }));
+  $$('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+}
 
 /* =========================================================
    ОТРИСОВКА
    ========================================================= */
-$$('[data-logo-slot]').forEach(a => a.innerHTML = LOGO);
+const fillLogos = (root=document) => $$('[data-logo-slot]', root).forEach(a => a.innerHTML = LOGO);
+fillLogos();
 
 function renderMainNav(current){
   $$('[data-mainnav]').forEach(ul => {
-    ul.innerHTML = MAIN_NAV.map(i => `<li><a class="nav-a link" href="${i.href}"${i.id===current?' aria-current="page"':''}>${i.label}</a></li>`).join('');
+    ul.innerHTML = L.MAIN_NAV.map(i => `<li><a class="nav-a link" href="${i.href}"${i.id===current?' aria-current="page"':''}>${i.label}</a></li>`).join('');
   });
 }
 
+let audience = 'smb';
 function renderServices(aud){
-  $('#svcGrid').innerHTML = SERVICES[aud].map(s => `
+  audience = aud;
+  $('#svcGrid').innerHTML = L.SERVICES[aud].map(s => `
     <a class="svc shift" href="#/expertise/${s.id}">
       <div class="svc__head"><h3>${s.t}</h3><p>${s.d}</p></div>
       <div class="tags">${s.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
@@ -68,47 +91,44 @@ function renderServices(aud){
     </a>`).join('');
 }
 
-const FOOTER = `
+function renderFooters(){
+  const kvazar = `<h3>${T('kvazarH')}</h3><p>${T('kvazarText')}</p>
+        <a class="btn btn--outline" href="https://t.me/kvazardesign" target="_blank" rel="noopener">${T('kvazarBtn')}</a>`;
+  const bottom = `<div class="foot__bottom"><span>${T('rights')}</span><span aria-hidden="true">®</span></div>
+  <a class="logo foot__logo" href="#/" aria-label="${T('toHome')}">${LOGO}</a>`;
+  const full = `
   <div class="foot__grid">
     <div class="foot__left">
-      <p class="foot__lead">По любым вопросам сотрудничества — будь то действующий продукт или развивающийся стартап</p>
+      <p class="foot__lead">${T('footLead')}</p>
       <dl>
-        <div><dt>Телеграм:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
-        <div><dt>Почта:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
-        <div><dt>Телефон:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
+        <div><dt>${T('tg')}</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
+        <div><dt>${T('mail')}</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
+        <div><dt>${T('phone')}</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
       </dl>
       <div class="foot__also">
-        <p class="foot__lead">Также вы можете найти меня<br>на других сервисах</p>
+        <p class="foot__lead">${T('footAlso')}</p>
         <ul><li><a class="link" href="https://vc.ru" target="_blank" rel="noopener">vc</a></li><li><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></li></ul>
       </div>
     </div>
-    <div class="foot__right">
-      <div class="kvazar">
-        <h3>«Квазар»</h3>
-        <p>Если вы разделяете мои взгляды и идеи, выраженные в разделе «Философия», то можете подписаться на телеграм-канал нашего движения. В нём мы делимся опытом, обсуждаем идеи и формируем команды для их реализации. Всё по делу, без спама и флуда.</p>
-        <a class="btn btn--outline" href="#" data-stub="Ссылка на телеграм-канал «Квазар»">Ознакомиться</a>
-      </div>
-    </div>
+    <div class="foot__right"><div class="kvazar">${kvazar}</div></div>
   </div>
-  <div class="foot__bottom"><span>все права принадлежат идейным</span><span aria-hidden="true">®</span></div>
-  <a class="logo foot__logo" href="#/" aria-label="На главную">${LOGO}</a>`;
-$$('[data-footer]').forEach(f => f.innerHTML = FOOTER);
-const KVAZAR = FOOTER.match(/<div class="kvazar">([\s\S]*?)<\/div>\s*<\/div>/)[1];
-$$('[data-kvazar]').forEach(k => k.innerHTML = KVAZAR);
-$$('[data-footer-mini]').forEach(f => f.innerHTML = `<div class="foot__bottom"><span>все права принадлежат идейным</span><span aria-hidden="true">®</span></div>
-  <a class="logo foot__logo" href="#/" aria-label="На главную">${LOGO}</a>`);
+  ${bottom}`;
+  $$('[data-footer]').forEach(f => f.innerHTML = full);
+  $$('[data-kvazar]').forEach(k => k.innerHTML = kvazar);
+  $$('[data-footer-mini]').forEach(f => f.innerHTML = bottom);
+}
 
 /* Список длиннее 8 пунктов показывает первые 6 и кнопку «Ещё N» */
 /* Портфолио: фильтр в доп. меню (на телефоне — лента чипсов над списком) */
 let caseFilter = 'all', filterT;
 function renderFilter(){
-  const count = id => id==='all' ? CASES.length : CASES.filter(x=>x.c.includes(id)).length;
-  $('#filterList').innerHTML = CATEGORIES.map(c => `<li><button type="button" data-filter="${c.id}" aria-pressed="${c.id===caseFilter}">${c.t}<span class="cnt">${count(c.id)}</span></button></li>`).join('');
-  $('#filterChips').innerHTML = CATEGORIES.map(c => `<a class="shift" href="#" role="button" data-filter="${c.id}"${c.id===caseFilter?' aria-current="true"':''}>${c.t}</a>`).join('');
+  const count = id => id==='all' ? L.CASES.length : L.CASES.filter(x=>x.c.includes(id)).length;
+  $('#filterList').innerHTML = L.CATEGORIES.map(c => `<li><button type="button" data-filter="${c.id}" aria-pressed="${c.id===caseFilter}">${c.t}<span class="cnt">${count(c.id)}</span></button></li>`).join('');
+  $('#filterChips').innerHTML = L.CATEGORIES.map(c => `<a class="shift" href="#" role="button" data-filter="${c.id}"${c.id===caseFilter?' aria-current="true"':''}>${c.t}</a>`).join('');
 }
 function renderCases(){
-  const list = CASES.filter(x => caseFilter==='all' || x.c.includes(caseFilter));
-  $('#cases').innerHTML = list.map(x => `<a class="case shift is-out" href="#" data-stub="Страница кейса появится позже"><h2>${x.t}</h2><p>${x.d}</p></a>`).join('');
+  const list = L.CASES.filter(x => caseFilter==='all' || x.c.includes(caseFilter));
+  $('#cases').innerHTML = list.map(x => `<a class="case shift is-out" href="#" data-stub="${T('caseStub')}"><h2>${x.t}</h2><p>${x.d}</p></a>`).join('');
   $('#casesEmpty').hidden = list.length>0;
   requestAnimationFrame(()=>requestAnimationFrame(()=>$$('#cases .case').forEach((el,i)=>{ el.style.transitionDelay = `${i*40}ms`; el.classList.remove('is-out'); })));
 }
@@ -122,7 +142,6 @@ document.addEventListener('click', e => {
   const f = e.target.closest('[data-filter]'); if(!f) return;
   e.preventDefault(); setFilter(f.dataset.filter);
 });
-renderFilter(); renderCases();
 
 const LIMIT = 6, MAX_OPEN = 8;
 function tariffCard(t, sec, i, list){
@@ -139,16 +158,16 @@ function tariffCard(t, sec, i, list){
   const li = a => a.map(x=>`<li>${x}</li>`).join('');
   return `<article class="tcard">
     <div><h3>${t.name}</h3><p class="tcard__for">${t.for}</p></div>
-    <div class="tcard__price">${t.old?`<s><span class="sr-only">Было: </span>${t.old}</s>`:''}<strong>${t.price}</strong>${t.note?`<small>${t.note}</small>`:''}</div>
+    <div class="tcard__price">${t.old?`<s><span class="sr-only">${T('was')}</span>${t.old}</s>`:''}<strong>${t.price}</strong>${t.note?`<small>${t.note}</small>`:''}</div>
     <p class="tcard__meta">${t.tags.join('<i aria-hidden="true">·</i>')}</p>
-    <div><button class="btn" type="button" data-stub="Форма заявки появится позже">Оставить заявку</button></div>
+    <div><button class="btn" type="button" data-stub="${T('requestStub')}">${T('request')}</button></div>
     <div class="tcard__body">
-      <p class="tcard__label">${base ? `Всё из <b>${base.gen||base.name}</b>, а также:` : 'Что входит:'}</p>
+      <p class="tcard__label">${base ? T('allFrom')(base.gen||base.name) : T('includes')}</p>
       <ul class="clist">${li(vis)}</ul>
       ${rest.length ? `
         <div class="collapse" id="more-${uid}"><div><ul class="clist">${li(rest)}</ul></div></div>
-        <button class="morebtn" type="button" aria-expanded="false" aria-controls="more-${uid}" data-more="${rest.length}"><span>Ещё ${rest.length} ${plural(rest.length)}</span>${CHEV.replace('class="chev"','')}</button>` : ''}
-      <p class="tcard__result"><b>Результат:</b> ${t.result}</p>
+        <button class="morebtn" type="button" aria-expanded="false" aria-controls="more-${uid}" data-more="${rest.length}"><span>${moreLabel(rest.length)}</span>${CHEV.replace('class="chev"','')}</button>` : ''}
+      <p class="tcard__result"><b>${T('result')}</b> ${t.result}</p>
     </div>
   </article>`;
 }
@@ -159,15 +178,15 @@ function renderTariffs(sec, aud){
 }
 
 function renderExpertise(){
-  $('#xsections').innerHTML = SECTIONS.map(s => `
+  $('#xsections').innerHTML = L.SECTIONS.map(s => `
     <section class="xsec" id="${s.id}" aria-labelledby="h-${s.id}">
       <h2 id="h-${s.id}">${s.n}. ${s.title}</h2>
       ${s.tariffs.ent ? `
-      <div class="seg" role="group" aria-label="Размер бизнеса" data-seg="tariff" data-sec="${s.id}">
+      <div class="seg" role="group" aria-label="${T('bizSize')}" data-seg="tariff" data-sec="${s.id}">
         <span class="seg__thumb" aria-hidden="true"></span>
-        <button type="button" aria-pressed="true" data-val="smb">Малый и средний бизнес</button>
-        <button type="button" aria-pressed="false" data-val="ent">Крупный бизнес</button>
-      </div>` : `<p class="lead-note">Условия одинаковы для малого, среднего и крупного бизнеса.</p>`}
+        <button type="button" aria-pressed="true" data-val="smb">${T('smb')}</button>
+        <button type="button" aria-pressed="false" data-val="ent">${T('ent')}</button>
+      </div>` : `<p class="lead-note">${T('sameTerms')}</p>`}
       <div class="tariffs swap" data-tariffs="${s.id}">${renderTariffs(s,'smb')}</div>
       <div class="prose">
         <div class="info reveal">${INFO_ICON}<div>${s.info.map(p=>`<p>${p}</p>`).join('')}</div></div>
@@ -175,11 +194,11 @@ function renderExpertise(){
       </div>
     </section>`).join('');
 
-  $('#subnav').innerHTML = SECTIONS.map(s => `<li><a class="nav-a link" href="#/expertise/${s.id}" data-spy="${s.id}">${s.short}</a></li>`).join('');
-  $('#subchips').innerHTML = SECTIONS.map(s => `<a class="shift" href="#/expertise/${s.id}" data-spy="${s.id}">${s.n}. ${s.short}</a>`).join('');
+  $('#subnav').innerHTML = L.SECTIONS.map(s => `<li><a class="nav-a link" href="#/expertise/${s.id}" data-spy="${s.id}">${s.short}</a></li>`).join('');
+  $('#subchips').innerHTML = L.SECTIONS.map(s => `<a class="shift" href="#/expertise/${s.id}" data-spy="${s.id}">${s.n}. ${s.short}</a>`).join('');
 
   $$('[data-seg="tariff"]').forEach(seg => bindSeg(seg, val => {
-    const sec = SECTIONS.find(x=>x.id===seg.dataset.sec), box = $(`[data-tariffs="${sec.id}"]`);
+    const sec = L.SECTIONS.find(x=>x.id===seg.dataset.sec), box = $(`[data-tariffs="${sec.id}"]`);
     swapContent(box, ()=>{ box.innerHTML = renderTariffs(sec,val) });
   }));
   $$('[data-funnel]').forEach(renderFunnel);
@@ -198,9 +217,9 @@ function renderFunnel(host){
     ...R.slice(0,4).map((r,i)=>`<path data-i="${i+1}" d="${band(r,R[i+1])}" fill="var(--f${i+1})"/>`),
     `<path data-i="5" d="M${ax} ${ay} L${ga[0]} ${ga[1]} A117 117 0 0 1 ${gb[0]} ${gb[1]}Z" fill="var(--f6)"/>`
   ].join('');
-  host.outerHTML = `<figure class="funnel reveal" aria-label="Слои клиентского опыта: от рекламы до продукта">
+  host.outerHTML = `<figure class="funnel reveal" aria-label="${T('funnelAria')}">
     <svg viewBox="0 0 730 700" aria-hidden="true">${paths}</svg>
-    ${FUNNEL.map((f,i)=>`<div class="frow" data-i="${i}" style="top:${f.y/7}%"><div class="frow__line"></div><div class="frow__txt"><b>${f.t}</b><span>${f.d}</span></div></div>`).join('')}
+    ${L.FUNNEL.map((f,i)=>`<div class="frow" data-i="${i}" style="top:${f.y/7}%"><div class="frow__line"></div><div class="frow__txt"><b>${f.t}</b><span>${f.d}</span></div></div>`).join('')}
   </figure>`;
 }
 document.addEventListener('pointerover', e => {
@@ -221,7 +240,7 @@ document.addEventListener('click', e => {
     const box = document.getElementById(t.getAttribute('aria-controls'));
     const open = t.getAttribute('aria-expanded')!=='true';
     t.setAttribute('aria-expanded', String(open)); box.classList.toggle('open', open);
-    if(t.classList.contains('morebtn')) t.querySelector('span').textContent = open ? 'Свернуть' : `Ещё ${t.dataset.more} ${plural(+t.dataset.more)}`;
+    if(t.classList.contains('morebtn')) t.querySelector('span').textContent = open ? T('collapse') : moreLabel(+t.dataset.more);
     return;
   }
   const st = e.target.closest('[data-stub]'); if(st){ e.preventDefault(); toast(st.dataset.stub); return; }
@@ -235,13 +254,12 @@ const fmenu = $('#fmenu'); let lastFocus = null, closeT;
 /* Пункты нумеруются по колонкам сверху вниз — так они всплывают волной слева направо */
 function renderMap(){
   let i = 0;
-  const n = MAP.reduce((k,c)=>k + 1 + c.items.length, 0);
-  $('#fcols').innerHTML = MAP.map(col => `<div class="fcol">
+  const n = L.MAP.reduce((k,c)=>k + 1 + c.items.length, 0);
+  $('#fcols').innerHTML = L.MAP.map(col => `<div class="fcol">
     <h2 class="fitem" style="--i:${i++};--n:${n}"><a class="link" href="${col.href}">${col.title}</a></h2>
     <ul>${col.items.map(([l,h])=>`<li class="fitem" style="--i:${i++};--n:${n}"><a class="link" href="${h}"${h.startsWith('http')?' target="_blank" rel="noopener"':''}>${l}</a></li>`).join('')}</ul>
   </div>`).join('');
 }
-renderMap();
 /* byKeyboard — открыто клавишей: тогда переводим фокус на «Закрыть»; мышью — без видимого контура */
 function openMap(byKeyboard){
   lastFocus = document.activeElement;
@@ -294,7 +312,7 @@ const rail = $('#rail'), mobile = matchMedia('(max-width:960px)');
 function setPinned(on){
   document.body.classList.toggle('pinned', on);
   rail.setAttribute('aria-expanded', String(on));
-  rail.setAttribute('aria-label', on ? 'Свернуть главное меню' : (document.body.dataset.kind==='home' ? 'Открыть меню' : 'Открыть главное меню'));
+  rail.setAttribute('aria-label', on ? T('menuClose') : (document.body.dataset.kind==='home' ? T('menuOpen') : T('menuOpenMain')));
   $('#mainpanel').inert = !on; $('#sideSub').inert = on;
 }
 rail.addEventListener('click', e => {
@@ -322,14 +340,24 @@ bindSeg($('#themeSeg'), t => {
     document.startViewTransition(() => setTheme(t)).finished.finally(() => delete document.documentElement.dataset.vt);
   } else setTheme(t);
 });
-$$('.lang button').forEach(b => b.addEventListener('click', () => {
-  if(b.dataset.lang==='en') toast('English version is coming soon');
-}));
+/* Переключение языка: перерисовать всё и остаться на том же экране */
+function setLang(next){
+  if(next === lang || !CONTENT[next]) return;
+  const update = () => {
+    lang = next; L = CONTENT[lang]; store.set('fb-lang', lang);
+    renderAll();
+    apply(parse(), scrollY);
+  };
+  if(document.startViewTransition && !reduceMotion.matches){
+    document.documentElement.dataset.vt = 'theme';
+    document.startViewTransition(update).finished.finally(() => delete document.documentElement.dataset.vt);
+  } else update();
+}
+$$('.lang button').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
 
 /* =========================================================
    ГЛАВНАЯ: табы, прогресс прокрутки
    ========================================================= */
-renderServices('smb');
 bindSeg($('[data-seg="audience"]'), val => swapContent($('#svcGrid'), ()=>renderServices(val)));
 
 function onScroll(){
@@ -358,9 +386,26 @@ function markSpy(id){
 /* =========================================================
    МАРШРУТЫ
    ========================================================= */
-renderExpertise();
-const TITLES = {blog:'Блог'};
-const PAGES = {expertise:'Экспертиза',projects:'Портфолио',philosophy:'Философия',contacts:'Контакты'};
+/* Философия: статья и навигация по разделам */
+function renderPhilo(){
+  $('#philoBody').innerHTML = L.PHILO;
+  fillLogos($('#philoBody'));
+  $('#philoNav').innerHTML = L.PHILO_NAV.map(([id,t]) => `<li><a class="nav-a link" href="#/philosophy/${id}" data-spy="${id}">${t}</a></li>`).join('');
+  $('#philoChips').innerHTML = L.PHILO_NAV.map(([id,t]) => `<a class="shift" href="#/philosophy/${id}" data-spy="${id}">${t}</a>`).join('');
+}
+
+function renderAll(){
+  applyStatic();
+  renderFooters();
+  renderServices(audience);
+  renderFilter(); renderCases();
+  renderExpertise();
+  renderPhilo();
+  renderMap();
+  $$('.seg').forEach(placeThumb);
+}
+renderAll();
+document.documentElement.classList.remove('i18n-wait');
 let currentPage = null, clickNav = false, lastHash = location.hash;
 const scrollMemo = {};
 if('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -370,7 +415,7 @@ document.addEventListener('click', e => {
   const a = e.target.closest('a[href^="#/"]'); if(!a || e.defaultPrevented) return;
   const href = a.getAttribute('href');
   const [p='home'] = href.replace(/^#\/?/,'').split('/').filter(Boolean);
-  const page = PAGES[p] ? p : (TITLES[p] ? 'stub' : 'home');
+  const page = L.PAGES[p] ? p : (L.TITLES[p] ? 'stub' : 'home');
   // якорь внутри текущей страницы не создаёт шаг истории: «Назад» уводит со страницы, а не по разделам
   if(page === currentPage && !fmenu.classList.contains('open')){
     e.preventDefault();
@@ -387,7 +432,7 @@ $('.back').addEventListener('click', e => { if(depth > 0){ e.preventDefault(); c
 
 function parse(){
   const [p='home', sub] = location.hash.replace(/^#\/?/,'').split('/').filter(Boolean);
-  const page = PAGES[p] ? p : (TITLES[p] ? 'stub' : 'home');
+  const page = L.PAGES[p] ? p : (L.TITLES[p] ? 'stub' : 'home');
   return {p, sub, page};
 }
 
@@ -397,13 +442,13 @@ function apply({p, sub, page}, restoreY){
   document.body.dataset.kind = page==='home' ? 'home' : 'inner';
   setPinned(false);
   $('#sideHome').hidden = page!=='home';
-  $('#sideSub').hidden = !PAGES[page];
-  if(PAGES[page]){ $('#sideSub').dataset.page = page; $('#subTitle').textContent = PAGES[page]; }
+  $('#sideSub').hidden = !L.PAGES[page];
+  if(L.PAGES[page]){ $('#sideSub').dataset.page = page; $('#subTitle').textContent = L.PAGES[page]; }
   renderMainNav(page==='home' ? 'home' : p);
   $('#topLeft').innerHTML = page==='home'
     ? '<span class="year">2016–2027</span>'
-    : `<nav class="crumbs" aria-label="Хлебные крошки"><a class="link" href="#/">Главная</a><i aria-hidden="true"></i><span aria-current="page">${PAGES[page]||TITLES[p]}</span></nav>`;
-  if(page==='stub') $('#stubTitle').textContent = TITLES[p];
+    : `<nav class="crumbs" aria-label="${T('crumbs')}"><a class="link" href="#/">${T('home')}</a><i aria-hidden="true"></i><span aria-current="page">${L.PAGES[page]||L.TITLES[p]}</span></nav>`;
+  if(page==='stub') $('#stubTitle').textContent = L.TITLES[p];
 
   $$('.page').forEach(x => x.classList.toggle('is-active', x.id==='page-'+page));
   currentPage = page;
@@ -444,7 +489,7 @@ document.addEventListener('click', e => {
   const b = e.target.closest('.ph-more__btn'); if(!b) return;
   const open = b.getAttribute('aria-expanded') !== 'true';
   b.setAttribute('aria-expanded', String(open));
-  b.querySelector('span').textContent = open ? 'Свернуть' : 'Развернуть';
+  b.querySelector('span').textContent = open ? T('collapse') : T('expand');
   b.closest('.ph-more').classList.toggle('open', open);
 });
 
