@@ -46,8 +46,8 @@
 .back svg{width:20px;height:20px}
 .side--sub .sub-title{margin-top:40px;padding:10px;font-size:18px;line-height:24px;font-weight:500;color:var(--ink-muted)}
 /* Пункты сразу под заголовком: заголовок и навигация читаются одной группой */
-.side--sub .side__nav{margin-top:12px}
-.side--sub .nav-a{min-height:56px;font-size:16px}
+.side--sub .side__nav{margin-top:17px}
+.side--sub .nav-a{min-height:46px;font-size:16px}
 .side--sub .nav-a[aria-current]{color:var(--accent-ink)}
 .pinned .side--sub{opacity:0;pointer-events:none}
 
