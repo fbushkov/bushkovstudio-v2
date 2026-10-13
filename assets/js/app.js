@@ -524,7 +524,7 @@ function apply({p, sub, page}, restoreY){
   if(L.PAGES[page]){ $('#sideSub').dataset.page = page; $('#subTitle').textContent = L.PAGES[page]; }
   renderMainNav(page==='home' ? 'home' : p);
   $('#topLeft').innerHTML = page==='home'
-    ? '<span class="year">2016–2027</span>'
+    ? '<span class="year">2016–2026</span>'
     : `<nav class="crumbs" aria-label="${T('crumbs')}"><a class="link" href="#/">${T('home')}</a><i aria-hidden="true"></i><span aria-current="page">${L.PAGES[page]||L.TITLES[p]}</span></nav>`;
   if(page==='stub') $('#stubTitle').textContent = L.TITLES[p];
 

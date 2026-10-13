@@ -81,8 +81,9 @@
   .info{grid-template-columns:1fr;gap:16px}
   .prose .info p{font-size:18px;line-height:28px}
   .note{padding:20px}
-  .funnel{aspect-ratio:auto;display:grid;grid-template-columns:96px 1fr;gap:0 16px}
-  .funnel svg{position:static;grid-row:1 / span 6;width:96px;height:auto}
+  /* На узких экранах схема воронки не читается — оставляем только список слоёв */
+  .funnel{aspect-ratio:auto;display:block}
+  .funnel svg{display:none}
   .frow{position:static;transform:none;margin-bottom:18px}
   .frow__line{display:none}
   .frow__txt{text-align:left;padding:0}
@@ -95,6 +96,11 @@
 .subchips a{--parent:var(--chip);flex:none;display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border-radius:999px;font-size:14px}
 .subchips a[aria-current]{--parent:var(--btn);color:var(--btn-ink)}
 .rail__mlogo{display:none}
+
+/* Большие экраны: вся вёрстка пропорционально увеличивается,
+   чтобы страница выглядела как на мониторе около 2000 px, а не мелкой колонкой посреди пустоты */
+@media (min-width:2400px){ html{zoom:1.25} }   /* 2K, 2560 px → как 2048 */
+@media (min-width:3400px){ html{zoom:1.8} }    /* 4K, 3840 px → как 2133 */
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;transition-delay:0s!important}
