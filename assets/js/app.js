@@ -109,7 +109,7 @@ function renderFooters(){
       </dl>
       <div class="foot__also">
         <p class="foot__lead">${T('footAlso')}</p>
-        <ul><li><a class="link" href="https://vc.ru/id1598278" target="_blank" rel="noopener">vc</a></li><li><a class="link" href="https://habr.com/ru/users/monsher/articles/" target="_blank" rel="noopener">habr</a></li><li><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></li></ul>
+        <ul><li><a class="link" href="https://vc.ru/id1598278" target="_blank" rel="noopener">vc</a></li><li><a class="link" href="https://habr.com/ru/users/monsher/articles/" target="_blank" rel="noopener">habr</a></li><li><a class="link" href="https://hh.ru/resume/65a07422ff02636e9f0039ed1f6c5778505974" target="_blank" rel="noopener">hh</a></li></ul>
       </div>
     </div>
     <div class="foot__right"><div class="kvazar">${kvazar}</div></div>
@@ -186,14 +186,29 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') $$('.tip.open
 /* Окно «Обсудить задачу»: пользователь выбирает, куда написать */
 const contactSheet = $('#contactSheet');
 let contactTopic = '';
+const MAX_URL = 'https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8';
 function renderContact(){
+  const rows = [
+    {ic:'send', name:T('contactTg'), note:'@bushkovf', href:'https://t.me/bushkovf', copy:'https://t.me/bushkovf'},
+    {ic:'message-circle', name:T('contactMax'), note:T('maxOpen'), href:MAX_URL, copy:MAX_URL},
+    {ic:'mail', name:T('contactMail'), note:'bushkovf@mail.ru', href:'mailto:bushkovf@mail.ru', copy:'bushkovf@mail.ru', mail:true},
+  ];
   contactSheet.innerHTML = `
     <div class="csheet__head"><h2 id="csTitle">${T('contactTitle')}</h2><button class="csheet__close" type="button" data-close-contact aria-label="${T('close')}">${icon('x')}</button></div>
-    <ul class="csheet__list">
-      <li><a class="csheet__item shift" href="https://t.me/bushkovf" target="_blank" rel="noopener">${icon('send')}<span>${T('contactTg')}</span><small>@bushkovf</small></a></li>
-      <li><a class="csheet__item shift" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">${icon('message-circle')}<span>${T('contactMax')}</span><small>${T('maxOpen')}</small></a></li>
-      <li><a class="csheet__item shift" data-mail href="mailto:bushkovf@mail.ru">${icon('mail')}<span>${T('contactMail')}</span><small>bushkovf@mail.ru</small></a></li>
+    <ul class="csheet__list">${rows.map(r => `
+      <li class="csheet__row">
+        <a class="csheet__item shift" href="${r.href}"${r.mail ? ' data-mail' : ' target="_blank" rel="noopener"'}>${icon(r.ic)}<span>${r.name}</span><small>${r.note}</small></a>
+        <button class="csheet__copy shift" type="button" data-copy="${r.copy}" aria-label="${T('copy')}: ${r.name}">${icon('copy')}<span>${T('copy')}</span></button>
+      </li>`).join('')}
     </ul>`;
+}
+/* Копирование в буфер: кнопка на полторы секунды показывает «Скопировано» (уведомление закрыло бы модальное окно) */
+async function copyText(text){
+  try{ await navigator.clipboard.writeText(text); return true; }
+  catch(e){
+    const ta = Object.assign(document.createElement('textarea'), {value:text}); ta.style.cssText = 'position:fixed;opacity:0';
+    contactSheet.append(ta); ta.select(); const ok = document.execCommand('copy'); ta.remove(); return ok;
+  }
 }
 function openContact(topic){
   contactTopic = topic || '';
@@ -202,6 +217,14 @@ function openContact(topic){
   contactSheet.showModal();
 }
 contactSheet.addEventListener('click', e => {
+  const cp = e.target.closest('[data-copy]');
+  if(cp){
+    copyText(cp.dataset.copy).then(ok => { if(!ok) return;
+      cp.classList.add('is-done'); cp.innerHTML = `${icon('check')}<span>${T('copied')}</span>`;
+      clearTimeout(cp._t); cp._t = setTimeout(() => { cp.classList.remove('is-done'); cp.innerHTML = `${icon('copy')}<span>${T('copy')}</span>`; }, 1500);
+    });
+    return;
+  }
   if(e.target === contactSheet || e.target.closest('[data-close-contact]')) contactSheet.close();
   else if(e.target.closest('[data-stub]')) contactSheet.close();
   else if(e.target.closest('a[href^="http"], a[href^="mailto"]')) setTimeout(() => contactSheet.close(), 0);

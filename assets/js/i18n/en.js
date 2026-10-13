@@ -44,6 +44,7 @@ UI: {
   blogSoon:'The blog is coming soon',
   request:'Discuss your task', was:'Was: ',
   max:'MAX:', maxOpen:'Open chat',
+  copy:'Copy', copied:'Copied',
   contactTitle:'Where would you like to talk?', contactTg:'Telegram', contactMax:'MAX', contactMail:'Email',
   mailSubject:'Discuss a task', priceNote:'Payment terms',
   includes:'What’s included:', allFrom: n => `Everything in <b>${n}</b>, plus:`, result:'Outcome:',

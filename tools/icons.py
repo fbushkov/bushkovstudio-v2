@@ -11,7 +11,7 @@ import pathlib, re, subprocess, sys, tarfile, tempfile
 VERSION = '1.48.0'
 ICONS = [
     'menu', 'chevron-left', 'chevron-down', 'arrow-left', 'arrow-right',
-    'funnel', 'layout-grid', 'info', 'send', 'message-circle', 'mail', 'x',
+    'funnel', 'layout-grid', 'info', 'send', 'message-circle', 'mail', 'x', 'copy', 'check',
 ]
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / 'assets/js/icons.js'

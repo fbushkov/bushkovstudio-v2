@@ -46,6 +46,7 @@ UI: {
   blogSoon:'Блог появится в скором времени',
   request:'Обсудить задачу', was:'Было: ',
   max:'MAX:', maxOpen:'Открыть чат',
+  copy:'Скопировать', copied:'Скопировано',
   contactTitle:'Где удобнее обсудить задачу?', contactTg:'Telegram', contactMax:'MAX', contactMail:'Почта',
   mailSubject:'Обсудить задачу', priceNote:'Условия оплаты',
   includes:'Что входит:', allFrom: n => `Всё из <b>${n}</b>, а также:`, result:'Результат:',
