@@ -44,8 +44,9 @@
 .side--sub{padding:63px 32px 30px 64px;background:var(--bg-rail)}
 .back{display:inline-flex;align-items:center;gap:16px;min-height:36px;padding:0 10px;font-size:14px;color:var(--ink-muted);align-self:flex-start}
 .back svg{width:20px;height:20px}
-.side--sub .sub-title{margin-top:56px;padding:10px;font-size:18px;line-height:24px;font-weight:500;color:var(--ink-muted)}
-.side--sub .side__nav{margin-top:56px}
+.side--sub .sub-title{margin-top:40px;padding:10px;font-size:18px;line-height:24px;font-weight:500;color:var(--ink-muted)}
+/* Пункты сразу под заголовком: заголовок и навигация читаются одной группой */
+.side--sub .side__nav{margin-top:12px}
 .side--sub .nav-a{min-height:56px;font-size:16px}
 .side--sub .nav-a[aria-current]{color:var(--accent-ink)}
 .pinned .side--sub{opacity:0;pointer-events:none}

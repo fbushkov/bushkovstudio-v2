@@ -121,6 +121,15 @@ SECTIONS: [
         </ul>
       </div>
       <div class="grp">
+        <h3>How diagnostics works</h3>
+        <ol class="aspects">
+          <li><b>Introduction</b><span>A short call about your goals and what hurts. We agree on who to talk to and what data to look at.</span></li>
+          <li><b>Deep dive</b><span>Interviews with people, walking the customer journey, reviewing processes, tools and metrics. I look at how things really work, not how the regulations describe them.</span></li>
+          <li><b>Map of problems</b><span>I bring the findings together into one picture and assess which problems hit customers, money and team speed the hardest.</span></li>
+          <li><b>Wrap-up</b><span>A meeting where we go through priorities and the plan. You leave with a clear order of actions and an answer to what help you need next, if any.</span></li>
+        </ol>
+      </div>
+      <div class="grp">
         <h3>Why it’s fast</h3>
         <p>I do the routine part of the work (transcribing interviews, consolidating data, a first pass over the interface) with AI. My time goes into conversations with people and conclusions. That is why diagnostics takes weeks rather than months and costs less than the project it may grow into.</p>
         <div class="note note--accent"><p>A strategy session is the simplest way to get to know each other. In two hours it becomes clear whether the problem has a solution and whether you need me for it.</p></div>
@@ -166,6 +175,20 @@ SECTIONS: [
           <li><b>Pilot</b><span>We test the new system on one team or department before changing everything.</span></li>
           <li><b>Handover</b><span>I train managers and document the rules so the system works without me.</span></li>
         </ol>
+      </div>
+      <div class="grp">
+        <h3>What changes afterwards</h3>
+        <ul class="ilist">
+          <li>Decisions are made using a few clear metrics rather than a pile of reports</li>
+          <li>Teams see how their work affects customers and money, and argue less about priorities</li>
+          <li>Time that went into rituals and filling in spreadsheets goes back into the work</li>
+          <li>Leadership sees the real picture before a problem turns into a crisis</li>
+        </ul>
+      </div>
+      <div class="grp">
+        <h3>Small and large businesses</h3>
+        <p>In small and medium businesses the owner makes the decisions, so the work moves fast. We rebuild metrics and rules together, and within a month the new system is part of the company’s daily life.</p>
+        <p>In a large company every metric has its own owners and its own history. That is why we start with a pilot in one department and then roll it out to the rest, and much of the work is agreements between people and supporting the change.</p>
       </div>
       <div class="grp">
         <h3>Metrics and product strategy</h3>
@@ -216,7 +239,23 @@ SECTIONS: [
         <p>Customer experience is often shaped by departments within a company that are isolated in their interests and competencies. Each speaks “its own language”. Employees from different departments have their own view of the product and the problems it solves, their own success criteria, KPIs and so on. This gets in the way of forming a shared understanding.</p>
         <p>On top of that, there is often a conflict between managers who, for the sake of their team goals, closed sprints and features aimed inside the company, sacrifice the common interest for private ones. Such relationships stand in the way of improving the customer experience and turn into a race between departments that forget the common cause and the product’s value for the customer.</p>
         <div class="note"><p>One of the missions of service design for employees is to remove the boundaries between areas of expertise, “breaking down the walls” between isolated departments and helping them form shared values and a shared vision of the company’s product. However, the method isn’t for everyone, since such evolutionary forms require a certain maturity of the company and its top management. Far from everyone has it.</p></div>
-      </div>`
+      </div>
+      <div class="grp">
+        <h3>How the work goes</h3>
+        <ol class="aspects">
+          <li><b>Research</b><span>Interviews with customers and employees, data on sales, drop-offs and support requests. I build a picture of the service through the eyes of everyone involved.</span></li>
+          <li><b>Current state</b><span>A customer journey map and service blueprint show where customers get lost and which internal processes are behind it.</span></li>
+          <li><b>Design</b><span>A new customer journey together with changes to employees’ processes, roles and tools.</span></li>
+          <li><b>Testing</b><span>Prototypes and a pilot with some of your customers before changing the whole service.</span></li>
+          <li><b>Rollout and metrics</b><span>A change plan and metrics that show the service has really improved.</span></li>
+        </ol>
+      </div>
+      <div class="grp">
+        <h3>Small and large businesses</h3>
+        <p>For a small business, service design is a quick walk through the customer journey and fixing the bottlenecks that hurt sales right now. You see the result within a month.</p>
+        <p>In a large company a service runs through dozens of departments and systems. That is why the work starts with a blueprint of the current state, and changes are tested in a pilot before processes change across all departments.</p>
+      </div>
+      `
   },
   {
     id:"team-os", n:4, title:"Team operating system", short:"Team operating system",
@@ -269,7 +308,13 @@ SECTIONS: [
         <h3>More than components</h3>
         <p>A design system only works when the people around it have agreed on how to work. That is why the team operating system also covers how design, development and product work together, a clear owner for every decision, and tools the team actually uses rather than keeps for show.</p>
         <div class="note"><p>For employees, it means fewer arguments and less rework, and a fast start for newcomers. For users, it means a consistent interface and predictable product behavior.</p></div>
-      </div>`
+      </div>
+      <div class="grp">
+        <h3>Small and large businesses</h3>
+        <p>A small team needs a foundation that doesn’t slow it down. The Core gives just enough standards so you don’t have to rewrite the interface as the product grows.</p>
+        <p>When there are several products and teams, the design system becomes a shared company standard. The main work is no longer in components but in ownership rules, the change process and training, otherwise every team will go back to doing things its own way.</p>
+      </div>
+      `
   }
 ],
 CATEGORIES: [
