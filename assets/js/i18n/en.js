@@ -20,7 +20,7 @@ UI: {
   photoAlt:'Philipp Bushkov',
   intro:'My name is Philipp Bushkov.<br>I design how a company creates experiences.<br>I connect the customer journey, internal<br>processes and the company’s tools.',
   h1:'<span>Strategic</span><span>service designer</span><span>CX/EX/UX</span>',
-  ctaMax:'Discuss your task', ctaMaxStub:'MAX chat link',
+  ctaMax:'Discuss your task',
   projectsH:'Projects', expertiseH:'Expertise',
   proj1:'<h3>Tizbi</h3><p>Custom software development company</p>',
   proj2:'<h3>Ak Bars Bank</h3><p>Bank of the Republic of Tatarstan</p>',
@@ -43,8 +43,9 @@ UI: {
   rights:'all rights belong to the like-minded',
   blogSoon:'The blog is coming soon',
   request:'Discuss your task', was:'Was: ',
+  max:'MAX:', maxOpen:'Open chat',
   contactTitle:'Where would you like to talk?', contactTg:'Telegram', contactMax:'MAX', contactMail:'Email',
-  maxStub:'MAX link coming soon', mailSubject:'Discuss a task', priceNote:'Payment terms',
+  mailSubject:'Discuss a task', priceNote:'Payment terms',
   includes:'What’s included:', allFrom: n => `Everything in <b>${n}</b>, plus:`, result:'Outcome:',
   more: (n, w) => `${n} more ${w}`, collapse:'Collapse', expand:'Expand',
   funnelAria:'Layers of customer experience from advertising to the product',
@@ -461,6 +462,7 @@ PHILO: `
     <p>If you have a startup or an existing socially significant product in IT or GameDev and need help with product design, UX design, design consulting or service design, get in touch with me using the contacts below.</p>
     <dl class="contacts contacts--compact">
       <div><dt>Telegram:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
+      <div><dt>MAX:</dt><dd><a class="link" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">Open chat</a></dd></div>
       <div><dt>Email:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
       <div><dt>Phone:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
     </dl>

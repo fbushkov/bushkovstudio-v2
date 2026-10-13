@@ -22,7 +22,7 @@ UI: {
   photoAlt:'Филипп Бушков',
   intro:'Меня зовут Филипп Бушков.<br>Я проектирую, как компания создаёт опыт.<br>Связываю клиентский путь, внутренние<br>процессы и инструменты компании.',
   h1:'<span>Стратегический</span><span>сервис-дизайнер</span><span>CX/EX/UX</span>',
-  ctaMax:'Обсудить задачу', ctaMaxStub:'Ссылка на чат в MAX',
+  ctaMax:'Обсудить задачу',
   projectsH:'Проекты', expertiseH:'Экспертиза',
   proj1:'<h3>Tizbi</h3><p>IT-компания заказной разработки ПО</p>',
   proj2:'<h3>Ак Барс Банк</h3><p>Банк Республики Татарстан</p>',
@@ -45,8 +45,9 @@ UI: {
   rights:'все права принадлежат идейным',
   blogSoon:'Блог появится в скором времени',
   request:'Обсудить задачу', was:'Было: ',
+  max:'MAX:', maxOpen:'Открыть чат',
   contactTitle:'Где удобнее обсудить задачу?', contactTg:'Telegram', contactMax:'MAX', contactMail:'Почта',
-  maxStub:'Ссылка на MAX появится позже', mailSubject:'Обсудить задачу', priceNote:'Условия оплаты',
+  mailSubject:'Обсудить задачу', priceNote:'Условия оплаты',
   includes:'Что входит:', allFrom: n => `Всё из <b>${n}</b>, а также:`, result:'Результат:',
   more: (n, w) => `Ещё ${n} ${w}`, collapse:'Свернуть', expand:'Развернуть',
   funnelAria:'Слои клиентского опыта от рекламы до продукта',
@@ -70,7 +71,7 @@ MAP: [
     ]},
   {title:'Философия',href:'#/philosophy',items:[['«ЭКРО»','#/philosophy/ph-ekro'],['Свод правил','#/philosophy/ph-rules']]},
   {title:'Контакты',href:'#/contacts',items:[
-    ['bushkovf@mail.ru','mailto:bushkovf@mail.ru'],['bushkovf','https://t.me/bushkovf'],['Квазар','https://t.me/']]},
+    ['bushkovf@mail.ru','mailto:bushkovf@mail.ru'],['bushkovf','https://t.me/bushkovf'],['Квазар','https://t.me/kvazardesign']]},
 ],
   /* Карточки услуг на главной */
 SERVICES: {
@@ -460,6 +461,7 @@ PHILO: `
     <p>Если у вас есть стартап или действующий социально значимый продукт в сфере IT или GameDev и вам нужна помощь в продуктовом дизайне, UX-дизайне, дизайн-консалтинге или сервис-дизайне, свяжитесь со мной по контактам, указанным ниже.</p>
     <dl class="contacts contacts--compact">
       <div><dt>Телеграм:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
+      <div><dt>MAX:</dt><dd><a class="link" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">Открыть чат</a></dd></div>
       <div><dt>Почта:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
       <div><dt>Телефон:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
     </dl>

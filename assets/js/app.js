@@ -103,6 +103,7 @@ function renderFooters(){
       <p class="foot__lead">${T('footLead')}</p>
       <dl>
         <div><dt>${T('tg')}</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
+        <div><dt>${T('max')}</dt><dd><a class="link" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">${T('maxOpen')}</a></dd></div>
         <div><dt>${T('mail')}</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
         <div><dt>${T('phone')}</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
       </dl>
@@ -190,7 +191,7 @@ function renderContact(){
     <div class="csheet__head"><h2 id="csTitle">${T('contactTitle')}</h2><button class="csheet__close" type="button" data-close-contact aria-label="${T('close')}">${icon('x')}</button></div>
     <ul class="csheet__list">
       <li><a class="csheet__item shift" href="https://t.me/bushkovf" target="_blank" rel="noopener">${icon('send')}<span>${T('contactTg')}</span><small>@bushkovf</small></a></li>
-      <li><a class="csheet__item shift" href="#" data-stub="${T('maxStub')}">${icon('message-circle')}<span>${T('contactMax')}</span></a></li>
+      <li><a class="csheet__item shift" href="https://max.ru/u/f9LHodD0cOI4ISXWL-6K2X1wagOrrNW9PGlK3J3rjiWWJbR2LEPEhVQjpx8" target="_blank" rel="noopener">${icon('message-circle')}<span>${T('contactMax')}</span><small>${T('maxOpen')}</small></a></li>
       <li><a class="csheet__item shift" data-mail href="mailto:bushkovf@mail.ru">${icon('mail')}<span>${T('contactMail')}</span><small>bushkovf@mail.ru</small></a></li>
     </ul>`;
 }
@@ -444,7 +445,7 @@ function renderAll(){
    привязывается неразрывным пробелом к следующему слову и не висит в конце строки.
    Тире не начинает строку, а короткая часть слова через дефис («IT-продукты») не отрывается от остальной */
 const SHORT_WORD = /(?<=^|[\s(«„"“—–\-\/])((?:[\p{L}\p{N}’']{1,3}|\p{N}[.,]\p{N})[.,;:!?»“”)…]*) (?=\S)/gu;
-const SHORT_HYPHEN = /(?<=^|[\s(«„"“])([\p{L}\p{N}]{1,3})-(?=[\p{L}\p{N}])/gu;
+const SHORT_HYPHEN = /(?<=^|[\s(«„"“])(\p{L}{1,3})-(?=\p{L})/gu;
 const DASH = / (?=[—–] )/g;
 function glue(root){
   const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode: n =>
