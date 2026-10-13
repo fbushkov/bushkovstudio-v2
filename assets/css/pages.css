@@ -71,15 +71,14 @@
 /* Текст раздела, ритм по макету: группы через 112, заголовок → текст 24,
    абзац → абзац 24, текст → выноска 48 */
 .prose{margin-top:112px}
-/* Длина строки по ролям текста (норма чтения):
-   основной 15–18 px — 58ch, у Onest это около 69 знаков и 620 px; крупный 20–24 px — 42ch, около 45 знаков;
-   интерфейсный в карточках — до 50ch. Значения сверены замером реального числа знаков в строке.
+/* Ширина текстовых блоков по ролям: крупный — 800 px, основной — 620 px, дополнительный — 420 px.
    Картинки и сетки занимают всю ширину колонки */
-.prose p,.prose .ilist li,.ph-sec>p,.rules>li>p,.rules__note p,.ph-more__body p{max-width:58ch}
+.prose p,.prose .ilist li,.ph-sec>p,.rules>li>p,.rules__note p,.ph-more__body p{max-width:620px}
 .tcard__for,.aspects>li>span{max-width:50ch}
-.prose .info p,.ph-sec>p.ph-big,.ph-goal__text{max-width:42ch}
-/* Плашки и заметки — по ширине текста внутри плюс внутренние отступы, а не на всю колонку */
-.prose .note,.ph-sec>.note,.ph-more,.ph-cards{max-width:calc(58ch + 64px)}
+.prose .info p,.ph-sec>p.ph-big,.ph-goal__text{max-width:800px}
+.ph-sec>p.ph-aside{max-width:420px}
+/* Плашки и заметки — по ширине основного текста плюс внутренние отступы */
+.prose .note,.ph-sec>.note,.ph-more{max-width:684px}
 .prose>*+*{margin-top:112px}
 .prose h3{font-size:22px;line-height:26px;font-weight:700}
 .prose p{font-size:16px;line-height:24px;font-weight:400;letter-spacing:.08px}
@@ -103,8 +102,8 @@
 }
 .aspects>li{counter-increment:a;padding:24px;border-radius:8px;background:var(--surface)}
 /* Номер — декоративный, полупрозрачный цветом текста */
-.aspects>li::before{content:counter(a,decimal-leading-zero);display:block;font-size:21px;line-height:24px;font-weight:700;letter-spacing:-.2px;color:color-mix(in srgb,var(--ink) 30%,transparent);font-variant-numeric:tabular-nums}
-.aspects>li>b{display:block;margin-top:12px;font-size:17px;line-height:24px;font-weight:700}
+.aspects>li::before{content:counter(a,decimal-leading-zero);display:block;font-size:21px;line-height:24px;font-weight:600;letter-spacing:-.2px;color:color-mix(in srgb,var(--ink) 30%,transparent);font-variant-numeric:tabular-nums}
+.aspects>li>b{display:block;margin-top:12px;font-size:17px;line-height:24px;font-weight:600}
 .aspects>li>span{display:block;margin-top:8px;font-size:15px;line-height:22px;font-weight:400;color:var(--ink-muted)}
 .aspects>li>.ilist{margin-top:10px;gap:6px}
 .aspects>li>.ilist li{font-size:15px;line-height:22px;padding-left:16px;color:var(--ink-muted)}
@@ -200,11 +199,11 @@
 .ph-img img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.4s var(--ease-out)}
 .ph-img.in img{transform:none}
 
-.ph-aside{max-width:430px;margin-left:auto!important;text-align:right;font-size:16px!important;line-height:24px!important;color:var(--ink-muted)!important}
+.ph-aside{max-width:420px;margin-left:auto!important;text-align:right;font-size:16px!important;line-height:24px!important;color:var(--ink-muted)!important}
 .ph-lead{font-size:20px!important;line-height:32px!important;font-weight:400!important}
 .ph-sec .note p{font-size:16px;line-height:26px;font-weight:400}
-/* Миссия и ценности — друг под другом */
-.ph-cards{display:grid;grid-template-columns:1fr;gap:16px}
+/* Миссия и ценности — в ряд */
+.ph-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
 .ph-cards .note{margin:0}
 .ph-principles{grid-template-columns:repeat(auto-fill,minmax(360px,1fr))!important}
 .ph-principles a{color:var(--accent-ink)}
