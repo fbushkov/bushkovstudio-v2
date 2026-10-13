@@ -30,6 +30,7 @@
   --rail-press:#D8D3D5;
   --surface:#F6F2F3;
   --ink:#373945;
+  --ink-text:#453750;     /* основной текст длинных страниц (макет) */
   --ink-muted:#6E6E73;      /* #848484 из макета затемнён до 4,5 : 1 */
   --ink-faint:#ADAEB2;
   --line:#D6D1D3;
@@ -61,6 +62,7 @@
   --rail-press:#36363D;
   --surface:#26262B;
   --ink:#ECEAEC;
+  --ink-text:#E4DDE8;
   --ink-muted:#A9A5AC;
   --ink-faint:#6E6A72;
   --line:#3A3A41;

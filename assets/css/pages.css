@@ -163,13 +163,13 @@
    ========================================================= */
 .philo{margin-top:64px}
 .ph-sec{max-width:880px;scroll-margin-top:24px}
-.ph-sec+.ph-sec{margin-top:160px}
+.ph-sec+.ph-sec{margin-top:200px}
 .ph-sec--wide{max-width:none}
 .ph-sec h2{font-size:32px;line-height:40px;font-weight:700}
 .ph-sec h3{margin-top:96px;font-size:22px;line-height:26px;font-weight:700}
 .ph-sec h4{font-size:16px;line-height:24px;font-weight:700;margin-bottom:8px}
-.ph-sec>p{font-size:16px;line-height:26px;font-weight:400;letter-spacing:.08px}
-.ph-sec>h2+*{margin-top:32px}
+.ph-sec>p{font-size:16px;line-height:24px;font-weight:500;letter-spacing:.08px;color:var(--ink-text)}
+.ph-sec>h2+*{margin-top:48px}
 .ph-sec>p+p{margin-top:24px}
 .ph-sec>*+.ph-img,.ph-sec>.ph-img+*,.ph-sec>*+.note,.ph-sec>*+.ph-more,.ph-sec>*+.ph-aside,.ph-sec>.ph-aside+*,.ph-sec>*+.ph-goals,.ph-sec>*+.ph-cards,.ph-sec>*+.contacts{margin-top:48px}
 .ph-sec>h3+*{margin-top:32px}
@@ -179,7 +179,7 @@
 .ph-img img{display:block;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.4s var(--ease-out)}
 .ph-img.in img{transform:none}
 
-.ph-aside{max-width:430px;margin-left:auto!important;font-size:15px!important;line-height:24px!important;color:var(--ink-muted)}
+.ph-aside{max-width:430px;margin-left:auto!important;text-align:right;font-size:16px!important;line-height:24px!important;color:var(--ink-muted)!important}
 .ph-lead{font-size:20px!important;line-height:32px!important;font-weight:500!important}
 .ph-sec .note p{font-size:16px;line-height:26px;font-weight:400}
 .ph-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
@@ -190,14 +190,19 @@
 /* знак студии — разделитель смысловых блоков */
 .ph-mark{display:block;width:32px;height:29px;color:var(--logo)}
 .ph-mark svg{width:100%;height:100%}
-.ph-sec>*+.ph-mark{margin-top:64px}
-.ph-sec>.ph-mark+*{margin-top:40px}
+.ph-sec>*+.ph-mark{margin-top:112px}
+.ph-sec>.ph-mark+*{margin-top:48px}
+.ph-sec>p.ph-big{font-size:24px;line-height:32px;font-weight:600;letter-spacing:.12px}
+.ph-sec>p.ph-big+p.ph-big{margin-top:32px}
+.ph-sec>p.ph-big+.ph-aside{margin-top:112px}
+.ph-sec>.ph-aside+.ph-more{margin-top:112px}
 
 /* цели: знак → подпись → тезис → «Развернуть» */
-.ph-goals{display:grid;gap:96px}
-.ph-goal>.ph-mark+*{margin-top:40px}
+.ph-goals{display:grid;gap:112px}
+.ph-sec>*+.ph-goals{margin-top:112px}
+.ph-goal>.ph-mark+*{margin-top:48px}
 .ph-goal__lbl{font-size:14px;line-height:20px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-muted)}
-.ph-goal__text{margin-top:20px;font-size:24px;line-height:32px;font-weight:600}
+.ph-goal__text{margin-top:20px;font-size:24px;line-height:32px;font-weight:600;color:var(--ink-text)}
 .ph-goal .ph-more{margin-top:32px}
 
 /* «Развернуть / Свернуть» */

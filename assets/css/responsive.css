@@ -62,7 +62,10 @@
   .ph-sec+.ph-sec{margin-top:96px}
   .ph-sec{scroll-margin-top:110px}
   .ph-channels{margin-top:120px}
-  .ph-goal__text{font-size:20px;line-height:28px}
+  .ph-goal__text,.ph-sec>p.ph-big{font-size:20px;line-height:28px}
+  .ph-aside{text-align:left}
+  .ph-sec>*+.ph-mark,.ph-goals{margin-top:72px}
+  .ph-sec+.ph-sec{margin-top:120px}
   .ph-goals{gap:64px}
   .page-h1{font-size:32px;line-height:40px;padding-top:16px}
   .cases{margin-top:24px}
