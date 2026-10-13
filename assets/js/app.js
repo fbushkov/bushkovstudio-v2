@@ -106,7 +106,7 @@ function renderFooters(){
       </dl>
       <div class="foot__also">
         <p class="foot__lead">${T('footAlso')}</p>
-        <ul><li><a class="link" href="https://vc.ru" target="_blank" rel="noopener">vc</a></li><li><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></li></ul>
+        <ul><li><a class="link" href="https://vc.ru/id1598278" target="_blank" rel="noopener">vc</a></li><li><a class="link" href="https://habr.com/ru/users/monsher/articles/" target="_blank" rel="noopener">habr</a></li><li><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></li></ul>
       </div>
     </div>
     <div class="foot__right"><div class="kvazar">${kvazar}</div></div>
@@ -157,9 +157,9 @@ function tariffCard(t, sec, i, list){
   const li = a => a.map(x=>`<li>${x}</li>`).join('');
   return `<article class="tcard">
     <div><h3>${t.name}</h3><p class="tcard__for">${t.for}</p></div>
-    <div class="tcard__price">${t.old?`<s><span class="sr-only">${T('was')}</span>${t.old}</s>`:''}<strong>${t.price}</strong>${t.note?`<small>${t.note}</small>`:''}</div>
+    <div class="tcard__price">${t.old?`<s><span class="sr-only">${T('was')}</span>${t.old}</s>`:''}<div class="tcard__sum"><strong>${t.price}</strong>${t.note?tip(t.note):''}</div></div>
     <p class="tcard__meta">${t.tags.join('<i aria-hidden="true">·</i>')}</p>
-    <div><button class="btn" type="button" data-stub="${T('requestStub')}">${T('request')}</button></div>
+    <div><button class="btn" type="button" data-contact="${t.name}">${T('request')}</button></div>
     <div class="tcard__body">
       <p class="tcard__label">${base ? T('allFrom')(base.gen||base.name) : T('includes')}</p>
       <ul class="clist">${li(vis)}</ul>
@@ -170,6 +170,39 @@ function tariffCard(t, sec, i, list){
     </div>
   </article>`;
 }
+
+/* Подсказка «i» у цены: открывается наведением, фокусом и нажатием */
+const tip = text => `<span class="tip"><button class="tip__btn" type="button" aria-label="${T('priceNote')}" aria-expanded="false">${icon('info')}</button><span class="tip__txt" role="tooltip">${text}</span></span>`;
+document.addEventListener('click', e => {
+  const b = e.target.closest('.tip__btn');
+  $$('.tip.open').forEach(t => { if(!b || t !== b.parentElement){ t.classList.remove('open'); t.firstElementChild.setAttribute('aria-expanded','false'); } });
+  if(b){ const open = b.parentElement.classList.toggle('open'); b.setAttribute('aria-expanded', String(open)); }
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape') $$('.tip.open').forEach(t => { t.classList.remove('open'); t.firstElementChild.setAttribute('aria-expanded','false'); }); });
+
+/* Окно «Обсудить задачу»: пользователь выбирает, куда написать */
+const contactSheet = $('#contactSheet');
+let contactTopic = '';
+function renderContact(){
+  contactSheet.innerHTML = `
+    <div class="csheet__head"><h2 id="csTitle">${T('contactTitle')}</h2><button class="csheet__close" type="button" data-close-contact aria-label="${T('close')}">${icon('x')}</button></div>
+    <ul class="csheet__list">
+      <li><a class="csheet__item shift" href="https://t.me/bushkovf" target="_blank" rel="noopener">${icon('send')}<span>${T('contactTg')}</span><small>@bushkovf</small></a></li>
+      <li><a class="csheet__item shift" href="#" data-stub="${T('maxStub')}">${icon('message-circle')}<span>${T('contactMax')}</span></a></li>
+      <li><a class="csheet__item shift" data-mail href="mailto:bushkovf@mail.ru">${icon('mail')}<span>${T('contactMail')}</span><small>bushkovf@mail.ru</small></a></li>
+    </ul>`;
+}
+function openContact(topic){
+  contactTopic = topic || '';
+  const subj = T('mailSubject') + (contactTopic ? ` ${contactTopic}` : '');
+  $('[data-mail]', contactSheet).href = `mailto:bushkovf@mail.ru?subject=${encodeURIComponent(subj)}`;
+  contactSheet.showModal();
+}
+contactSheet.addEventListener('click', e => {
+  if(e.target === contactSheet || e.target.closest('[data-close-contact]')) contactSheet.close();
+  else if(e.target.closest('[data-stub]')) contactSheet.close();
+  else if(e.target.closest('a[href^="http"], a[href^="mailto"]')) setTimeout(() => contactSheet.close(), 0);
+});
 
 function renderTariffs(sec, aud){
   const list = sec.tariffs[aud] || sec.tariffs.smb;
@@ -243,6 +276,7 @@ document.addEventListener('click', e => {
     return;
   }
   const st = e.target.closest('[data-stub]'); if(st){ e.preventDefault(); toast(st.dataset.stub); return; }
+  const ct = e.target.closest('[data-contact]'); if(ct){ e.preventDefault(); openContact(ct.dataset.contact); return; }
   if(e.target.closest('[data-open-map]')) openMap(e.detail===0);
 });
 
@@ -332,7 +366,7 @@ function setTheme(t){
   $$('#themeSeg button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeSet===t)));
   placeThumb($('#themeSeg'));
 }
-setTheme(store.get('fb-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+setTheme(store.get('fb-theme') || 'dark');
 bindSeg($('#themeSeg'), t => {
   if(document.startViewTransition && !reduceMotion.matches){
     document.documentElement.dataset.vt = 'theme';
@@ -394,6 +428,7 @@ function renderPhilo(){
 }
 
 function renderAll(){
+  renderContact();
   applyStatic();
   renderFooters();
   renderServices(audience);

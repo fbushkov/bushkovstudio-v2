@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" data-theme="light">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,10 +12,10 @@
 <meta property="og:title" content="Филипп Бушков — стратегический сервис-дизайнер">
 <meta property="og:description" content="Стратегический дизайн, сервис-дизайн, дизайн-системы и диагностика бизнеса. Филипп Бушков проектирует, как компания создаёт опыт для клиентов и команд.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
-<!-- тема до отрисовки, чтобы не мигала светлая -->
-<script>try{var t=localStorage.getItem('fb-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t}catch(e){}
-/* язык до отрисовки: ?lang= → сохранённый → язык браузера */
-try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.getItem('fb-lang')||((navigator.language||'ru').slice(0,2)==='ru'?'ru':'en');l=l==='en'?'en':'ru';document.documentElement.lang=l;if(l!=='ru')document.documentElement.classList.add('i18n-wait')}catch(e){}</script>
+<!-- тема до отрисовки: по умолчанию тёмная -->
+<script>try{var t=localStorage.getItem('fb-theme')||'dark';document.documentElement.dataset.theme=t}catch(e){}
+/* язык до отрисовки: ?lang= → сохранённый → русский */
+try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.getItem('fb-lang')||'ru';l=l==='en'?'en':'ru';document.documentElement.lang=l;if(l!=='ru')document.documentElement.classList.add('i18n-wait')}catch(e){}</script>
 <link rel="preload" href="assets/fonts/Onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/Onest-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/fonts.css">
@@ -102,7 +102,7 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
           <p data-i18n="intro">Меня зовут Филипп Бушков.<br>Я проектирую, как компания создаёт опыт.<br>Связываю клиентский путь, внутренние<br>процессы и инструменты компании.</p>
         </div>
         <h1 class="reveal" data-i18n="h1"><span>Стратегический</span><span>сервис-дизайнер</span><span>CX/EX/UX</span></h1>
-        <div class="hero__cta reveal"><a class="btn btn--hero" href="https://t.me/bushkovf" target="_blank" rel="noopener" data-i18n="ctaMax">Обсудить задачу</a></div>
+        <div class="hero__cta reveal"><button class="btn btn--hero" type="button" data-contact data-i18n="ctaMax">Обсудить задачу</button></div>
       </div>
 
       <div class="projects-block" id="h-projects">
@@ -153,7 +153,7 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
         <div><dt data-i18n="tg">Телеграм:</dt><dd><a class="link" href="https://t.me/bushkovf" target="_blank" rel="noopener">bushkovf</a></dd></div>
         <div><dt data-i18n="mail">Почта:</dt><dd><a class="link" href="mailto:bushkovf@mail.ru">bushkovf@mail.ru</a></dd></div>
         <div><dt data-i18n="phone">Телефон:</dt><dd><a class="link" href="tel:+79091352248">+7 909 135-22-48</a></dd></div>
-        <div><dt data-i18n="otherServices">Другие сервисы:</dt><dd class="contacts__row"><a class="link" href="https://vc.ru" target="_blank" rel="noopener">vc</a><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></dd></div>
+        <div><dt data-i18n="otherServices">Другие сервисы:</dt><dd class="contacts__row"><a class="link" href="https://vc.ru/id1598278" target="_blank" rel="noopener">vc</a><a class="link" href="https://habr.com/ru/users/monsher/articles/" target="_blank" rel="noopener">habr</a><a class="link" href="https://hh.ru" target="_blank" rel="noopener">hh</a></dd></div>
       </dl>
       <div class="kvazar contacts__kvazar reveal" data-kvazar></div>
       <footer class="foot foot--mini" data-footer-mini></footer>
@@ -187,6 +187,7 @@ try{var q=new URLSearchParams(location.search).get('lang'),l=q||localStorage.get
   <div class="fmenu__body"><div class="fmenu__cols" id="fcols"></div></div>
 </div>
 
+<dialog class="csheet" id="contactSheet" aria-labelledby="csTitle"></dialog>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

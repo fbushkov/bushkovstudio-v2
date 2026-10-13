@@ -20,11 +20,20 @@
 .tcard__price{padding-top:28px;align-self:end;font-weight:700;font-variant-numeric:tabular-nums}
 .tcard__price s{display:block;font-size:16px;line-height:20px;color:var(--ink-muted)}
 .tcard__price strong{display:block;margin-top:4px;font-size:28px;line-height:34px}
+.tcard__sum{display:flex;align-items:center;gap:8px;margin-top:4px}
+.tcard__sum strong{margin-top:0}
+/* Подсказка «i»: условия оплаты не ломают симметрию карточек */
+.tip{position:relative;display:inline-flex}
+.tip__btn{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:var(--ink-muted);transition:color var(--t-fast) var(--ease),background-color var(--t-fast) var(--ease)}
+.tip__btn svg{width:18px;height:18px}
+.tip__btn:hover,.tip.open .tip__btn{color:var(--accent-ink);background:color-mix(in srgb,var(--surface) 92%,var(--shade))}
+.tip__txt{position:absolute;z-index:5;left:50%;bottom:calc(100% + 8px);width:max-content;max-width:240px;padding:8px 12px;border-radius:6px;background:var(--ink);color:var(--bg);font-size:13px;line-height:18px;font-weight:500;transform:translate(-50%,4px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity var(--t-fast) var(--ease),transform var(--t-fast) var(--ease),visibility var(--t-fast)}
+.tip:hover .tip__txt,.tip:focus-within .tip__txt,.tip.open .tip__txt{opacity:1;visibility:visible;transform:translate(-50%,0)}
 .tcard__price small{display:block;margin-top:4px;font-size:14px;font-weight:500;color:var(--ink-muted)}
 .tcard__meta{margin-top:8px;font-size:14px;line-height:20px;color:var(--ink-muted)}
 .tcard__meta i{font-style:normal;margin:0 8px}
 .tcard .btn{margin-top:24px;width:100%;min-height:56px;font-weight:500}
-.tcard__body{margin-top:32px;padding-top:24px;border-top:1px solid var(--line)}
+.tcard__body{margin-top:28px}
 .tcard__label{font-size:15px;line-height:22px;font-weight:600;margin-bottom:14px}
 .tcard__label b{font-weight:700}
 .tcard__result{margin-top:20px;font-size:14px;line-height:21px;color:var(--ink-muted)}
@@ -36,9 +45,8 @@
 
 /* список с галочками */
 .clist{display:grid;gap:10px}
-.clist li{position:relative;padding-left:28px;font-size:15px;line-height:22px}
-/* Галочка — иконка check из Lucide */
-.clist li::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;background:var(--accent-ink);-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat}
+.clist li{position:relative;padding-left:24px;font-size:15px;line-height:22px}
+.clist li::before{content:"";position:absolute;left:8px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--ink)}
 
 .ilist{display:grid;gap:8px}
 .ilist li{position:relative;padding-left:24px;font-size:16px;line-height:24px;letter-spacing:.08px}
@@ -71,13 +79,12 @@
 .grp>.note,.grp>.aspects{margin-top:48px}
 .grp>h3+.aspects{margin-top:32px}
 
-.info{display:grid;grid-template-columns:28px 1fr;gap:72px;max-width:1000px}
+.info{display:grid;grid-template-columns:28px 1fr;gap:32px;max-width:960px}
 .info svg{width:28px;height:28px;color:var(--accent-ink)}
-.prose .info p{font-size:20px;line-height:32px;font-weight:400;letter-spacing:0}
-.info p+p{margin-top:16px}
+.prose .info p{font-size:20px;line-height:28px;font-weight:600;letter-spacing:.1px;color:var(--ink-text)}
+.info p+p{margin-top:12px}
 .note{padding:24px 32px;border-radius:8px;background:var(--surface)}
 .prose .note p{font-weight:400}
-.note--accent{box-shadow:inset 3px 0 0 var(--accent)}
 
 /* Аспекты и этапы: сетка карточек с номером, без полос */
 .aspects{counter-reset:a;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
