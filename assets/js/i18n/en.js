@@ -74,16 +74,16 @@ MAP: [
 /* Service cards on the home page */
 SERVICES: {
   smb:[
-    {id:'service-design',t:'Service design',d:'Designing the customer experience by planning and organizing business resources. A comprehensive overhaul of the company’s entire product.',tags:['one-off service','one month'],p:'from ₽110,000'},
-    {id:'product',t:'Product consulting',d:'Product strategy based on market data and analysis of every factor of the product and the business. Optimization of the development process.',tags:['one-off service','one month'],p:'from ₽150,000'},
+    {id:'service-design',t:'Service design',d:'Designing the customer experience by planning and organizing business resources. A comprehensive overhaul of the company’s entire product.',tags:['one-off service','one month'],p:'from $1,300'},
+    {id:'product',t:'Product consulting',d:'Product strategy based on market data and analysis of every factor of the product and the business. Optimization of the development process.',tags:['one-off service','one month'],p:'from $1,800'},
     {id:'design-systems',t:'Design systems',d:'A set of activities to create unified rules and standards.',tags:['one-off service','timeline on request'],p:'Price on request'},
-    {id:'ux-ui',t:'UX/UI consulting',d:'Expert help and recommendations to improve the user experience (UX) and the user interface (UI).',tags:['one-off service'],p:'from ₽5,000/hour'},
+    {id:'ux-ui',t:'UX/UI consulting',d:'Expert help and recommendations to improve the user experience (UX) and the user interface (UI).',tags:['one-off service'],p:'from $60/hour'},
   ],
   ent:[
-    {id:'service-design',t:'Service design',d:'Designing the customer experience by planning and organizing business resources. A comprehensive overhaul of the company’s entire product.',tags:['one-off service','2–3 months'],p:'from ₽300,000'},
-    {id:'product',t:'Product consulting',d:'Product strategy based on market data and analysis of every factor of the product and the business. Optimization of the development process.',tags:['one-off service','2 months'],p:'from ₽300,000'},
+    {id:'service-design',t:'Service design',d:'Designing the customer experience by planning and organizing business resources. A comprehensive overhaul of the company’s entire product.',tags:['one-off service','2–3 months'],p:'from $3,500'},
+    {id:'product',t:'Product consulting',d:'Product strategy based on market data and analysis of every factor of the product and the business. Optimization of the development process.',tags:['one-off service','2 months'],p:'from $3,500'},
     {id:'design-systems',t:'Design systems',d:'A set of activities to create unified rules and standards.',tags:['one-off service','timeline on request'],p:'Price on request'},
-    {id:'ux-ui',t:'UX/UI consulting',d:'Expert help and recommendations to improve the user experience (UX) and the user interface (UI).',tags:['one-off service'],p:'from ₽7,000/hour'},
+    {id:'ux-ui',t:'UX/UI consulting',d:'Expert help and recommendations to improve the user experience (UX) and the user interface (UI).',tags:['one-off service'],p:'from $80/hour'},
   ]
 },
 
@@ -95,21 +95,21 @@ SECTIONS: [
         {name:'Optimization',for:'Find and remove bottlenecks in a running service',
           items:['Data analysis and study of the business’s capabilities and constraints','Defining problems and goals, setting service design objectives','Generating and selecting solutions','Prototyping and testing','Designing and detailing the service','In-depth consultation on implementation'],
           result:'Customer journey map, service blueprint and implementation plan',
-          tags:['One-off service','One month'],old:'₽150,000–300,000',price:'₽110,000–240,000'},
+          tags:['One-off service','One month'],old:'$1,800–3,500',price:'$1,300–2,800'},
         {name:'Transformation',for:'Rebuild the service and see the changes through to results',base:0,
           items:['Rolling out and supporting the changes','Measuring effectiveness and developing the service'],
           result:'A working, renewed service and metrics that show the effect',
-          tags:['Embedded in your team','Open-ended contract'],old:'from ₽300,000/mo',price:'from ₽250,000/mo'}
+          tags:['Embedded in your team','Open-ended contract'],old:'from $3,500/mo',price:'from $2,900/mo'}
       ],
       ent:[
         {name:'Optimization',for:'Find and remove bottlenecks in a running service',
           items:['Data analysis and study of the business’s capabilities and constraints','Interviews with departments and partners','Defining problems and goals, setting service design objectives','Generating and selecting solutions','Prototyping and testing','Designing and detailing the service','In-depth consultation on implementation'],
           result:'Customer journey map, service blueprint and an implementation plan by department',
-          tags:['One-off service','2–3 months'],price:'from ₽300,000'},
+          tags:['One-off service','2–3 months'],price:'from $3,500'},
         {name:'Transformation',for:'Rebuild the service and see the changes through to results',base:0,
           items:['Rolling out and supporting the changes','Measuring effectiveness and developing the service','Training teams and handing over the methodology'],
           result:'A working, renewed service and metrics that show the effect',
-          tags:['Embedded in your team','Open-ended contract'],price:'from ₽450,000/mo'}
+          tags:['Embedded in your team','Open-ended contract'],price:'from $5,300/mo'}
       ]
     },
     info:['Service design is an interdisciplinary, iterative approach to building a product. It draws on many methodologies, tools and action scenarios to meet the needs of every stakeholder — from the user to the business.'],
@@ -151,21 +151,21 @@ SECTIONS: [
         {name:'Development',for:'Shape the product concept and validate it before development',
           items:['Study of the business context and product requirements','Market and competitor analysis','Shaping the product concept','Working out and prioritizing functionality','Building a prototype and testing hypotheses','Detailed report with recommendations for further product development'],
           result:'A validated concept, feature priorities and a development plan',
-          tags:['One-off service','One month'],price:'₽150,000–250,000'},
+          tags:['One-off service','One month'],price:'$1,800–2,900'},
         {name:'Transformation',for:'Take the product from concept to launch and keep developing it',base:0,
           items:['Writing the specification and supporting development','Testing and product acceptance','Product launch and support','Further product development'],
           result:'A launched product and a team that develops it according to the strategy',
-          tags:['Embedded in your team','Open-ended contract'],price:'from ₽250,000/mo'}
+          tags:['Embedded in your team','Open-ended contract'],price:'from $2,900/mo'}
       ],
       ent:[
         {name:'Development',for:'Shape the product concept and validate it before development',
           items:['Study of the business context and product requirements','Interviews with leadership and teams','Market and competitor analysis','Shaping the product concept','Working out and prioritizing functionality','Building a prototype and testing hypotheses','Detailed report with recommendations for further product development'],
           result:'A validated concept, feature priorities and a development plan agreed with leadership',
-          tags:['One-off service','2 months'],price:'from ₽300,000'},
+          tags:['One-off service','2 months'],price:'from $3,500'},
         {name:'Transformation',for:'Take the product from concept to launch and keep developing it',base:0,
           items:['Writing the specification and supporting development','Testing and product acceptance','Product launch and support','Further product development'],
           result:'A launched product and teams that develop it according to a shared strategy',
-          tags:['Embedded in your team','Open-ended contract'],price:'from ₽400,000/mo'}
+          tags:['Embedded in your team','Open-ended contract'],price:'from $4,700/mo'}
       ]
     },
     info:['Product consulting helps companies develop, optimize and successfully bring products to market.','Its goal is to make product decisions more effective and the product more competitive, so the client reaches their business goals.'],
@@ -201,11 +201,11 @@ SECTIONS: [
         {name:'Core',for:'A minimal foundation, so you don’t have to rewrite everything as the product grows',
           items:['Audit of current solutions','Token architecture (3 levels)','Responsive typography','25–35 basic components','Agreements with developers on the handoff format','Concise documentation'],
           result:'A Figma library and tokens ready to hand over to development',
-          tags:['One-off service','4–6 weeks'],price:'₽150,000–350,000'},
+          tags:['One-off service','4–6 weeks'],price:'$1,800–4,100'},
         {name:'System',for:'A complete system that keeps evolving with the product without you',base:0,
           items:['Full component library for the product','Theme support (light and dark)','Interaction standards and patterns','Complete component documentation','Design review of the implementation with the front-end team','Team training'],
           result:'A system designers and developers use to build interfaces the same way',
-          tags:['One-off service','2–4 months'],price:'₽400,000–700,000'}
+          tags:['One-off service','2–4 months'],price:'$4,700–8,200'}
       ]
     },
     info:['A design system is a fixed language in which the product speaks to the user, and design speaks to development. Interaction standards are the rules of that language.'],
@@ -250,29 +250,29 @@ SECTIONS: [
         {name:'Consultation',for:'An answer to a specific interface question',
           items:['A 60–90 minute session on your question','Review of mockups, a prototype or the live product','Recommendations with examples and priorities','Session recording and a short summary of decisions'],
           result:'An answer to your question and a prioritized list of fixes',
-          tags:['One-off service','Hourly rate'],price:'₽5,000/hour',note:'Minimum 1 hour'},
+          tags:['One-off service','Hourly rate'],price:'$60/hour',note:'Minimum 1 hour'},
         {name:'Express audit',for:'Find the main interface problems in a week',base:0,
           items:['Expert review against usability heuristics','Analysis of key scenarios and where users drop off','Accessibility check: contrast, target sizes, keyboard','Report with screenshots, priorities and solutions','A session with your team to walk through the results'],
           result:'A report: what to fix first and how',
-          tags:['One-off service','5–7 business days'],price:'from ₽60,000'},
+          tags:['One-off service','5–7 business days'],price:'from $700'},
         {name:'Subscription',for:'Ongoing support when questions come up every week',base:0,
           items:['8 hours of consultations a month','Mockup reviews within 2 business days','Chat for quick questions on business days','Unused hours roll over to the next month'],
           result:'Interface decisions are made faster and without mistakes',
-          tags:['Open-ended contract','Monthly billing'],price:'₽40,000/mo'}
+          tags:['Open-ended contract','Monthly billing'],price:'$470/mo'}
       ],
       ent:[
         {name:'Consultation',for:'An answer to a specific interface question',
           items:['A 60–90 minute session on your question','Review of mockups, a prototype or the live product','Recommendations with examples and priorities','Session recording and a short summary of decisions'],
           result:'An answer to your question and a prioritized list of fixes',
-          tags:['One-off service','Hourly rate'],price:'₽7,000/hour',note:'Minimum 2 hours'},
+          tags:['One-off service','Hourly rate'],price:'$80/hour',note:'Minimum 2 hours'},
         {name:'Express audit',for:'Find the main interface problems in two weeks',base:0,
           items:['Expert review against usability heuristics','Analysis of key scenarios and where users drop off','Accessibility check: contrast, target sizes, keyboard','Check against your design system','Report with screenshots, priorities and solutions','A session with your team to walk through the results'],
           result:'A report: what to fix first and how',
-          tags:['One-off service','10–14 business days'],price:'from ₽120,000'},
+          tags:['One-off service','10–14 business days'],price:'from $1,400'},
         {name:'Subscription',for:'Ongoing support when questions come up every week',base:0,
           items:['16 hours of consultations a month','Mockup reviews within 2 business days','Chat for quick questions on business days','Taking part in your team’s design reviews','Unused hours roll over to the next month'],
           result:'Interface decisions are made faster and without mistakes',
-          tags:['Open-ended contract','Monthly billing'],price:'₽70,000/mo'}
+          tags:['Open-ended contract','Monthly billing'],price:'$820/mo'}
       ]
     },
     info:['A UX/UI consultation is an outside look at your interface: what gets in users’ way, why, and how to fix it. A one-off session, an express audit or a subscription — pick the format that matches how often you have questions.'],
@@ -352,19 +352,19 @@ PHILO: `
   <section class="ph-sec" id="ph-problem" data-spysec aria-labelledby="h-ph-problem">
     <h2 id="h-ph-problem">The problem</h2>
     <figure class="ph-img reveal"><img src="assets/img/philosophy/problem.webp" alt="Two deer locking antlers in a meadow" width="1440" height="960" loading="lazy" decoding="async"></figure>
-    <p>We were once told that the “free market” means fair competition, justice and progress. Yet all I see is meanness and cowardice in the pursuit of absolute power — the desire to crush competitors so as to remain one’s own “caste” and single-handedly control the market, setting one’s own rules for the sake of excess profit. There is not, and never was, any desire in this kind of relationship for progress for the many or for strengthening the state.</p>
-    <p>Moreover, under the power of private monopolies, the very existence of the state is called into question in the long run. Nor are there the benevolent democratic forms of relations my people were promised while the Soviet legacy was being plundered at the turn of the era. Still, this is the reality we have to live in and act by its rules, while asserting our own will.</p>
+    <p>We were once told that the “free market” means fair competition, justice and progress. Yet in practice I more often see a pursuit of absolute power — the desire to crush competitors so as to remain one’s own “caste” and single-handedly control the market, setting one’s own rules for the sake of excess profit. There is not, and never was, any desire in this kind of relationship for progress for the many or for strengthening the state.</p>
+    <p>Moreover, under the power of private monopolies, the very existence of the state is called into question in the long run. Nor are there the benevolent democratic forms of relations my people were promised while the Soviet legacy was being divided up at the turn of the era. Still, this is the reality we have to live in and act by its rules, while asserting our own will.</p>
     <span class="ph-mark" aria-hidden="true" data-logo-slot></span>
-    <p class="ph-big">At a time when we need to build our own IT products to strengthen a common, united state, some companies manage to “carve up” the state budget, burning taxpayers’ money from various funds under the banner of patriotism and other, often false, slogans.</p>
-    <p class="ph-big">Another example: corporations that live off the state budget build products however they please, ignoring users’ feedback, needs and problems, because their access to funding is unlimited. In such conditions there is neither the “fair competition” these speculators claim to seek, nor product development that meets end users’ needs. In essence, it is parasitism.</p>
+    <p class="ph-big">At a time when we need to build our own IT products to strengthen a common, united state, some companies spend the state budget inefficiently, using taxpayers’ money from various funds under patriotic slogans that are not always backed by real value.</p>
+    <p class="ph-big">Another example: corporations that live off the state budget build products however they please, ignoring users’ feedback, needs and problems, because their access to funding is unlimited. In such conditions there is neither the proclaimed “fair competition”, nor product development that meets end users’ needs. In essence, such companies live at someone else’s expense.</p>
     <p class="ph-aside">This kind of relationship between market policy and the individual is, above all, about money, and the ordinary citizen is merely its object. He lives for the state and the corporation, rather than the state and the corporation living for the citizen and solving his real problems. There is no symbiosis to speak of here.</p>
     <div class="ph-more">
       <button class="ph-more__btn" type="button" aria-expanded="false" aria-controls="ph-more-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg><span>Expand</span></button>
       <div class="ph-more__body" id="ph-more-1"><div>
-        <p>The time when world history saw an example of partnership and symbiosis between the state and the people (the majority of the population) has passed. That was the Soviet era, with a different socio-economic formation, where the life of the state was sustained by the majority of the working masses, and the economic model itself was built on the symbiosis of the state and the working class under the dictatorship of an educated proletariat — rather than a wretched nobility supposedly entitled by God to rule, to understand and know more, and to live better than the supposedly “unworthy” rest.</p>
-        <p>The fact that Soviet power itself eventually sank to the level of a “nomenklatura nobility” only shows that the self-serving nature of internal traitors took the reins, halting the development of Stalinist Marxism in theory and practice and the development of Soviet socialism as a new formation.</p>
-        <p>Today we have, one way or another, returned to similar forms of relations, disguised as a “fair” market and “fair” competition, and we live in a hypocritical society. The boundaries of morality and ethics are being eroded ever further for the profit of beneficiaries.</p>
-        <p>All of this works as a chain reaction rooted in primitive thinking — the level of a monkey living by instincts and desires. These are encouraged and supported in every way by those who benefit from it, without asking what lies ahead for the people, the state and humanity as a whole.</p>
+        <p>The time when world history saw an example of partnership and symbiosis between the state and the people (the majority of the population) has passed. That was the Soviet era, with a different socio-economic formation, where the life of the state was sustained by the majority of the working masses, and the economic model itself was built on the symbiosis of the state and the working class under the dictatorship of an educated proletariat — rather than a nobility that considered itself entitled by birth to rule, to know more and to live better than everyone else.</p>
+        <p>The fact that Soviet power itself eventually sank to the level of a “nomenklatura nobility” shows that people who put personal gain above the common cause came to power — and this halted the development of Stalinist Marxism in theory and practice and the development of Soviet socialism as a new formation.</p>
+        <p>Today we have, one way or another, returned to similar forms of relations, disguised as a “fair” market and “fair” competition, and we live in a society where words often diverge from deeds. The boundaries of morality and ethics are being eroded ever further for the profit of beneficiaries.</p>
+        <p>All of this works as a chain reaction rooted in thinking driven by momentary instincts and desires. These are encouraged and supported in every way by those who benefit from it, without asking what lies ahead for the people, the state and humanity as a whole.</p>
       </div></div>
     </div>
   </section>
@@ -387,8 +387,8 @@ PHILO: `
       <li><b>An ethical approach to business</b><ul class="ilist"><li>Gradually abandoning manipulative practices that violate moral and ethical norms: getting people “hooked” on gambling, provocative psychological tricks in sales</li><li>Products that serve users’ real needs, not only the interests of the beneficiary</li></ul></li>
       <li><b>Education and enlightenment as a tool of struggle</b><ul class="ilist"><li>Through articles, consultations and other forms of communication — giving every market participant the chance to see how the market works, understand the mechanisms of manipulative influence, recognize deception, make informed choices and become part of a fair economy (<a class="link" href="https://t.me/kvazardesign" target="_blank" rel="noopener">t.me/kvazardesign</a>)</li></ul></li>
       <li><b>Serving society and the state</b><ul class="ilist"><li>Business and its products should be a tool for strengthening the economy and the independence of the state</li><li>Priority goes to projects that develop society and protect national interests, not the interests of a group of beneficiaries</li></ul></li>
-      <li><b>Critique of the capitalist paradigm and the search for balance</b><ul class="ilist"><li>Condemning the “exploitative” nature of market relations built on deception, speculation and preying on human weaknesses</li><li>Accepting the need to act within the existing system, but with an ironic and critical eye — changing the patterns of socio-economic relations through personal example and collaboration with like-minded people</li></ul></li>
-      <li><b>Transparency as the basis of trust</b><ul class="ilist"><li>Openness comes first — for example, published prices, which used to be hidden until the lead was “caught”</li><li>Living by one’s values in practice, in particular keeping the word given in advertising a product or service</li></ul></li>
+      <li><b>Critique of the capitalist paradigm and the search for balance</b><ul class="ilist"><li>Disagreement with market relations built on deception, speculation and preying on human weaknesses</li><li>Accepting the need to act within the existing system, but with an ironic and critical eye — changing the patterns of socio-economic relations through personal example and collaboration with like-minded people</li></ul></li>
+      <li><b>Transparency as the basis of trust</b><ul class="ilist"><li>Openness comes first — for example, published prices, which used to be hidden until the first conversation with a client</li><li>Living by one’s values in practice, in particular keeping the word given in advertising a product or service</li></ul></li>
       <li><b>Flexibility and adaptation</b><ul class="ilist"><li>Looking for new solutions and being ready to revise approaches when market conditions change or the approaches stop serving society</li><li>Helping startups and existing products stay resilient so they can survive and grow even in uncertain times. My philosophy is not a dogma but a living process that evolves with the market</li></ul></li>
     </ol>
 
@@ -402,8 +402,8 @@ PHILO: `
   <section class="ph-sec" id="ph-why" data-spysec aria-labelledby="h-ph-why">
     <h2 id="h-ph-why">Why do I do this?</h2>
     <figure class="ph-img ph-img--dark reveal"><img src="assets/img/philosophy/why.webp" alt="The studio’s red mark on a dark background" width="1440" height="821" loading="lazy" decoding="async"></figure>
-    <p>People deceive, and the market makes money from deception and from “suckers” — those who know little about a particular field or about how life works in general. Add to that the greed and foolishness on which people with dishonest intentions build their businesses, profiting from others’ weaknesses and ignorance.</p>
-    <p>Ignorance is the main vulnerability that dishonest market players exploit. Today it is important not only to protect users and entrepreneurs from manipulation, but to equip them with knowledge, so they can make their own decisions and understand how they might be steered by those whose intentions are dishonest and criminal.</p>
+    <p>The market often makes money from deception and from those who know little about a particular field or about how things work. Add to that the greed and gullibility on which people with dishonest intentions build their businesses, profiting from others’ weaknesses and ignorance.</p>
+    <p>Ignorance is the main vulnerability that dishonest market players exploit. Today it is important not only to protect users and entrepreneurs from manipulation, but to equip them with knowledge, so they can make their own decisions and understand how they might be steered by those whose intentions are dishonest.</p>
     <div class="ph-goals">
       <div class="ph-goal">
         <span class="ph-mark" aria-hidden="true" data-logo-slot></span>
@@ -426,15 +426,15 @@ PHILO: `
       <div class="ph-goal">
         <span class="ph-mark" aria-hidden="true" data-logo-slot></span>
         <p class="ph-goal__lbl">Macro goal:</p>
-        <p class="ph-goal__text">Underlying all of this is the goal of breaking the fundamental paradigm built on deception, manipulation, speculation and the exploitation of human ignorance and the population’s lack of education for personal gain.</p>
+        <p class="ph-goal__text">Underlying all of this is the goal of breaking the fundamental paradigm built on deception, manipulation, speculation and the exploitation of people’s ignorance and lack of knowledge for personal gain.</p>
         <div class="ph-more">
           <button class="ph-more__btn" type="button" aria-expanded="false" aria-controls="ph-goal-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg><span>Expand</span></button>
           <div class="ph-more__body" id="ph-goal-3"><div><p>The macro goal means creating the fairest possible market and principles of competition. A form of relations in which business serves people, society and the state, while society and the state provide oversight and protection against the self-serving intentions of private business aimed at personal gain outside public and state interests — at those levels of responsibility where this is unacceptable.</p></div></div>
         </div>
       </div>
     </div>
-    <p class="ph-aside">Humanity deserves better. It only takes setting an example and pointing the way: everything depends on the intentions of strong people — those who hold some form of power or who want to fight this nature. If we take the easy path within the paradigm of “man is a wolf to man”, we will not build a better world, and we will deserve only the consequences of our common ignorance, greed, stupidity and cowardice.</p>
-    <p class="ph-aside">On the other hand, I am not trying to build a “new world” by changing the socio-economic formation and searching for revolutionary paths, as our great predecessors did — the Bolsheviks and the early Soviet government, who fought the old formation of feudal-market exploiters and “world-eaters”. The latter, under the guise of good deeds, enslaved and robbed their own and other peoples, justifying their policies by “the Lord”, the ravings of myth-makers and other harmful propaganda. My path lies within the capitalist world, just with my own, more ironic point of view. It is a balancing act within the circumstances of reality — in the absence of socialist forms of socio-economic relations.</p>
+    <p class="ph-aside">Humanity deserves better. It only takes setting an example and pointing the way: everything depends on the intentions of strong people — those who hold some form of power or who want to fight this nature. If we take the easy path within the paradigm of “man is a wolf to man”, we will not build a better world, and we will deserve only the consequences of our common ignorance, greed, indifference and fear.</p>
+    <p class="ph-aside">On the other hand, I am not trying to build a “new world” by changing the socio-economic formation and searching for revolutionary paths, as our great predecessors did — the Bolsheviks and the early Soviet government, who fought the old formation of feudal-market exploitation. Its masters, under the guise of good deeds and religious justifications, subjugated and exploited their own and other peoples. My path lies within the capitalist world, just with my own, more ironic point of view. It is a balancing act within the circumstances of reality — in the absence of socialist forms of socio-economic relations.</p>
     <div class="note note--accent"><h4>My mission</h4><p>To maintain balance on the market and help build a better-educated society. To strengthen the national economy and the unity of the country. To oppose the dominance of monopolies by promoting the principles of ethical competition (ECMR).</p></div>
   </section>
 
@@ -442,17 +442,17 @@ PHILO: `
   <section class="ph-sec ph-sec--wide" id="ph-rules" data-spysec aria-labelledby="h-ph-rules">
     <h2 id="h-ph-rules">Code of rules</h2>
     <ol class="rules">
-      <li><p>I don’t work with religious or quasi-religious organizations, especially assorted pagan sects, nor with bookmakers, nationalist organizations, online casinos and similar assholes.</p></li>
+      <li><p>I don’t work with religious or quasi-religious organizations, including sects, nor with bookmakers, online casinos, nationalist organizations and similar entities.</p></li>
       <li><p>I work mainly with small and medium businesses and help develop socially significant startups.</p><aside class="rules__note"><b>Comment</b><p>I may work with big business and corporations only on a one-off, case-by-case basis — for example, if a corporation wants to build a product for ideologically sound and useful work with the public, shaping a worldview I share and am ready to support.</p></aside></li>
       <li><p>I don’t work by the “customer is always right” principle. I help work out the design strategy of a product or service so that it is convenient for the user. I rely on data about the business and the market, my professional experience and judgment. The user’s good comes first, everything else second.</p></li>
-      <li><p>I don’t use behavioral psychology tools, psychological tricks and manipulation to the detriment of people and society for the sake of the beneficiary, exploiting users’ ignorance and lack of awareness. For example, manipulation designed to get people “hooked” on gambling.</p><aside class="rules__note"><b>Comment</b><p>If you want to use our collaboration to build tools of negative manipulation, deception and other scams, justifying it with “people make their own choices” — we are not on the same path. A person makes a choice when they realize they are being manipulated and deceived and understand the possible consequences. Otherwise it is not a choice, it is deception.</p></aside></li>
-      <li><p>I don’t cater to the tastes of the client and their managers. Our collaboration serves the end user, whose pleasant experience will also benefit the business. The users’ good comes first, everything else second.</p></li>
-      <li><p>I work with sound reasoning and choose tools carefully for the task at hand. I don’t blindly follow trends, fashionable methodologies or new theories like cargo-cult adepts, just because “that’s how they do it in the West” or “someone somewhere does it”. I approach every task with a human mind, not by imitating a cargo-cult monkey.</p></li>
+      <li><p>I don’t use behavioral psychology tools, psychological tricks and manipulation to the detriment of people and society for the sake of the beneficiary, exploiting users’ ignorance and lack of awareness. For example, manipulation designed to get people “hooked” on gambling.</p><aside class="rules__note"><b>Comment</b><p>If you want to use our collaboration to build tools of negative manipulation, deception and other dishonest schemes, justifying it with “people make their own choices” — we are not on the same path. A person makes a choice when they realize they are being manipulated and deceived and understand the possible consequences. Otherwise it is not a choice, it is deception.</p></aside></li>
+      <li><p>I don’t tailor solutions to the personal tastes of the client and their managers. Our collaboration serves the end user, whose pleasant experience will also benefit the business. The users’ good comes first, everything else second.</p></li>
+      <li><p>I work with sound reasoning and choose tools carefully for the task at hand. I don’t blindly follow trends, fashionable methodologies or new theories just because “that’s how they do it in the West” or “someone somewhere does it”. I approach every task thoughtfully: blindly copying other people’s solutions is a cargo cult.</p></li>
       <li><p>I respect the free will and work of every teammate and stand up for their rights and interests against anyone who encroaches on them in the course of work.</p></li>
       <li><p>My team is made up, of their own free will, only of specialists who share my worldview, love their craft, don’t lock themselves into rules and find new concepts and ideas to solve problems.</p></li>
       <li><p>I respect and value every reasonable, people-oriented client and treat them with the utmost understanding and loyalty. I will always make concessions for such clients and find a compromise in difficult situations — as long as the client doesn’t cross personal boundaries or offend my and my teammates’ honor and dignity.</p></li>
       <li><p>Design as a field of work is a product of the thinking of a designer or a group of designers, and its price is determined by the designer’s value. That value can’t be reduced to crude pricing processes. So prices are formed by a combination of circumstances, indirectly taking into account competitors’ prices, supply and demand on the market and other factors.</p></li>
-      <li><p>I don’t take credit for the work of the designer on a project; on the contrary, I promote their work and credit authorship in every project, so they can grow and build a personal reputation that will help their career beyond working with me. I am against parasitizing on a person and their labor. I run a collective practice for the common cause and the success of the product, embodying new forms of local socio-economic relations.</p><aside class="rules__note"><b>Comment</b><p>I despise every asshole and parasite who appropriates other people’s achievements and builds capital on speculation, deception and the suppressed will of employees. I wage an ideological fight against such forms of relations and am not shy about calling things by their names — and greedy, cowardly assholes, assholes.</p></aside></li>
+      <li><p>I don’t take credit for the work of the designer on a project; on the contrary, I promote their work and credit authorship in every project, so they can grow and build a personal reputation that will help their career beyond working with me. I am against anyone living off another person’s name and labor. I run a collective practice for the common cause and the success of the product, embodying new forms of local socio-economic relations.</p><aside class="rules__note"><b>Comment</b><p>I don’t accept anyone appropriating other people’s achievements and building capital on speculation, deception and the suppressed will of employees. I wage an ideological fight against such forms of relations and openly call things by their names.</p></aside></li>
       <li><p>Every member of the Studio is their own boss and subordinate. We look at results and most often adjust the company’s policy and internal and external relations through collective decisions. The exception is difficult critical situations: responsibility for decisions in them lies with the Studio’s founder.</p></li>
     </ol>
   </section>
